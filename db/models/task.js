@@ -29,7 +29,15 @@ module.exports = (sequelize, DataTypes) => {
 		{}
 	);
 	Task.associate = function (models) {
+		columnMapping = {
+			through: "TaskJoin",
+			foreignKey: "taskId",
+			otherKey: "userId"
+		}
+
 		Task.belongsTo(models.Project, { foreignKey: "projectId" });
+		Task.hasMany(models.Note, { foreignKey: "taskId" });
+		Task.belongsToMany(models.User, columnMapping);
 	};
 	return Task;
 };

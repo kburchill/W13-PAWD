@@ -20,8 +20,16 @@ module.exports = (sequelize, DataTypes) => {
 		{}
 	);
 	Project.associate = function (models) {
-		Project.belongsTo(models.User, { foreignKey: "projectOwnerId" }),
-			Project.hasMany(models.Task, { foreignKey: "projectId" });
+		columnMapping = {
+			through: "ProjectJoin",
+			foreignKey: "projectId",
+			otherKey: "userId",
+			as: "assignedUsers"
+		}
+
+		Project.belongsTo(models.User, { foreignKey: "projectOwnerId", as: "projectOwner" }),
+		Project.belongsToMany(models.User, columnMapping)
+		Project.hasMany(models.Task, { foreignKey: "projectId" });
 	};
 	return Project;
 };
