@@ -12,11 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     projectOwnerId: {
       allowNull: false,
       type: DataTypes.INTEGER,
-      references: {model: "Users"}
+      references: { model: "Users" }
     }
   }, {});
-  Project.associate = function(models) {
-    Project.belongsTo(models.User, {foreignKey: "projectOwnerId"})
+  Project.associate = function (models) {
+    Project.belongsTo(models.User, { foreignKey: "projectOwnerId" }),
+      Project.hasMany(models.Task, { foreignKey: "projectId" })
   };
   return Project;
 };
