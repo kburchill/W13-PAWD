@@ -1,7 +1,9 @@
 const { check, validationResult } = require("express-validator");
+const { User } = require('../db/models');
 
 const userValidations = (req, res, next) => {
 	const mappedErrors = validationResult(req);
+	console.log(mappedErrors)
 
 	if (!mappedErrors.isEmpty()) {
 		const formError = {
@@ -18,7 +20,7 @@ const userValidations = (req, res, next) => {
 			if (err.param === "password") formError.password = err.msg;
 			if (err.param === "confirmPassword") formError.password = err.msg;
 		});
-		const err = Error("Bad request");
+		const err = new Error("Bad request");
 		err.errors = formError;
 		err.status = 400;
 		err.title = "Bad Request";
@@ -65,7 +67,7 @@ const userValidators = [
 			}
 			return true;
 		}),
-	// userValidations,
+	userValidations,
 ];
 
 module.exports = { userValidators };
