@@ -20,15 +20,15 @@ module.exports = (sequelize, DataTypes) => {
 		{}
 	);
 	Project.associate = function (models) {
-		columnMapping = {
+		const columnMapping = {
 			through: "ProjectJoin",
 			foreignKey: "projectId",
 			otherKey: "userId",
-			as: "assignedUsers"
-		}
+			as: "assignedUsers",
+		};
 
-		Project.belongsTo(models.User, { foreignKey: "projectOwnerId", as: "projectOwner" }),
-		Project.belongsToMany(models.User, columnMapping)
+		Project.belongsTo(models.User, { foreignKey: "projectOwnerId", as: "projectOwner" });
+		Project.belongsToMany(models.User, columnMapping);
 		Project.hasMany(models.Task, { foreignKey: "projectId" });
 	};
 	return Project;

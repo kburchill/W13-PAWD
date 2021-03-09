@@ -24,32 +24,32 @@ module.exports = (sequelize, DataTypes) => {
 		{}
 	);
 	User.associate = function (models) {
-		projectMapping = {
-			though: "ProjectJoin",
+		const projectMapping = {
+			through: "ProjectJoin",
 			foreignKey: "userId",
 			otherKey: "projectId",
-			as: "assignedProjects"
-		}
+			as: "assignedProjects",
+		};
 
-		userMapping = {
+		const userMapping = {
 			through: "UserJoin",
 			foreignKey: "userId",
 			otherKey: "contactId",
-			as: "contacts"
-		}
+			as: "contacts",
+		};
 
-		contactMapping = {
+		const contactMapping = {
 			through: "UserJoin",
 			foreignKey: "contactId",
 			otherKey: "userId",
-			as: "projectOwners"
-		}
+			as: "projectOwners",
+		};
 
-		tasksMapping = {
+		const tasksMapping = {
 			through: "TaskJoin",
 			foreignKey: "userId",
-			otherKey: "taskId"
-		}
+			otherKey: "taskId",
+		};
 
 		User.hasMany(models.Project, { foreignKey: "projectOwnerId", as: "ownedProjects" });
 		User.hasMany(models.Note, { foreignKey: "userId" });
