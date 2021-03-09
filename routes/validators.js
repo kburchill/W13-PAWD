@@ -29,6 +29,15 @@ const userValidations = (req, res, next) => {
 	next();
 };
 // ALL VALIDATION ARRAYS ARE PLACED WITHIN ARRAY BELOW
+const loginValidators = [
+	check("email")
+		.exists({ checkFalsy: true })
+		.withMessage("Please provide an email "),
+	check("password")
+		.exists({ checkFalsy: true })
+		.withMessage("You must provide a password"),
+	userValidations
+]
 
 const userValidators = [
 	check("firstName")
@@ -70,4 +79,4 @@ const userValidators = [
 	userValidations,
 ];
 
-module.exports = { userValidators };
+module.exports = { userValidators, loginValidators };

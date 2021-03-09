@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { User } = require("../db/models");
 const { asyncHandler, csrfProtection } = require("./utils");
-const { userValidators } = require("./validators");
+const { userValidators, loginValidators } = require("./validators");
 const bcrypt = require('bcryptjs');
 const { loginUser, logoutUser } = require('../auth');
 
@@ -34,7 +34,7 @@ router.post(
 
 		return req.session.save((e) => {
 			if (e) return next(e);
-			return res.redirect('/')  			//change this back to /projects
+			return res.redirect('/projects')
 		});
 	})
 );
@@ -42,6 +42,15 @@ router.post(
 router.post('/logout', (req, res) => {
 	logoutUser(req, res);
 	res.redirect('/users/login')
+})
+
+router.get('/login', csrfProtection, (req, res) => {
+	const user = User.build()
+	res.render('login', {
+		title: "Login",
+		user,
+		csrfToken: req.csrfToken(),
+	})
 })
 
 module.exports = router;
