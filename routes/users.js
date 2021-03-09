@@ -45,12 +45,35 @@ router.post('/logout', (req, res) => {
 })
 
 router.get('/login', csrfProtection, (req, res) => {
-	const user = User.build()
+	let errors = [];
+
 	res.render('login', {
 		title: "Login",
-		user,
+		errors,
 		csrfToken: req.csrfToken(),
 	})
 })
+
+router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res, next) => {
+	const { email, password } = req.body
+
+	try {
+		const user = await User.findOne({ where: { email } })
+		const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+
+		if (passwordMatch) {
+			loginUser(req, res, user)
+			res.redirect('/projects')
+		} else {
+			throw new Error("Invalid credentials")
+		}
+	} catch (err) {
+		res.render('login', {
+			title: "Login",
+			errors: ["Invalid credentials"],
+			csrfToken: req.csrfToken(),
+		})
+	}
+}))
 
 module.exports = router;
