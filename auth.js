@@ -2,22 +2,23 @@ const { User } = require('./db/models');
 
 
 const loginUser = (req, res, user) => {
-    req.session.userAuth = { userId: user.id };
+  req.session.userAuth = { userId: user.id };
 }
 
 const logoutUser = (req, res) => {
-    delete req.session.userAuth;
+  delete req.session.userAuth;
 }
 
 const requireAuth = (req, res, next) => {
-    if (!res.locals.authenticated) {
-      return res.redirect('/user/login');
-    }
-    return next();
-  };
+  if (!res.locals.authenticated) {
+    return res.redirect('/user/login');
+  }
+  return next();
+};
 
 
 const restoreUser = async (req, res, next) => {
+  console.log(req.session.userAuth, "this is out undefined")
   if (req.session.userAuth) {
     const { userId } = req.session.userAuth;
     try {

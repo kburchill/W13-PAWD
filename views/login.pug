@@ -1,0 +1,14 @@
+extends layout.pug
+include utils.pug
+block content
+
+  div(class="form-container")
+    div(class="errors-div")
+      ul(class="errors-div__list")
+        each error in errors
+          li #{error}
+    form(action="/users/login" method="post" class="login-form")
+      input(type="hidden" name="_csrf" value=csrfToken)
+      +field("email", "", "Email", "email", "email")
+      +field("password", "", "Password", "Password", "password")
+      button(type="submit" class="login-form__button") Log in
