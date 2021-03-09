@@ -65,7 +65,7 @@ const userValidators = [
 			}
 			return true;
 		}),
-	// userValidations,
+	userValidations,
 ];
 
 module.exports = { userValidators };
