@@ -5,7 +5,11 @@ const csrfProtection = csrf({ cookie: true })
 
 
 
+//project delete
+const deleteItem = async (itemId, model) => {
+  const item = await model.findByPk(itemId)
+  await item.destroy()
+}
 
 
-
-module.exports = { asyncHandler, csrfProtection }
+module.exports = { asyncHandler, csrfProtection, deleteItem }
