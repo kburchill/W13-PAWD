@@ -1,1 +1,24 @@
-npx sequelize model:generate --name Task --attributes 'name:string,startDate:date,dueDate:date,priority:integer,inProgress:boolean,projectId:integer'
+{
+  name: "sample task 1",
+  startDate: 1/1/2011,
+  dueDate: 2/1/2011,
+  priority: 1,
+  inProgress: true,
+  projectId: 1
+}
+{
+  name: "sample task 2",
+  startDate: 1/1/2011,
+  dueDate: 2/1/2011,
+  priority: 2,
+  inProgress: false,
+  projectId: 1
+}
+{
+  name: "sample task 3",
+  startDate: 1/1/2011,
+  dueDate: 2/1/2011,
+  priority: 3,
+  inProgress: true,
+  projectId: 1
+}
