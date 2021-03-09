@@ -9,9 +9,8 @@ const bcrypt = require('bcryptjs');
 router.get(
 	"/",
 	csrfProtection,
-	userValidators,
 	asyncHandler(async (req, res) => {
-		const user = User.build();
+		const user = await User.build();
 
 		res.render("sign-up", {
 			title: "sign-up",
@@ -30,9 +29,9 @@ router.post(
 		const hashedPassword = await bcrypt.hash(password, 10);
 
 		const user = await User.create({ firstName, lastName, email, hashedPassword });
-		req.session.userAuth = { id: user.id }
+		req.session.userAuth = { userId: user.id }
 
-		res.redirect('/projects');
+		req.session.save(() => res.redirect('/users'));
 	})
 );
 
