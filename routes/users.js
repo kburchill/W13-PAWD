@@ -34,9 +34,14 @@ router.post(
 
 		return req.session.save((e) => {
 			if (e) return next(e);
-			return res.redirect('/projects')
+			return res.redirect('/')  			//change this back to /projects
 		});
 	})
 );
+
+router.post('/logout', (req, res) => {
+	logoutUser(req, res);
+	res.redirect('/users/login')
+})
 
 module.exports = router;
