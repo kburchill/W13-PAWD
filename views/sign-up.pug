@@ -1,0 +1,12 @@
+extends layout.pug
+
+block content
+  form(action="/users" method="post")
+    include utils.pug
+    input(type="hidden" name="_csrf" value=csrfToken)
+    +field("firstName", user.firstName, "First Name", "First Name")
+    +field("lastName", user.lastName, "Last Name", "Last Name")
+    +field("email", user.email, "Email", "email", "email")
+    +field("password", user.password, "Password", "Password", "password")
+    +field("confirmPassword", "", "Confirm Password", "Confirm Password", "password")
+    button(type="submit" class="user-submit-button") Submit

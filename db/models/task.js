@@ -29,11 +29,11 @@ module.exports = (sequelize, DataTypes) => {
 		{}
 	);
 	Task.associate = function (models) {
-		columnMapping = {
+		const columnMapping = {
 			through: "TaskJoin",
 			foreignKey: "taskId",
-			otherKey: "userId"
-		}
+			otherKey: "userId",
+		};
 
 		Task.belongsTo(models.Project, { foreignKey: "projectId" });
 		Task.hasMany(models.Note, { foreignKey: "taskId" });
