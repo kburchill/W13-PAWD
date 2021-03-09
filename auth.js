@@ -18,7 +18,6 @@ const requireAuth = (req, res, next) => {
 
 
 const restoreUser = async (req, res, next) => {
-  console.log(req.session.userAuth, "this is out undefined")
   if (req.session.userAuth) {
     const { userId } = req.session.userAuth;
     try {

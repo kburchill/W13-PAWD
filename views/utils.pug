@@ -10,3 +10,9 @@ mixin projectTile(projectName, projectProgress)
       p #{projectName}
       div(class="progressBorder")
         div(class="progressFiller") #{projectProgress}%
+
+mixin errorsDiv(errors)
+  div(class="errors-div")
+    ul(class="errors-div__list")
+      each error in errors
+        li #{error}

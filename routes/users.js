@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { User } = require("../db/models");
 const { asyncHandler, csrfProtection } = require("./utils");
-const { userValidators, loginValidators } = require("./validators");
+const { userValidators, loginValidators, userErrorHandler } = require("./validators");
 const bcrypt = require('bcryptjs');
 const { loginUser, logoutUser } = require('../auth');
 
@@ -25,17 +25,27 @@ router.post(
 	"/",
 	csrfProtection,
 	userValidators,
+	userErrorHandler,
 	asyncHandler(async (req, res, next) => {
-		const { firstName, lastName, email, password } = req.body;
-		const hashedPassword = await bcrypt.hash(password, 10);
+		if (req.body.errors) {
+			console.log(req.body.errors)
+			res.render('sign-up', {
+				title: 'sign-up',
+				csrfToken: req.csrfToken(),
+				user: req.body
+			})
+		} else {
+			const { firstName, lastName, email, password } = req.body;
+			const hashedPassword = await bcrypt.hash(password, 10);
 
-		const user = await User.create({ firstName, lastName, email, hashedPassword });
-		loginUser(req, res, user);
+			const user = await User.create({ firstName, lastName, email, hashedPassword });
+			loginUser(req, res, user);
 
-		return req.session.save((e) => {
-			if (e) return next(e);
-			return res.redirect('/projects')
-		});
+			return req.session.save((e) => {
+				if (e) return next(e);
+				return res.redirect('/projects')
+			});
+		}
 	})
 );
 
@@ -54,26 +64,38 @@ router.get('/login', csrfProtection, (req, res) => {
 	})
 })
 
-router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res, next) => {
-	const { email, password } = req.body
-
-	try {
-		const user = await User.findOne({ where: { email } })
-		const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
-
-		if (passwordMatch) {
-			loginUser(req, res, user)
-			res.redirect('/projects')
+router.post('/login',
+	csrfProtection,
+	loginValidators,
+	userErrorHandler,
+	asyncHandler(async (req, res, next) => {
+		if (req.body.errors) {
+			res.render('login', {
+				title: 'login',
+				csrfToken: req.csrfToken(),
+				errors: req.body.errors
+			})
 		} else {
-			throw new Error("Invalid credentials")
+		const { email, password } = req.body
+
+		try {
+			const user = await User.findOne({ where: { email } })
+			const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+
+			if (passwordMatch) {
+				loginUser(req, res, user)
+				res.redirect('/projects')
+			} else {
+				throw new Error("Invalid credentials")
+			}
+		} catch (err) {
+			res.render('login', {
+				title: "Login",
+				errors: ["Invalid credentials"],
+				csrfToken: req.csrfToken(),
+			})
 		}
-	} catch (err) {
-		res.render('login', {
-			title: "Login",
-			errors: ["Invalid credentials"],
-			csrfToken: req.csrfToken(),
-		})
 	}
-}))
+	}))
 
 module.exports = router;
