@@ -1,24 +1,28 @@
-{
-  name: "sample task 1",
-  startDate: 1/1/2011,
-  dueDate: 2/1/2011,
-  priority: 1,
-  inProgress: true,
-  projectId: 1
-}
-{
-  name: "sample task 2",
-  startDate: 1/1/2011,
-  dueDate: 2/1/2011,
-  priority: 2,
-  inProgress: false,
-  projectId: 1
-}
-{
-  name: "sample task 3",
-  startDate: 1/1/2011,
-  dueDate: 2/1/2011,
-  priority: 3,
-  inProgress: true,
-  projectId: 1
-}
+User Routes
+  register route and redirect
+  Login   route and redirect
+  logout  route and redirect
+
+
+Sign up
+  Fields for sign up
+  2 Buttons
+    Sign up
+    Login
+
+Sign up
+  Fields for Login
+  -bonus-forgot password
+  -staylogged in - bonus
+  2 Buttons
+    Sign up
+    Login
+
+Landing page
+  Blocks of projects
+
+
+Projects
+  Create project form
+  project tiles horizontally, with progess/ people etc
+  select
