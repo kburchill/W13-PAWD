@@ -32,7 +32,7 @@ module.exports = {
         references: { model: "Projects" }
       },
       completed: {
-        defaultVale: false,
+        defaultValue: false,
         allowNull: false,
         type: Sequelize.BOOLEAN
       },
