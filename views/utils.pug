@@ -2,3 +2,11 @@ mixin field(fieldName, fieldValue, labelText, placeHolder="", fieldType="text")
     div(class="formField")
       label(for=fieldName)= labelText
       input(type=fieldType, name=fieldName, id=fieldName, value=fieldValue, placeHolder=placeHolder, class="formField_#{fieldName}")
+
+mixin projectTile(projectName, projectProgress)
+  div(class="projectField")
+    input(type="checkbox" class="uncheckedProjects")
+    div(class="projectHolder")
+      p #{projectName}
+      div(class="progressBorder")
+        div(class="progressFiller") #{projectProgress}%
