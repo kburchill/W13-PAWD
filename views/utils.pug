@@ -5,7 +5,7 @@ mixin field(fieldName, fieldValue, labelText, placeHolder="", fieldType="text")
 
 mixin projectTile(projectName, projectProgress, projectId)
   div(class="projectField")
-    input(type="checkbox" class="uncheckedProjects")
+    input(type="checkbox" class="unchecked")
     div(class="projectHolder")
       p #{projectName}
       div(class="progressBorder")
@@ -21,3 +21,14 @@ mixin errorsDiv(errors)
       each error in errors
         li #{error}
 
+mixin taskTile(taskName, taskInProgress, taskCompleted, taskPriority, taskId)
+  div(class="taskField")
+    input(type="checkbox" class="unchecked")
+    div(class="taskHolder")
+      p #{taskName}
+      div(class="taskHolder__inProgress") #{taskInProgress}
+      div(class="taskHolder__completed") #{taskCompleted}
+      div(class="taskHolder__priority") #{taskPriority}
+      //- possible add in the tags as blocks here, a div per tag
+      div
+        button(class="delete__button") Delete
