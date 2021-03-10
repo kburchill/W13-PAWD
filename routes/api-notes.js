@@ -6,17 +6,22 @@ const { asyncHandler, deleteItem } = require("./utils");
 
 
 apiNoteRouter.delete(
-  "/",
+  "/:id",
   requireAuth,
   asyncHandler(async (req, res) => {
-    const noteId = req.body.id
-
+    console.log(req.params, "--------------");
+    const { noteId } = req.body
+    const note = await Note.findByPk(noteId);
+    console.log(note);
     try {
       await deleteItem(noteId, Note);
     } catch (error) {
 
     }
-    const allNotes = await Note.findAll({ where: { taskId: req.body.taskId } });
+    const allNotes = await Note.findAll({ where: { taskId: note.taskId } });
+    console.log(allNotes, "All notes here-----------");
     res.json(allNotes)
   })
 )
+
+module.exports = apiNoteRouter;

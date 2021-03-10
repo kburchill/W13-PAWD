@@ -11,6 +11,7 @@ const usersRouter = require("./routes/users");
 const projectsRouter = require("./routes/projects");
 const tasksRouter = require("./routes/tasks");
 const apiProjectRouter = require("./routes/api-projects");
+const apiNoteRouter = require("./routes/api-notes")
 const { restoreUser } = require("./auth");
 
 const app = express();
@@ -42,6 +43,7 @@ store.sync();
 app.use(restoreUser);
 app.use("/", indexRouter);
 app.use("/api-projects/", apiProjectRouter);
+app.use("/api-notes/", apiNoteRouter);
 app.use("/users", usersRouter);
 app.use("/projects", projectsRouter);
 app.use("/tasks", tasksRouter);

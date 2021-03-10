@@ -1,12 +1,12 @@
 extends task
+include utils.pug
+append head
+  script(src="/javascripts/notesAPI.js" type="module")
 block tasks
   .noteList__div
     form(action=`/tasks/${taskId}` method="post")
       textarea(name="content" class="note-content" placeHolder="Enter comment")
       button(type="submit" class="note-submit-button") Comment
-    div(class="comments")
+    div(class="notesTilesContainer")
       each note in notes
-        div
-          p #{note.content}
-        button(type="submit" class="note-edit-button") Edit
-        button(type="submit" class="note-delete-button") Delete
+        +noteTile(note.content, note.id)

@@ -29,7 +29,7 @@ tasksRouter.get('/:id', requireAuth, asyncHandler(async (req, res) => {
 
 }));
 
-tasksRouter.post('/:id', csrfProtection, asyncHandler(async (req, res) => {
+tasksRouter.post('/:id', asyncHandler(async (req, res) => {
   const { content } = req.body;
   const id = req.params.id;
   console.log(id, "here");
