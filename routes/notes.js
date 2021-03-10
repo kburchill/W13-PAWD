@@ -17,9 +17,9 @@ notesRouter.get('/', csrfProtection, asyncHandler(async (req, res) => {
 }));
 
 notesRouter.post('/', csrfProtection, asyncHandler(async (req, res) => {
-  const { userId, content, taskId } = req.body;
+  const { userId, content, taskId, createdAt, updatedAt } = req.body;
 
-  const note = await Note.create({ userId, content, taskId })
+  const note = await Note.create({ userId, content, taskId, createdAt, updatedAt })
   res.redirect('/projects/:id/tasks/:id/notes')   //seeing ALL notes once you create a note
 
 }))

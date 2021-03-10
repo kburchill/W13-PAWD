@@ -1,0 +1,12 @@
+extends layout.pug
+
+block content
+  form(action="/notes" method="post")
+    input(type="hidden" name="_csrf" value=csrfToken)
+    textarea(class="note-content" placeHolder="Enter comment")
+    button(type="submit" class="note-submit-button") Comment
+
+
+  each note in notes
+    button(type="submit" class="note-edit-button") Edit
+    button(type="submit" class="note-delete-button") Delete
