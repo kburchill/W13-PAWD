@@ -1,14 +1,13 @@
-extends navbar.pug
+extends task
 
 append head
   script(src="/javascripts/notesAPI.js" type="module")
-block nav
-  form(action=`/tasks/${id}` method="post")
-    input(type="hidden" name="_csrf" value=csrfToken)
-    textarea(name="content" class="note-content" placeHolder="Enter comment")
-    button(type="submit" class="note-submit-button") Comment
-
-  include utils.pug
-  div(class="notesTilesContainer")
-    each note in notes
-      +noteTile(note.content, note.id)
+block tasks
+  .noteList__div
+    form(action=`/tasks/${taskId}` method="post")
+      textarea(name="content" class="note-content" placeHolder="Enter comment")
+      button(type="submit" class="note-submit-button") Comment
+   include utils.pug
+    div(class="notesTilesContainer")
+      each note in notes
+        +noteTile(note.content, note.id)
