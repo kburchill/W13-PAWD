@@ -1,4 +1,4 @@
-function projectFieldInnerHtml(projects) {
+export function projectFieldInnerHtml(projects) {
   const projectsTilesContainer = document.querySelector(".projectsTilesContainer");
   projects.forEach((project) => {
     const projectHolderDiv = document.createElement("div");
@@ -23,9 +23,9 @@ function projectFieldInnerHtml(projects) {
 
 //    FOR NOTES.
 export function noteFieldInnerHtml(notes) {
-  const notesContainer = document.querySelector(".notesTilesContainer") //this needs to be made
+  const notesContainer = document.querySelector(".notesTilesContainer");
 
-  notesForEach((note) => {
+  notes.ForEach((note) => {
     const noteHolderDiv = document.createElement("div");
     noteHolderDiv.innerHTML = `<div class="noteField">
     <div class="noteHolder">
@@ -44,4 +44,4 @@ export function noteFieldInnerHtml(notes) {
   })
 }
 
-export default projectFieldInnerHtml;
+export default { projectFieldInnerHtml, noteFieldInnerHtml };

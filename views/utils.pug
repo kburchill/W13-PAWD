@@ -14,6 +14,15 @@ mixin projectTile(projectName, projectProgress, projectId)
         form(id=`${projectId}`)
           button(class="delete__button" type="submit") Delete
 
+mixin noteTile(content, note, taskId)
+  div(class="noteField")
+    div(class="noteHolder")
+      p #{content}
+      div
+        form(id=`${note}`)
+          button(class="delete__button" type="submit") Delete
+          button(class="edit_button" type="submit") Edit
+
 mixin errorsDiv(errors)
   div(class="errors-div")
     ul(class="errors-div__list")

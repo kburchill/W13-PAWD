@@ -1,15 +1,14 @@
-extends layout.pug
+extends navbar.pug
 
-block content
+append head
+  script(src="/javascripts/notesAPI.js" type="module")
+block nav
   form(action=`/tasks/${id}` method="post")
     input(type="hidden" name="_csrf" value=csrfToken)
     textarea(name="content" class="note-content" placeHolder="Enter comment")
     button(type="submit" class="note-submit-button") Comment
 
-
-  div(class="comments")
+  include utils.pug
+  div(class="notesTilesContainer")
     each note in notes
-      div
-        p #{note.content}
-      button(type="submit" class="note-edit-button") Edit
-      button(type="submit" class="note-delete-button") Delete
+      +noteTile(note.content, note.id)
