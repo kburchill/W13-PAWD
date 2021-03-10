@@ -6,7 +6,7 @@ block nav
     form(action="/projects" method="post")
       input(type="hidden" name="_csrf" value=csrfToken)
       label(for="projectName")
-      input(type="text" id="createNewProject" name="projectName" placeHolder="Create New Project" value=project.name class="formField_createProject")
+      input(type="text" id="createNewProject" name="projectName" placeHolder="Create New Project"  class="formField_createProject")
       button(type="submit" class="user-submit-button") Create New Project
 
     include utils.pug

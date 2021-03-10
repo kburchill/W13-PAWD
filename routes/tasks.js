@@ -1,20 +1,28 @@
-const { Note } = require("../db/models");
-const { asyncHandler, csrfProtection, deleteItem } = require("./utils");
+const { Note, Task, Project } = require("../db/models");
+const { asyncHandler, csrfProtection, deleteItem, findCurrentUser } = require("./utils");
 const express = require("express");
+const { requireAuth } = require('../auth');
 const tasksRouter = express.Router();
 
-tasksRouter.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
-  const id = req.params.id;
+tasksRouter.get('/:id', requireAuth, asyncHandler(async (req, res) => {
+  const taskId = req.params.id;
   const note = await Note.build()
-  const notes = await Note.findAll({ where: { taskId: id } })
+  const project = await Project.build();
+  const task = await Task.findByPk(taskId)
+  const { projectId } = task
+  const notes = await Note.findAll({ where: { taskId } })
+  const tasks = await Task.findAll({ where: { projectId } });
+  const projects = await Project.findAll({ where: { projectOwnerId: findCurrentUser(req.session) } });
 
 
   res.render('notes', {
     note,
     notes,
     title: 'notes',
-    id,
-    csrfToken: req.csrfToken()
+    taskId,
+    tasks,
+    projects,
+    projectId
   }
   )
 

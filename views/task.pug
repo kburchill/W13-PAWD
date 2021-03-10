@@ -2,7 +2,7 @@ extends project
 include utils.pug
 block projects
   .taskList__div
-    form(action=`/projects/${id}` method="post")
+    form(action=`/projects/${projectId}` method="post")
       label(for="createNewTask")
       input(type="text" id="createNewTask" name="name" placeHolder="Create New Task" class="formField_createTask")
       select(name="priority")

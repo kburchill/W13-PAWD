@@ -46,12 +46,12 @@ projectsRouter.post('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => 
 projectsRouter.get(
 	"/:id(\\d+)",
 	asyncHandler(async (req, res) => {
-		const { id } = req.params;
-		const tasks = await Task.findAll({ where: { projectId: id } });
+		const projectId = req.params.id;
+		const tasks = await Task.findAll({ where: { projectId } });
 		const project = await Project.build();
 		const projects = await Project.findAll({ where: { projectOwnerId: findCurrentUser(req.session) } });
 
-		res.render("task", { tasks, title: "Tasks", id, project, projects });
+		res.render("task", { tasks, title: "Tasks", projectId, project, projects });
 	})
 );
 

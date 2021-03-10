@@ -1,8 +1,7 @@
 extends task
 block tasks
   .noteList__div
-    form(action=`/tasks/${id}` method="post")
-      input(type="hidden" name="_csrf" value=csrfToken)
+    form(action=`/tasks/${taskId}` method="post")
       textarea(name="content" class="note-content" placeHolder="Enter comment")
       button(type="submit" class="note-submit-button") Comment
     div(class="comments")
