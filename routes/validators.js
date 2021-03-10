@@ -1,9 +1,10 @@
+const e = require("express");
 const { check, validationResult } = require("express-validator");
 const { User } = require('../db/models');
 
 const userValidations = (req, res, next) => {
 	const mappedErrors = validationResult(req);
-	console.log(mappedErrors)
+	// console.log(mappedErrors)
 
 	if (!mappedErrors.isEmpty()) {
 		const formError = {
@@ -18,7 +19,7 @@ const userValidations = (req, res, next) => {
 			if (err.param === "lastName") formError.lastName = err.msg;
 			if (err.param === "email") formError.email = err.msg;
 			if (err.param === "password") formError.password = err.msg;
-			if (err.param === "confirmPassword") formError.password = err.msg;
+			if (err.param === "confirmPassword") formError.confirmPassword = err.msg;
 		});
 		const err = new Error("Bad request");
 		err.errors = formError;
@@ -28,6 +29,15 @@ const userValidations = (req, res, next) => {
 	}
 	next();
 };
+
+const userErrorHandler = (err, req, res, next) => {
+	if (err.errors) {
+		req.body.errors = err.errors;
+		return next();
+	} else {
+		next(err);
+	}
+}
 // ALL VALIDATION ARRAYS ARE PLACED WITHIN ARRAY BELOW
 const loginValidators = [
 	check("email")
@@ -79,4 +89,4 @@ const userValidators = [
 	userValidations,
 ];
 
-module.exports = { userValidators, loginValidators };
+module.exports = { userValidators, loginValidators, userErrorHandler };

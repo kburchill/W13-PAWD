@@ -1,6 +1,6 @@
-extends layout.pug
+extends navbar.pug
 
-block content
+block nav
   form(action="/projects" method="post")
     input(type="hidden" name="_csrf" value=csrfToken)
     label(for="projectName")

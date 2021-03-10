@@ -3,10 +3,7 @@ include utils.pug
 block content
 
   div(class="form-container")
-    div(class="errors-div")
-      ul(class="errors-div__list")
-        each error in errors
-          li #{error}
+    +errorsDiv(errors)
     form(action="/users/login" method="post" class="login-form")
       input(type="hidden" name="_csrf" value=csrfToken)
       +field("email", "", "Email", "email", "email")
