@@ -8,10 +8,10 @@ const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
-const projectsRouter = require("./routes/projects")
-const tasksRouter = require("./routes/tasks")
-const { restoreUser } = require('./auth');
-
+const projectsRouter = require("./routes/projects");
+const tasksRouter = require("./routes/tasks");
+const apiProjectRouter = require("./routes/api-projects");
+const { restoreUser } = require("./auth");
 
 const app = express();
 
@@ -24,7 +24,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-
 // set up session middleware
 const store = new SequelizeStore({ db: sequelize });
 
@@ -35,13 +34,14 @@ app.use(
 		saveUninitialized: false,
 		resave: false,
 	})
-	);
+);
 
-	// create Session table if it doesn't already exist
+// create Session table if it doesn't already exist
 store.sync();
 
 app.use(restoreUser);
 app.use("/", indexRouter);
+app.use("/api-projects/", apiProjectRouter);
 app.use("/users", usersRouter);
 app.use("/projects", projectsRouter);
 app.use("/tasks", tasksRouter);

@@ -11,8 +11,7 @@ mixin projectTile(projectName, projectProgress, projectId)
       div(class="progressBorder")
         div(class="progressFiller") #{projectProgress}%
       div
-        form(action=`/projects/delete/${projectId}`, method="post")
-          input(type="hidden", name="_csrf", value=csrfToken)
+        form(id=`${projectId}`)
           button(class="delete__button" type="submit") Delete
 
 mixin errorsDiv(errors)

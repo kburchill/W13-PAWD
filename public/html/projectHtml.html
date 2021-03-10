@@ -1,0 +1,15 @@
+<!-- This is html for api-projects GET route -->
+<div class="projectField">
+	<input class="unchecked" type="checkbox" />
+	<div class="projectHolder">
+		<p>${project.projectName}</p>
+		<div class="progressBorder">
+			<div class="progressFiller">${project.progress}</div>
+		</div>
+		<div>
+			<form>
+				<button class="delete__button" id="${project.id}" type="submit">Delete</button>
+			</form>
+		</div>
+	</div>
+</div>
