@@ -1,9 +1,10 @@
-const { Project } = require("../db/models");
+const { Project, Task } = require("../db/models");
 const { asyncHandler, csrfProtection, deleteItem } = require("./utils");
 const express = require("express");
+const { requireAuth } = require("../auth");
 const projectsRouter = express.Router();
 
-// const { userValidators } = require("./validators");
+// const { projectValidators } = require("./validators"); not created yet
 
 projectsRouter.get(
 	"/",
@@ -41,11 +42,27 @@ projectsRouter.post(
 // 	const project = await Project.findByPk(projectId)		//pass in csrfTOken
 // }))
 
-projectsRouter.post('/delete/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
-	const projectId = parseInt(req.params.id, 10);
+projectsRouter.post(
+	"/delete/:id(\\d+)",
+	csrfProtection,
+	requireAuth,
+	asyncHandler(async (req, res) => {
+		const projectId = parseInt(req.params.id, 10);
 
-	await deleteItem(projectId, Project)
-	res.redirect('/projects')		//maybe switch to AJAX if we have time
-}))
+		await deleteItem(projectId, Project);
+		res.redirect("/projects"); //maybe switch to AJAX if we have time
+	})
+);
+
+projectsRouter.get(
+	"/:id(\\d+)",
+	csrfProtection,
+	asyncHandler(async (req, res) => {
+		const tasks = await Task.findAll({ where: { projectId: req.params.id } });
+		console.log(tasks);
+
+		res.render("task", { tasks, title: "Tasks", csrfToken: req.csrfToken() });
+	})
+);
 
 module.exports = projectsRouter;
