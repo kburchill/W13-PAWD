@@ -1,12 +1,16 @@
-extends navbar.pug
+extends project
 include utils.pug
-block nav
-    form(action="/" method="post")
-    input(type="hidden" name="_csrf" value=csrfToken)
-    label(for="projectName")
-    input(type="text" id="createNewProject" name="projectName" placeHolder="Create New Project" value=project.name class="formField_createProject")
-    button(type="submit" class="user-submit-button") Create New Project
-
-  div(class="tasksContainer")
-    each task in tasks
-      +taskTile(task.name, task.inProgress, task.completed, task.priority, task.id)
+block projects
+  .taskList__div
+    form(action=`/projects/${id}` method="post")
+      label(for="createNewTask")
+      input(type="text" id="createNewTask" name="name" placeHolder="Create New Task" class="formField_createTask")
+      select(name="priority")
+        option(value=1) 1
+        option(value=2) 2
+        option(value=3) 3
+      button(type="submit" class="user-submit-button") Create New Task
+    div(class="tasksContainer")
+      each task in tasks
+        +taskTile(task.name, task.inProgress, task.completed, task.priority, task.id)
+  block tasks

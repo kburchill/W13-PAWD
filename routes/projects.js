@@ -33,28 +33,25 @@ projectsRouter.post(
 	})
 );
 
-// projectsRouter.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
-// 	const projectId = parseInt(req.params.id, 10);
-// 	const project = await Project.findByPk(projectId)		//pass in csrfTOken
-// }))
+projectsRouter.post('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+	const{ name, priority } = req.body;
+	const{ id } = req.params;
+	const userId = findCurrentUser(req.session);
+	await Task.create({ name, priority, projectId: id });
 
-projectsRouter.post(
-	"/delete/:id(\\d+)",
-	asyncHandler(async (req, res) => {
-		const projectId = parseInt(req.params.id, 10);
+	res.redirect(`/projects/${id}`)
+}))
 
-		await deleteItem(projectId, Project);
-		res.redirect("/projects"); //maybe switch to AJAX if we have time
-	})
-);
 
 projectsRouter.get(
 	"/:id(\\d+)",
 	asyncHandler(async (req, res) => {
-		const tasks = await Task.findAll({ where: { projectId: req.params.id } });
-		console.log(tasks);
+		const { id } = req.params;
+		const tasks = await Task.findAll({ where: { projectId: id } });
+		const project = await Project.build();
+		const projects = await Project.findAll({ where: { projectOwnerId: findCurrentUser(req.session) } });
 
-		res.render("task", { tasks, title: "Tasks" });
+		res.render("task", { tasks, title: "Tasks", id, project, projects });
 	})
 );
 
