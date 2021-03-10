@@ -1,5 +1,5 @@
 const { Project } = require("../db/models");
-const { asyncHandler, csrfProtection } = require("./utils");
+const { asyncHandler, csrfProtection, deleteItem } = require("./utils");
 const express = require("express");
 const projectsRouter = express.Router();
 
@@ -35,5 +35,17 @@ projectsRouter.post(
 		res.redirect("/projects");
 	})
 );
+
+// projectsRouter.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+// 	const projectId = parseInt(req.params.id, 10);
+// 	const project = await Project.findByPk(projectId)		//pass in csrfTOken
+// }))
+
+projectsRouter.post('/delete/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+	const projectId = parseInt(req.params.id, 10);
+
+	await deleteItem(projectId, Project)
+	res.redirect('/projects')		//maybe switch to AJAX if we have time
+}))
 
 module.exports = projectsRouter;

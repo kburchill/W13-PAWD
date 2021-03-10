@@ -9,4 +9,4 @@ block nav
 
   include utils.pug
   each project in projects
-    +projectTile(project.name, project.progress)
+    +projectTile(project.name, project.progress, project.id)
