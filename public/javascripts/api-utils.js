@@ -10,7 +10,7 @@ function projectFieldInnerHtml(projects) {
       <div class="progressFiller">${project.progress}</div>
     </div>
     <div>
-      <form id="${projectId}">
+      <form id="${project.id}">
         <button class="delete__button" type="submit">Delete</button>
       </form>
     </div>
