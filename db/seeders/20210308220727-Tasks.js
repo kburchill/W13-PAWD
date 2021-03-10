@@ -11,6 +11,7 @@ module.exports = {
         priority: 1,
         inProgress: true,
         projectId: 1,
+        completed: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -21,6 +22,7 @@ module.exports = {
         priority: 2,
         inProgress: false,
         projectId: 2,
+        completed: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -29,6 +31,7 @@ module.exports = {
         startDate: new Date(),
         dueDate: new Date(),
         priority: 3,
+        completed: false,
         inProgress: true,
         projectId: 1,
         createdAt: new Date(),

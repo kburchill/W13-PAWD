@@ -1,8 +1,8 @@
 extends layout.pug
 block content
-
-  nav(class="nav")
-    div(class="logout")
-      form(method="post" action="/users/logout")
-        button(class="logout__button" type="submit") Logout
+  .navbar__div
+    nav(class="nav")
+      div(class="logout")
+        form(method="post" action="/users/logout")
+          button(class="logout__button" type="submit") Logout
   block nav
