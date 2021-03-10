@@ -22,6 +22,7 @@ tasksRouter.get('/:id', requireAuth, asyncHandler(async (req, res) => {
     taskId,
     tasks,
     projects,
+    project,
     projectId
   }
   )
