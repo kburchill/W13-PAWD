@@ -25,7 +25,7 @@ export function projectFieldInnerHtml(projects) {
 export function noteFieldInnerHtml(notes) {
   const notesContainer = document.querySelector(".notesTilesContainer");
 
-  notes.ForEach((note) => {
+  notes.forEach((note) => {
     const noteHolderDiv = document.createElement("div");
     noteHolderDiv.innerHTML = `<div class="noteField">
     <div class="noteHolder">

@@ -1,4 +1,4 @@
-import projectFieldInnerHtml from "./api-utils.js";
+import { projectFieldInnerHtml } from "./api-utils.js";
 
 window.addEventListener("DOMContentLoaded", async () => {
 	const projectsTilesContainer = document.querySelector(".projectsTilesContainer");

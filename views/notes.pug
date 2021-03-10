@@ -1,5 +1,5 @@
 extends task
-
+include utils.pug
 append head
   script(src="/javascripts/notesAPI.js" type="module")
 block tasks
@@ -7,7 +7,6 @@ block tasks
     form(action=`/tasks/${taskId}` method="post")
       textarea(name="content" class="note-content" placeHolder="Enter comment")
       button(type="submit" class="note-submit-button") Comment
-   include utils.pug
     div(class="notesTilesContainer")
       each note in notes
         +noteTile(note.content, note.id)
