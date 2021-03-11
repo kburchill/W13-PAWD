@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
 
 		Project.belongsTo(models.User, { foreignKey: "projectOwnerId", as: "projectOwner" });
 		Project.belongsToMany(models.User, columnMapping);
-		Project.hasMany(models.Task, { foreignKey: "projectId" });
+		Project.hasMany(models.Task, { foreignKey: "projectId", onDelete: "CASCADE", hooks: true });
 	};
 	return Project;
 };
