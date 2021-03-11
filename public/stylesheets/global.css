@@ -1,10 +1,11 @@
-body {
-	display: grid;
-	grid-template-columns: 20% 40% 40%;
-	grid-template-rows: 5% 95%;
-	grid-template-areas:
-		"navbar navbar navbar"
-		"project task notes";
+body{
+    background: linear-gradient(.25turn, #6BB5D2, #89c9b8, #CAE8E8);
+    display: grid;
+    grid-template-columns: 20% 40% 40%;
+    grid-template-rows: 5% 95%;
+    grid-template-areas:
+    "navbar navbar navbar"
+    "project task notes";
 }
 
 .navbar__div {
@@ -16,13 +17,38 @@ body {
 }
 
 .projectList__div {
-	grid-area: project;
+    grid-area: project;
+
 }
 
 .taskList__div {
-	grid-area: task;
+    grid-area: task;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 50px 1fr;
+    grid-template-areas:
+    "head"
+    "form"
+    "tasks";
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 20px;
+    height: 100vh;
+}
+
+.taskList__form{
+    grid-area: form;
+}
+
+.tasksContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: tasks;
+    background-color: violet;
 }
 
 .noteList__div {
-	grid-area: notes;
+    grid-area: notes;
+    background-color: #CAE8E8;
 }
