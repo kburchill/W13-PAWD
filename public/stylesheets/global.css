@@ -2,7 +2,7 @@ body{
     background: linear-gradient(.25turn, #6BB5D2, #89c9b8, #CAE8E8);
     display: grid;
     grid-template-columns: 20% 40% 40%;
-    grid-template-rows: 5% 95%;
+    grid-template-rows: 50px 1fr;
     grid-template-areas:
     "navbar navbar navbar"
     "project task notes";
@@ -14,6 +14,7 @@ body{
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: baseline;
+    background-color: #204051
 }
 
 .projectList__div {
@@ -30,25 +31,50 @@ body{
     "head"
     "form"
     "tasks";
-    background-color: whitesmoke;
+    /* background-color: whitesmoke; */
     border-radius: 10px;
     padding: 20px;
     height: 100vh;
+    background-color: whitesmoke;
+
 }
 
 .taskList__form{
     grid-area: form;
 }
+.turtles{
+    height: 50px;
+    width: auto;
+}
+.taskTurtles{
+    height: 50px;
+    width: auto;
+}
 
 .tasksContainer{
+    grid-area: tasks;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    width: 100%;
+    margin: 20px auto;
+    background-image: repeating-linear-gradient(whitesmoke 0px, whitesmoke 24px, teal 25px);
     display: flex;
     flex-direction: column;
+}
+
+
+.taskHolder {
+    display: flex;
     align-items: center;
-    grid-area: tasks;
-    background-color: violet;
+    justify-content: flex-start;
+    /* align-items: baseline; */
+    margin: auto;
 }
 
 .noteList__div {
     grid-area: notes;
-    background-color: #CAE8E8;
+    background-image: url("/images/161549906626454634.png");
+    background-repeat: no-repeat;
+    background-size: 500px;
 }
