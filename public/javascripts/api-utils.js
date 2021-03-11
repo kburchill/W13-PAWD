@@ -45,7 +45,7 @@ export function noteFieldInnerHtml(notes) {
 }
 
 export function taskFieldInnerHtml(tasks) {
-  const tasksContainer = document.querySelector(".tasksTilesContainer")
+  const tasksContainer = document.querySelector(".tasksContainer")
 
   tasks.forEach((task) => {
     const taskHolderDiv = document.createElement("div");
