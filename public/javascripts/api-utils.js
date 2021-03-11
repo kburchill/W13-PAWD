@@ -1,13 +1,13 @@
 export function projectFieldInnerHtml(projects) {
-  const projectsTilesContainer = document.querySelector(".projectsTilesContainer");
-  projects.forEach((project) => {
-    const projectHolderDiv = document.createElement("div");
-    projectHolderDiv.innerHTML = `<div class="projectField">
+	const projectsTilesContainer = document.querySelector(".projectsTilesContainer");
+	projects.forEach((project) => {
+		const projectHolderDiv = document.createElement("div");
+		projectHolderDiv.innerHTML = `<div class="projectField">
   <input class="unchecked" type="checkbox" />
   <div class="projectHolder">
-    <p>${project.name}</p>
+    <a href="projects/${project.id}">${project.name}</a>
     <div class="progressBorder">
-      <div class="progressFiller">${project.progress}</div>
+      <div class="progressFiller">${project.progress}%</div>
     </div>
     <div>
       <form id="${project.id}">
@@ -17,17 +17,17 @@ export function projectFieldInnerHtml(projects) {
   </div>
 </div>
 `;
-    projectsTilesContainer.appendChild(projectHolderDiv);
-  });
+		projectsTilesContainer.appendChild(projectHolderDiv);
+	});
 }
 
 //    FOR NOTES.
 export function noteFieldInnerHtml(notes) {
-  const notesContainer = document.querySelector(".notesTilesContainer");
+	const notesContainer = document.querySelector(".notesTilesContainer");
 
-  notes.forEach((note) => {
-    const noteHolderDiv = document.createElement("div");
-    noteHolderDiv.innerHTML = `<div class="noteField">
+	notes.forEach((note) => {
+		const noteHolderDiv = document.createElement("div");
+		noteHolderDiv.innerHTML = `<div class="noteField">
     <div class="noteHolder">
       <p>${note.content}</p>
       <div>
@@ -40,8 +40,8 @@ export function noteFieldInnerHtml(notes) {
   </div>
   `;
 
-    notesContainer.appendChild(noteHolderDiv)
-  })
+		notesContainer.appendChild(noteHolderDiv);
+	});
 }
 
 export default { projectFieldInnerHtml, noteFieldInnerHtml };

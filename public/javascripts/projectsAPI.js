@@ -4,7 +4,9 @@ window.addEventListener("DOMContentLoaded", async () => {
 	const projectsTilesContainer = document.querySelector(".projectsTilesContainer");
 
 	projectsTilesContainer.addEventListener("submit", async (event) => {
-		console.log(event.target, "EVENT TARGET HERE");
+		console.log(event.target, "EVENT HERE");
+		console.log(window.location, "WINDOW.LOCATION HERE");
+		// if (event.target.action)
 		event.preventDefault();
 
 		const projectId = event.target.id;
