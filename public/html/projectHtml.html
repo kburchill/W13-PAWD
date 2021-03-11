@@ -8,7 +8,25 @@
 		</div>
 		<div>
 			<form>
-				<button class="delete__button" id="${project.id}" type="submit">Delete</button>
+				<button class="delete__button" id="${project.id}"
+					type="submit">Delete</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- This is for the tasks -->
+
+<div class="taskField"><input class="unchecked" type="checkbox">
+	<div class="taskHolder"><a href="/tasks/${task.id}">${task.name}</a>
+		<div class="taskHolder__inProgress">${task.inProgress}</div>
+		<div class="taskHolder__completed">${task.completed}</div>
+		<div class="taskHolder__priority">${task.priority}</div>
+		<div>
+			<form id="${task.id}">
+				<button class="delete__button" type="submit">Delete</button>
 			</form>
 		</div>
 	</div>

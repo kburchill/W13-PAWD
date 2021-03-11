@@ -23,7 +23,7 @@ export function projectFieldInnerHtml(projects) {
 
 //    FOR NOTES.
 export function noteFieldInnerHtml(notes) {
-	const notesContainer = document.querySelector(".notesTilesContainer");
+	const notesContainer = document.querySelector(".notesTilesContainer"); //this needs to be made
 
 	notes.forEach((note) => {
 		const noteHolderDiv = document.createElement("div");
@@ -44,4 +44,34 @@ export function noteFieldInnerHtml(notes) {
 	});
 }
 
-export default { projectFieldInnerHtml, noteFieldInnerHtml };
+export function taskFieldInnerHtml(tasks) {
+	const tasksContainer = document.querySelector(".tasksContainer");
+
+	tasks.forEach((task) => {
+		const taskHolderDiv = document.createElement("div");
+		taskHolderDiv.innerHTML = `<div class="taskField"><input class="unchecked" type="checkbox">
+    <div class="taskHolder"><a href="/tasks/${task.id}">${task.name}</a>
+      <div class="taskHolder__inProgress">${task.inProgress}</div>
+      <div class="taskHolder__completed">${task.completed}</div>
+      <div class="taskHolder__priority">${task.priority}</div>
+      <div>
+        <form id="${task.id}">
+          <button class="delete__button" type="submit">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  `;
+
+		tasksContainer.appendChild(taskHolderDiv);
+	});
+}
+
+export function urlIdIdentifier(window) {
+	const projectUrlId = window.split("/projects/")[1];
+	const taskId = window.split("/tasks/")[1];
+	const urlId = projectUrlId ? [projectUrlId, "project"] : [taskId, "task"];
+	return urlId;
+}
+
+export default { projectFieldInnerHtml, noteFieldInnerHtml, taskFieldInnerHtml };

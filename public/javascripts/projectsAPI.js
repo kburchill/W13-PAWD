@@ -9,7 +9,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 		const projectUrlId = window.location.href.split("/projects/")[1];
 		const taskId = window.location.href.split("/tasks/")[1];
 		const urlId = projectUrlId ? [projectUrlId, "project"] : [taskId, "task"];
-
 		try {
 			const response = await fetch("/api-projects/", {
 				method: "DELETE",

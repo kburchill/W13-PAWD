@@ -2,7 +2,7 @@ const express = require("express");
 const apiProjectRouter = express.Router();
 const { requireAuth } = require("../auth");
 const { Project, Task } = require("../db/models");
-const { asyncHandler, csrfProtection, deleteItem, findCurrentUser } = require("./utils");
+const { asyncHandler, deleteItem, findCurrentUser } = require("./utils");
 
 apiProjectRouter.delete(
 	"/",
