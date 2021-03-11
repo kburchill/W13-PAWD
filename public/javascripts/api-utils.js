@@ -1,4 +1,4 @@
-export function projectFieldInnerHtml(projects) {
+function projectFieldInnerHtml(projects) {
   const projectsTilesContainer = document.querySelector(".projectsTilesContainer");
   projects.forEach((project) => {
     const projectHolderDiv = document.createElement("div");
@@ -23,7 +23,7 @@ export function projectFieldInnerHtml(projects) {
 
 //    FOR NOTES.
 export function noteFieldInnerHtml(notes) {
-  const notesContainer = document.querySelector(".notesTilesContainer");
+  const notesContainer = document.querySelector(".notesTilesContainer") //this needs to be made
 
   notes.forEach((note) => {
     const noteHolderDiv = document.createElement("div");
@@ -44,4 +44,30 @@ export function noteFieldInnerHtml(notes) {
   })
 }
 
-export default { projectFieldInnerHtml, noteFieldInnerHtml };
+export function taskFieldInnerHtml(tasks) {
+  const tasksContainer = document.querySelector(".tasksTilesContainer")
+
+  tasks.forEach((task) => {
+    const taskHolderDiv = document.createElement("div");
+    taskHolderDiv.innerHTML = `<div class="taskField"><input class="unchecked" type="checkbox">
+    <div class="taskHolder"><a href="/tasks/${task.id}">${task.name}</a>
+      <div class="taskHolder__inProgress">${task.inProgress}</div>
+      <div class="taskHolder__completed">${task.completed}</div>
+      <div class="taskHolder__priority">${task.priority}</div>
+      <div>
+        <form id="${task.id}">
+          <button class="delete__button" type="submit">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  `;
+
+    tasksContainer.appendChild(taskHolderDiv)
+  })
+}
+
+
+
+
+export default { projectFieldInnerHtml, noteFieldInnerHtml, taskFieldInnerHtml }

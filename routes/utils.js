@@ -16,4 +16,10 @@ const findCurrentUser = (session) => {
 	return userId;
 };
 
+// const findCurrentTask = (session) => {
+// 	const {
+
+// 	}
+// }
+
 module.exports = { asyncHandler, csrfProtection, deleteItem, findCurrentUser };
