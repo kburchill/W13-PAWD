@@ -1,6 +1,6 @@
 const e = require("express");
 const { check, validationResult } = require("express-validator");
-const { User } = require('../db/models');
+const { User } = require("../db/models");
 
 const userValidations = (req, res, next) => {
 	const mappedErrors = validationResult(req);
@@ -37,17 +37,13 @@ const userErrorHandler = (err, req, res, next) => {
 	} else {
 		next(err);
 	}
-}
+};
 // ALL VALIDATION ARRAYS ARE PLACED WITHIN ARRAY BELOW
 const loginValidators = [
-	check("email")
-		.exists({ checkFalsy: true })
-		.withMessage("Please provide an email "),
-	check("password")
-		.exists({ checkFalsy: true })
-		.withMessage("You must provide a password"),
-	userValidations
-]
+	check("email").exists({ checkFalsy: true }).withMessage("Please provide an email "),
+	check("password").exists({ checkFalsy: true }).withMessage("You must provide a password"),
+	userValidations,
+];
 
 const userValidators = [
 	check("firstName")
@@ -89,4 +85,12 @@ const userValidators = [
 	userValidations,
 ];
 
-module.exports = { userValidators, loginValidators, userErrorHandler };
+//
+const searchValidators = [
+	check("searchText")
+		.exists({ checkFalsy: true })
+		.withMessage("Please provide a Search Term ")
+		.isLength({ min: 1 })
+		.withMessage("Please provide a Search Term at least 1 character long "),
+];
+module.exports = { userValidators, loginValidators, userErrorHandler, searchValidators };
