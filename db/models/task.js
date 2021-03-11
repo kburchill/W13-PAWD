@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
 		};
 
 		Task.belongsTo(models.Project, { foreignKey: "projectId" });
-		Task.hasMany(models.Note, { foreignKey: "taskId" });
+		Task.hasMany(models.Note, { foreignKey: "taskId", onDelete: "CASCADE", hooks: true });
 		Task.belongsToMany(models.User, columnMapping);
 	};
 	return Task;
