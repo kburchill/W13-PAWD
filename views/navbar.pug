@@ -7,8 +7,9 @@ block content
         //- a(href="/projects") LOGO HERE
       div(class="navbar__div-searchbar")
         form(method="post" action="/search")
-          input(type="text" name="searchText" placeholder="Search..." require)
+          input(type="text" name="searchText" placeholder="Search task or projects...")
           button(class="search__button" type="submit") Search
+          button(class="search__button" type="submit" name="findAll" value="%") Find All Your Projects and Tasks
       div(class="navbar__div-logout")
         form(method="post" action="/users/logout")
           button(class="logout__button" type="submit") Logout

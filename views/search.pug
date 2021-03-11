@@ -14,6 +14,6 @@ block projects
         div(class="searchTaskResults__div") Tasks
           each task in allSearchTasksResults
             +taskTile(task.name, task.inProgress, task.completed, task.priority, task.id)
-      else
+      if (allSearchTasksResults.length===0 && allSearchProjectsResults.length===0 )
         div NO SEARCH RESULTS
   block projects
