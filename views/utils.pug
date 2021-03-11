@@ -35,8 +35,8 @@ mixin errorsDiv(errors)
 
 mixin taskTile(taskName, taskInProgress, taskCompleted, taskPriority, taskId)
   div(class="taskField")
-    input(type="checkbox" class="unchecked")
     div(class="taskHolder")
+      input(type="checkbox" class="unchecked")
       a(href=`/tasks/${taskId}`) #{taskName}
       div(class="taskHolder__inProgress") #{taskInProgress}
       div(class="taskHolder__completed") #{taskCompleted}
@@ -44,3 +44,5 @@ mixin taskTile(taskName, taskInProgress, taskCompleted, taskPriority, taskId)
       div
         form(id=`${taskId}`)
          button(class="delete__button" type='submit') Delete
+
+

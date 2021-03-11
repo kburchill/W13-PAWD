@@ -1,8 +1,10 @@
 extends layout.pug
 block content
   nav(class="navbar__div")
+
       div(class="navbar__div-Logo")
-        a(href="/projects") LOGO HERE
+        img(src="/images/161549906626454634.png" class="turtles" href="/projects")
+        //- a(href="/projects") LOGO HERE
       div(class="navbar__div-searchbar")
         form(method="post" action="/search")
           input(type="text" name="searchText" placeholder="Search...")
