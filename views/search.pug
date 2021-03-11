@@ -1,3 +1,15 @@
-extends navbar.pug
+extends project
+include utils.pug
 append head
-  script(src="/javascripts/searchAPI.js" type="module")
+  script(src="/javascripts/tasksAPI.js" type="module")
+block projects
+  .searchList__div
+    include utils.pug
+    div(class="tasksContainer")
+      div(class="searchProjectResults__div") Projects
+        each project in allSearchProjectsResults
+          +projectTile(project.name, project.progress, project.id)
+      div(class="searchTaskResults__div") Tasks
+        each task in allSearchTasksResults
+          +taskTile(task.name, task.inProgress, task.completed, task.priority, task.id)
+  block projects
