@@ -1,24 +1,28 @@
-body{
-    display: grid;
-    grid-template-columns: 20% 40% 40%;
-    grid-template-rows: 5% 95%;
-    grid-template-areas:
-    "navbar navbar navbar"
-    "project task notes";
+body {
+	display: grid;
+	grid-template-columns: 20% 40% 40%;
+	grid-template-rows: 5% 95%;
+	grid-template-areas:
+		"navbar navbar navbar"
+		"project task notes";
 }
 
 .navbar__div {
-    grid-area: navbar;
+	grid-area: navbar;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: baseline;
 }
 
 .projectList__div {
-    grid-area: project
+	grid-area: project;
 }
 
 .taskList__div {
-    grid-area: task
+	grid-area: task;
 }
 
 .noteList__div {
-    grid-area: notes
+	grid-area: notes;
 }
