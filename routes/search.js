@@ -12,7 +12,6 @@ searchRouter.post(
 	requireAuth,
 	asyncHandler(async (req, res, next) => {
 		let { searchText, findAll } = req.body;
-		console.log(req.body, "REQ.BODY==========================");
 
 		let allSearchProjectsResults = [];
 		let allSearchTasksResults = [];
