@@ -6,10 +6,14 @@ block projects
   .searchList__div
     include utils.pug
     div(class="tasksContainer")
-      div(class="searchProjectResults__div") Projects
-        each project in allSearchProjectsResults
-          +projectTile(project.name, project.progress, project.id)
-      div(class="searchTaskResults__div") Tasks
-        each task in allSearchTasksResults
-          +taskTile(task.name, task.inProgress, task.completed, task.priority, task.id)
+      if (allSearchProjectsResults.length >=1)
+        div(class="searchProjectResults__div") Projects
+          each project in allSearchProjectsResults
+            +projectTile(project.name, project.progress, project.id)
+      if (allSearchTasksResults.length >=1)
+        div(class="searchTaskResults__div") Tasks
+          each task in allSearchTasksResults
+            +taskTile(task.name, task.inProgress, task.completed, task.priority, task.id)
+      else
+        div NO SEARCH RESULTS
   block projects
