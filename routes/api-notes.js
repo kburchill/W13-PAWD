@@ -24,4 +24,16 @@ apiNoteRouter.delete(
   })
 )
 
+apiNoteRouter.post("/", requireAuth, asyncHandler(async (req, res) => {
+  const { content, userId, taskId } = req.body;
+
+  try{
+    await Note.create({ content, userId, taskId });
+  } catch (err) {
+    console.err("messed up on backend note create", err);
+  }
+  const notes = await Note.findAll({ where: { taskId } });
+  res.json(notes)
+}))
+
 module.exports = apiNoteRouter;

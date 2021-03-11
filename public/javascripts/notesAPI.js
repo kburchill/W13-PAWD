@@ -37,7 +37,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     const [ userId, taskId ] = noteCreateForm.id.split(':');
 
     try {
-      const res = fetch("/api-notes", {
+      const res = await fetch("/api-notes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content, userId, taskId })
