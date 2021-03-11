@@ -1,4 +1,4 @@
-import { projectFieldInnerHtml } from "./api-utils.js";
+import { projectFieldInnerHtml, urlIdIdentifier } from "./api-utils.js";
 
 window.addEventListener("DOMContentLoaded", async () => {
 	const projectsTilesContainer = document.querySelector(".projectsTilesContainer");
@@ -6,10 +6,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 	projectsTilesContainer.addEventListener("submit", async (event) => {
 		event.preventDefault();
 		const eventProjectId = event.target.id;
-		const projectUrlId = window.location.href.split("/projects/")[1];
-		const taskId = window.location.href.split("/tasks/")[1];
-		const urlId = projectUrlId ? [projectUrlId, "project"] : [taskId, "task"];
-
+		const urlId = urlIdIdentifier(window.location.href);
 		try {
 			const response = await fetch("/api-projects/", {
 				method: "DELETE",

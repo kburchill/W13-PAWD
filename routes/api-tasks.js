@@ -1,27 +1,30 @@
 const express = require("express");
 const apiTaskRouter = express.Router();
 const { requireAuth } = require("../auth");
-const { Task } = require("../db/models");
-const { asyncHandler, deleteItem } = require("./utils");
+const { Task, Project } = require("../db/models");
+const { asyncHandler, deleteItem, findCurrentProjectId } = require("./utils");
 
 apiTaskRouter.delete(
-  "/",
-  requireAuth,
-  asyncHandler(async (req, res) => {
-    const { taskId } = req.body
-    const task = await Task.findByPk(taskId)
+	"/",
+	requireAuth,
+	asyncHandler(async (req, res) => {
+		const { taskEventId, urlId } = req.body;
+		const task = await Task.findByPk(taskEventId);
+		const currentTask = urlId[1] === "task" ? urlId[0] : null;
 
-    try {
-      await deleteItem(taskId, Task);
-    } catch (error) {
-      console.log(error)
-    }
+		// REDIRECT BACK TO PROJECT/ID page if you delete current task from inside notes
+		let currentProjectId = await findCurrentProjectId(urlId);
 
-    const allTasks = await Task.findAll({ where: { projectId: task.projectId } })
-    res.json(allTasks)
-  })
-)
+		try {
+			await deleteItem(taskEventId, Task);
+		} catch (error) {
+			console.log(error);
+			// use next(error) and fix up if you want to allow non Owners to delete project
+		}
 
+		const allTasks = await Task.findAll({ where: { projectId: task.projectId } });
+		res.json([allTasks, currentTask, currentProjectId]);
+	})
+);
 
-
-module.exports = apiTaskRouter
+module.exports = apiTaskRouter;

@@ -67,4 +67,11 @@ export function taskFieldInnerHtml(tasks) {
 	});
 }
 
-export default { projectFieldInnerHtml, noteFieldInnerHtml, taskFieldInnerHtml };
+export function urlIdIdentifier(window) {
+	const projectUrlId = window.split("/projects/")[1];
+	const taskId = window.split("/tasks/")[1];
+	const urlId = projectUrlId ? [projectUrlId, "project"] : [taskId, "task"];
+	return urlId;
+}
+
+export default { projectFieldInnerHtml, noteFieldInnerHtml, taskFieldInnerHtml, urlIdIdentifier };

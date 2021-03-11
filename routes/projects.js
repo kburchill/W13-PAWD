@@ -33,15 +33,18 @@ projectsRouter.post(
 	})
 );
 
-projectsRouter.post('/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
-	const{ name, priority } = req.body;
-	const{ id } = req.params;
-	const userId = findCurrentUser(req.session);
-	await Task.create({ name, priority, projectId: id });
+projectsRouter.post(
+	"/:id(\\d+)",
+	requireAuth,
+	asyncHandler(async (req, res) => {
+		const { name, priority } = req.body;
+		const { id } = req.params;
+		const userId = findCurrentUser(req.session);
+		await Task.create({ name, priority, projectId: id });
 
-	res.redirect(`/projects/${id}`)
-}))
-
+		res.redirect(`/projects/${id}`);
+	})
+);
 
 projectsRouter.get(
 	"/:id(\\d+)",
