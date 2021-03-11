@@ -74,4 +74,4 @@ export function urlIdIdentifier(window) {
 	return urlId;
 }
 
-export default { projectFieldInnerHtml, noteFieldInnerHtml, taskFieldInnerHtml };
+export default { projectFieldInnerHtml, noteFieldInnerHtml, taskFieldInnerHtml, urlIdIdentifier };

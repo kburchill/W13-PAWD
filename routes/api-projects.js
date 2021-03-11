@@ -2,21 +2,20 @@ const express = require("express");
 const apiProjectRouter = express.Router();
 const { requireAuth } = require("../auth");
 const { Project, Task } = require("../db/models");
-const { asyncHandler, deleteItem, findCurrentUser } = require("./utils");
+const { asyncHandler, deleteItem, findCurrentUser, findCurrentProjectId } = require("./utils");
 
 apiProjectRouter.delete(
 	"/",
 	requireAuth,
 	asyncHandler(async (req, res, next) => {
 		const { eventProjectId, urlId } = req.body;
+		// let currentProjectId;
+		// if (urlId[1] === "task" && urlId[0]) {
+		// 	const task = await Task.findByPk(urlId[0]);
+		// 	currentProjectId = task.projectId;
+		// } else currentProjectId = urlId[0];
 
-		let currentProjectId;
-		if (urlId[1] === "task" && urlId[0]) {
-			const task = await Task.findByPk(urlId[0]);
-			currentProjectId = task.projectId;
-		} else {
-			currentProjectId = urlId[0];
-		}
+		let currentProjectId = await findCurrentProjectId(urlId);
 
 		try {
 			await deleteItem(eventProjectId, Project);
