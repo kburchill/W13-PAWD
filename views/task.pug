@@ -1,5 +1,7 @@
 extends project
 include utils.pug
+append head
+  script(src="/javascripts/tasksAPI.js" type="module")
 block projects
   .taskList__div
     form(action=`/projects/${projectId}` method="post")
