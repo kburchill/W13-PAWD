@@ -7,7 +7,7 @@ mixin projectTile(projectName, projectProgress, projectId)
   div(class="projectField")
     input(type="checkbox" class="unchecked")
     div(class="projectHolder")
-      p #{projectName}
+      a(href=`/projects/${projectId}`) #{projectName}
       div(class="progressBorder")
         div(class="progressFiller") #{projectProgress}%
       div

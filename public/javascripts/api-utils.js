@@ -1,13 +1,13 @@
-function projectFieldInnerHtml(projects) {
-  const projectsTilesContainer = document.querySelector(".projectsTilesContainer");
-  projects.forEach((project) => {
-    const projectHolderDiv = document.createElement("div");
-    projectHolderDiv.innerHTML = `<div class="projectField">
+export function projectFieldInnerHtml(projects) {
+	const projectsTilesContainer = document.querySelector(".projectsTilesContainer");
+	projects.forEach((project) => {
+		const projectHolderDiv = document.createElement("div");
+		projectHolderDiv.innerHTML = `<div class="projectField">
   <input class="unchecked" type="checkbox" />
   <div class="projectHolder">
-    <p>${project.name}</p>
+    <a href="projects/${project.id}">${project.name}</a>
     <div class="progressBorder">
-      <div class="progressFiller">${project.progress}</div>
+      <div class="progressFiller">${project.progress} % </div>
     </div>
     <div>
       <form id="${project.id}">
@@ -17,17 +17,17 @@ function projectFieldInnerHtml(projects) {
   </div>
 </div>
 `;
-    projectsTilesContainer.appendChild(projectHolderDiv);
-  });
+		projectsTilesContainer.appendChild(projectHolderDiv);
+	});
 }
 
 //    FOR NOTES.
 export function noteFieldInnerHtml(notes) {
-  const notesContainer = document.querySelector(".notesTilesContainer") //this needs to be made
+	const notesContainer = document.querySelector(".notesTilesContainer"); //this needs to be made
 
-  notes.forEach((note) => {
-    const noteHolderDiv = document.createElement("div");
-    noteHolderDiv.innerHTML = `<div class="noteField">
+	notes.forEach((note) => {
+		const noteHolderDiv = document.createElement("div");
+		noteHolderDiv.innerHTML = `<div class="noteField">
     <div class="noteHolder">
       <p>${note.content}</p>
       <div>
@@ -40,16 +40,16 @@ export function noteFieldInnerHtml(notes) {
   </div>
   `;
 
-    notesContainer.appendChild(noteHolderDiv)
-  })
+		notesContainer.appendChild(noteHolderDiv);
+	});
 }
 
 export function taskFieldInnerHtml(tasks) {
-  const tasksContainer = document.querySelector(".tasksContainer")
+	const tasksContainer = document.querySelector(".tasksContainer");
 
-  tasks.forEach((task) => {
-    const taskHolderDiv = document.createElement("div");
-    taskHolderDiv.innerHTML = `<div class="taskField"><input class="unchecked" type="checkbox">
+	tasks.forEach((task) => {
+		const taskHolderDiv = document.createElement("div");
+		taskHolderDiv.innerHTML = `<div class="taskField"><input class="unchecked" type="checkbox">
     <div class="taskHolder"><a href="/tasks/${task.id}">${task.name}</a>
       <div class="taskHolder__inProgress">${task.inProgress}</div>
       <div class="taskHolder__completed">${task.completed}</div>
@@ -63,11 +63,8 @@ export function taskFieldInnerHtml(tasks) {
   </div>
   `;
 
-    tasksContainer.appendChild(taskHolderDiv)
-  })
+		tasksContainer.appendChild(taskHolderDiv);
+	});
 }
 
-
-
-
-export default { projectFieldInnerHtml, noteFieldInnerHtml, taskFieldInnerHtml }
+export default { projectFieldInnerHtml, noteFieldInnerHtml, taskFieldInnerHtml };
