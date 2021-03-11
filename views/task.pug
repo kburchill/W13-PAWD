@@ -4,7 +4,7 @@ append head
   script(src="/javascripts/tasksAPI.js" type="module")
 block projects
   .taskList__div
-    form(action=`/projects/${projectId}` method="post")
+    form(action=`/projects/${projectId}` method="post" class="task-form")
       label(for="createNewTask")
       input(type="text" id="createNewTask" name="name" placeHolder="Create New Task" class="formField_createTask")
       select(name="priority")

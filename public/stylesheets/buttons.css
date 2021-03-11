@@ -1,0 +1,28 @@
+button{
+  background-color: #f4f4f4;
+  height: 20px;
+  width: auto;
+  border: none;
+  box-shadow: inset 0 0 0 0 #10375c;
+  border-radius: 10px;
+  outline: none;
+  transition: ease-out;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+button:hover {
+  box-shadow: inset 300px 0 0 0 #10375c;
+  color: #f4f6ff;
+}
+
+
+
+/*
+button classes
+.login-form__button
+.logout__button
+note-submit-button
+user-submit-button
+delete__button
+edit-button
+*/
