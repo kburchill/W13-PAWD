@@ -2,15 +2,16 @@ extends layout.pug
 block content
   nav(class="navbar__div")
 
-      div(class="navbar__div-Logo")
-        img(src="/images/161549906626454634.png" class="turtles" href="/projects")
-        //- a(href="/projects") LOGO HERE
-      div(class="navbar__div-searchbar")
-        form(method="post" action="/search")
-          input(type="text" name="searchText" placeholder="Search..." require)
-          button(class="search__button" type="submit") Search
-      div(class="navbar__div-logout")
-        form(method="post" action="/users/logout")
-          button(class="logout__button" type="submit") Logout
+    div(class="navbar__div-Logo")
+      img(src="/images/161549906626454634.png" class="turtles" href="/projects")
+    h1(class="project-title") Projects All the way Down
+      //- a(href="/projects") LOGO HERE
+    div(class="navbar__div-searchbar")
+      form(method="post" action="/search")
+        input(type="text" name="searchText" placeholder="Search..." require)
+        button(class="search__button" type="submit") Search
+    div(class="navbar__div-logout")
+      form(method="post" action="/users/logout")
+        button(class="logout__button" type="submit") Logout
 
   block nav

@@ -13,8 +13,12 @@ body{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	align-items: baseline;
+	align-items: center;
     background-color: #204051
+}
+
+.project-title{
+    color: #FFC816
 }
 
 .projectList__div {
@@ -78,3 +82,8 @@ body{
     background-repeat: no-repeat;
     background-size: 500px;
 }
+
+
+/* FFC816
+    FFD684
+    */
