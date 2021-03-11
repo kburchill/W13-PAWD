@@ -1,13 +1,14 @@
 extends layout.pug
 block content
   nav(class="navbar__div")
-      div(class="Logo")
+      div(class="navbar__div-Logo")
         a(href="/projects") LOGO HERE
-      div(class="searchbar")
-        input(type="text" placeholder="Search...")
-      div(class="logout")
+      div(class="navbar__div-searchbar")
+        form(method="post" action="/search")
+          input(type="text" name="searchText" placeholder="Search...")
+          button(class="search__button" type="submit") Search
+      div(class="navbar__div-logout")
         form(method="post" action="/users/logout")
           button(class="logout__button" type="submit") Logout
-
 
   block nav
