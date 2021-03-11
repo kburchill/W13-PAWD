@@ -7,7 +7,7 @@ export function projectFieldInnerHtml(projects) {
   <div class="projectHolder">
     <a href="projects/${project.id}">${project.name}</a>
     <div class="progressBorder">
-      <div class="progressFiller">${project.progress}%</div>
+      <div class="progressFiller">${project.progress} % </div>
     </div>
     <div>
       <form id="${project.id}">
