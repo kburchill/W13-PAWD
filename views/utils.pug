@@ -7,9 +7,13 @@ mixin projectTile(projectName, projectProgress, projectId)
   div(class="projectField")
     input(type="checkbox" class="unchecked")
     div(class="projectHolder")
-      a(href=`/projects/${projectId}`) #{projectName}
-      div(class="progressBorder")
-        div(class="progressFiller") #{projectProgress}%
+      div
+        label(for=`${projectName}`) Project Name:
+        a(href=`/projects/${projectId}` name=`${projectName}`) #{projectName}
+      div
+        label(for=`${projectProgress}`) Current Progress:
+        div(class="progressBorder" name=`${projectProgress}`)
+          div(class="progressFiller") #{projectProgress}%
       div
         form(id=`${projectId}`)
           button(class="delete__button" type="submit") Delete
