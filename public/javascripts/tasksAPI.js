@@ -17,9 +17,10 @@ window.addEventListener("DOMContentLoaded", async () => {
 			});
 
 			const tasks = await response.json();
+			console.log(tasks, "TASKS HERE ----------------------");
+			if (tasks[1] == taskEventId) window.location.href = `/projects/${tasks[2]}`;
 			taskTilesContainer.innerHTML = "";
-
-			if (tasks.length) taskFieldInnerHtml(tasks);
+			if (tasks[0].length) taskFieldInnerHtml(tasks[0]);
 			else return;
 		} catch (err) {
 			console.error("We messed up the tasks api. sorry, jim", err);
