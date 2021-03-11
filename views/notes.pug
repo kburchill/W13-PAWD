@@ -4,7 +4,7 @@ append head
   script(src="/javascripts/notesAPI.js" type="module")
 block tasks
   .noteList__div
-    form(action=`/tasks/${taskId}` method="post")
+    form(id=`${userId}:${taskId}` class="noteList__form")
       textarea(name="content" class="note-content" placeHolder="Enter comment")
       button(type="submit" class="note-submit-button") Comment
     div(class="notesTilesContainer")
