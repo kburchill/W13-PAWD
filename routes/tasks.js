@@ -9,6 +9,9 @@ tasksRouter.get('/:id', requireAuth, asyncHandler(async (req, res) => {
   const note = await Note.build()
   const project = await Project.build();
   const task = await Task.findByPk(taskId)
+  const {
+    userAuth: { userId },
+  } = req.session;
   const { projectId } = task
   const notes = await Note.findAll({ where: { taskId } })
   const tasks = await Task.findAll({ where: { projectId } });
@@ -23,7 +26,8 @@ tasksRouter.get('/:id', requireAuth, asyncHandler(async (req, res) => {
     tasks,
     projects,
     project,
-    projectId
+    projectId,
+    userId
   }
   )
 

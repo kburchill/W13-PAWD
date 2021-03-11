@@ -9,7 +9,11 @@ body{
 }
 
 .navbar__div {
-    grid-area: navbar;
+	grid-area: navbar;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: baseline;
 }
 
 .projectList__div {

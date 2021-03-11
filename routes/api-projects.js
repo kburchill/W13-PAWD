@@ -8,8 +8,10 @@ apiProjectRouter.delete(
 	"/",
 	requireAuth,
 	asyncHandler(async (req, res, next) => {
+
 		const { eventProjectId, urlId } = req.body;
 		let currentProjectId = await findCurrentProjectId(urlId);
+
 
 		try {
 			await deleteItem(eventProjectId, Project);

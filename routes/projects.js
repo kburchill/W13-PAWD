@@ -29,7 +29,8 @@ projectsRouter.post(
 		const { projectName } = req.body;
 		userId = findCurrentUser(req.session);
 		const project = await Project.create({ name: projectName, progress: 0, projectOwnerId: userId });
-		res.redirect("/projects");
+		const projectId = project.id;
+		res.redirect(`/projects/${projectId}`);
 	})
 );
 
