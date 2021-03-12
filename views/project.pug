@@ -4,6 +4,8 @@ append head
 block nav
 
   .projectList__div
+    a(href="/projects")
+       img(src="/images/161549906626454634.png" class="projectTurtles" href="/projects")
     form(action="/projects" method="post")
       input(type="hidden" name="_csrf" value=csrfToken)
       label(for="projectName")
