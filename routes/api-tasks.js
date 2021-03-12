@@ -27,16 +27,20 @@ apiTaskRouter.delete(
 	})
 );
 
-apiTaskRouter.post("/", requireAuth, asyncHandler(async (req, res) => {
-	const { name, priority, projectId } = req.body;
-
-	try {
-		await Task.create({ name, priority, projectId });
-	} catch (err) {
-		console.error(err);
-	}
-	const tasks = await Task.findAll({ where: { projectId } });
-	res.json(tasks)
-}));
+apiTaskRouter.post(
+	"/",
+	requireAuth,
+	asyncHandler(async (req, res) => {
+		const { name, priority, projectId } = req.body;
+		let error = "";
+		try {
+			if (name.length > 1) await Task.create({ name, priority, projectId });
+		} catch (err) {
+			console.error(err);
+		}
+		const tasks = await Task.findAll({ where: { projectId } });
+		res.json(tasks);
+	})
+);
 
 module.exports = apiTaskRouter;

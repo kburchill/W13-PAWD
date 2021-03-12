@@ -3,7 +3,7 @@ const { asyncHandler, csrfProtection, deleteItem, findCurrentUser } = require(".
 const express = require("express");
 const { requireAuth } = require("../auth");
 const projectsRouter = express.Router();
-const { projectValidators } = require("./validators");
+const { projectValidators, taskValidators } = require("./validators");
 const { check, validationResult } = require("express-validator");
 const e = require("express");
 
@@ -52,12 +52,15 @@ projectsRouter.post(
 projectsRouter.post(
 	"/:id(\\d+)",
 	requireAuth,
+	taskValidators,
 	asyncHandler(async (req, res) => {
-		const { name, priority } = req.body;
-		const { id } = req.params;
-		const userId = findCurrentUser(req.session);
-		await Task.create({ name, priority, projectId: id });
-
+		const mappedErrors = validationResult(req).errors;
+		if (mappedErrors.length === 0) {
+			const { name, priority } = req.body;
+			const { id } = req.params;
+			const userId = findCurrentUser(req.session);
+			await Task.create({ name, priority, projectId: id });
+		}
 		res.redirect(`/projects/${id}`);
 	})
 );
