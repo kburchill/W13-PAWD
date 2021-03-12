@@ -23,7 +23,7 @@ mixin noteTile(content, note, taskId, editId, noteContent)
     if(note == editId)
       form(id=`${taskId}` class="noteList__edit")
         textarea(name="content" class="note-content")=noteContent
-        button(type="submit" class="note-edit-button") Edit
+        button(type="submit" class="note-edit-button" name="noteId" value= editId) Submit Changes
       a(href=`/tasks/${taskId}`): button(class="note-edit-button") Cancel
     else
       div(class="noteHolder")

@@ -5,6 +5,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   //Listener for deleteing notes
   const notesContainer = document.querySelector(".notesTilesContainer");
   notesContainer.addEventListener("submit", async (event) => {
+    console.log(event.target, '//////////')
     if(event.target.id) {
       event.preventDefault();
       const urlId = urlIdIdentifier(window.location.href)
@@ -58,20 +59,31 @@ window.addEventListener("DOMContentLoaded", async () => {
   })
 
   // listener for getting note edit form
-  const editForm = document.querySelector(".notList__c")
-  notesContainer.addEventListener("click", async (event) => {
-    console.log(event.target, '---------------')
-    if (event.target.id) {
-      try{
-        const res = await fetch("/api-notes", {
-        method: "GET",
-        header: { "Content-type": "application/json" }
+  const editForm = document.querySelector(".noteList__edit")
+  editForm.addEventListener("click", async (event) => {
+    // event.preventDefault is seemingly stopping propigation of submit event.
+    event.preventDefault();
+    const formData = new FormData(editForm);
+    const content = formData("content");
+    const noteId = formData("noteId");
+    const taskId = editForm.id;
+    try {
+      const response = await fetch(`/api-notes/${noteId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content, taskId })
       })
-        const notes = await res.json();
-      } catch (err) {
-        console.error('messed up in get edit form listener', err)
-      }
+
+      const notes = await response.json();
+
+      notesContainer.innerHTML = "";
+      if (notes.length) noteFieldInnerHtml(notes, taskId);
+      else return
+
+    } catch (err) {
+      console.error('messed up in note edit', err);
     }
 
   })
+
 })
