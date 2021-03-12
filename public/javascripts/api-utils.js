@@ -75,4 +75,27 @@ export function urlIdIdentifier(window) {
 	return urlId;
 }
 
-export default { projectFieldInnerHtml, noteFieldInnerHtml, taskFieldInnerHtml, urlIdIdentifier };
+export function emptyTaskCreate(error) {
+	// const TaskListDiv = document.querySelector(".taskList__div");
+	// const div = document.createElement("div");
+	// div.innerHTML = error;
+	// TaskListDiv.appendChild(div);
+	const taskListInput = document.getElementById("createNewTask");
+	taskListInput.placeholder = error;
+	return;
+}
+
+export function emptyNoteCreate(error) {
+	const noteInput = document.querySelector(".note-content");
+	noteInput.placeholder = error;
+	return;
+}
+
+export default {
+	emptyNoteCreate,
+	emptyTaskCreate,
+	projectFieldInnerHtml,
+	noteFieldInnerHtml,
+	taskFieldInnerHtml,
+	urlIdIdentifier,
+};

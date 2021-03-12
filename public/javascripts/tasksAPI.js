@@ -1,4 +1,4 @@
-import { taskFieldInnerHtml, urlIdIdentifier } from "./api-utils.js";
+import { taskFieldInnerHtml, urlIdIdentifier, emptyTaskCreate } from "./api-utils.js";
 
 window.addEventListener("DOMContentLoaded", async () => {
 	// Listener to delete tasks
@@ -46,7 +46,8 @@ window.addEventListener("DOMContentLoaded", async () => {
 			const tasks = await res.json();
 			taskTilesContainer.innerHTML = "";
 			taskCreateInput.value = "";
-			if (tasks.length) taskFieldInnerHtml(tasks);
+			if (tasks[1].length > 1) emptyTaskCreate(tasks[1]);
+			if (tasks[0].length) taskFieldInnerHtml(tasks[0]);
 			else return;
 		} catch (err) {
 			console.error("messed up in task creation", err);

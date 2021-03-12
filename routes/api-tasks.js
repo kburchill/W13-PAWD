@@ -34,12 +34,13 @@ apiTaskRouter.post(
 		const { name, priority, projectId } = req.body;
 		let error = "";
 		try {
-			if (name.length > 1) await Task.create({ name, priority, projectId });
+			if (name.length >= 1) await Task.create({ name, priority, projectId });
+			else error = "Please Provide a Task Name";
 		} catch (err) {
 			console.error(err);
 		}
 		const tasks = await Task.findAll({ where: { projectId } });
-		res.json(tasks);
+		res.json([tasks, error]);
 	})
 );
 
