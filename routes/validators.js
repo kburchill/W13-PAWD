@@ -93,4 +93,12 @@ const searchValidators = [
 		.isLength({ min: 1 })
 		.withMessage("Please provide a Search Term at least 1 character long "),
 ];
-module.exports = { userValidators, loginValidators, userErrorHandler, searchValidators };
+
+const projectValidators = [
+	check("projectName")
+		.exists({ checkFalsy: true })
+		.withMessage("Please provide a Project Name")
+		.isLength({ max: 100 })
+		.withMessage("Project name cannot exceed 100 characters!"),
+];
+module.exports = { projectValidators, userValidators, loginValidators, userErrorHandler, searchValidators };

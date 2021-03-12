@@ -3,8 +3,9 @@ const { asyncHandler, csrfProtection, deleteItem, findCurrentUser } = require(".
 const express = require("express");
 const { requireAuth } = require("../auth");
 const projectsRouter = express.Router();
-
-// const { projectValidators } = require("./validators"); not created yet
+const { projectValidators } = require("./validators");
+const { check, validationResult } = require("express-validator");
+const e = require("express");
 
 projectsRouter.use(requireAuth);
 
@@ -24,13 +25,27 @@ projectsRouter.get(
 
 projectsRouter.post(
 	"/",
-	// projectValidators,
+	projectValidators,
 	asyncHandler(async (req, res) => {
-		const { projectName } = req.body;
-		userId = findCurrentUser(req.session);
-		const project = await Project.create({ name: projectName, progress: 0, projectOwnerId: userId });
-		const projectId = project.id;
-		res.redirect(`/projects/${projectId}`);
+		const mappedErrors = validationResult(req).errors;
+		if (mappedErrors.length === 0) {
+			const { projectName } = req.body;
+			userId = findCurrentUser(req.session);
+			const project = await Project.create({ name: projectName, progress: 0, projectOwnerId: userId });
+			const projectId = project.id;
+
+			return res.redirect(`/projects/${projectId}`);
+		} else {
+			const errors = mappedErrors.map((error) => error.msg);
+			const projects = await Project.findAll({ where: { projectOwnerId: findCurrentUser(req.session) } });
+			const project = await Project.build();
+			res.render("project", {
+				title: "Projects",
+				projects,
+				project,
+				errors,
+			});
+		}
 	})
 );
 
