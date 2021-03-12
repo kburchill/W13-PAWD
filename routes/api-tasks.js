@@ -76,7 +76,6 @@ apiTaskRouter.patch(
 			console.error(err);
 		}
 		const tasks = await Task.findAll({ where: { projectId } });
-		console.log(error, "ERRORS=============================");
 		res.json([tasks, error]);
 	})
 );
