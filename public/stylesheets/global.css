@@ -6,6 +6,7 @@ body{
     grid-template-areas:
     "navbar navbar navbar"
     "project task notes";
+    /* background-image: url("/images/161549906626454634.png"); */
 }
 
 .navbar__div {
@@ -22,12 +23,25 @@ body{
 }
 
 .projectList__div {
+    margin-top: 25px;
     grid-area: project;
+    /* background-image: url("/images/161549906626454634.png");
+    background-repeat: no-repeat;
+    background-size: 500px; */
 
 }
-
+.projectTurtles{
+    height: 225px;
+    width: auto;
+}
+.bigTurtles{
+    position: relative;
+    top: 208px;
+    right: -40px;
+}
 
 .searchList__div, .taskList__div {
+    margin-top: 25px;
     grid-area: task;
     display: grid;
     grid-template-columns: 1fr;
