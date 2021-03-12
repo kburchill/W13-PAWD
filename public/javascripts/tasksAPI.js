@@ -44,14 +44,14 @@ window.addEventListener("DOMContentLoaded", async () => {
 				body: JSON.stringify({ name, priority, projectId }),
 			});
 			const tasks = await res.json();
-			console.log(tasks, "TASKS ==================================");
+
 			taskTilesContainer.innerHTML = "";
 			taskCreateInput.value = "";
 			if (tasks[1].length > 1) emptyTaskCreate(tasks[1]);
 			if (tasks[0].length) taskFieldInnerHtml(tasks[0]);
 			else return;
 		} catch (err) {
-			console.error("messed up in task creation", err);
+			console.error("messed up in task creation TASKSAPI.js", err);
 		}
 	});
 });

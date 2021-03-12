@@ -25,28 +25,29 @@ async function findCurrentProjectId(urlId) {
 }
 
 const grabAll = async (taskId, session, editNote) => {
-	const note = await Note.build()
+	const note = await Note.build();
 	const project = await Project.build();
-	const task = await Task.findByPk(taskId)
+	const task = await Task.findByPk(taskId);
 	const userId = findCurrentUser(session);
-	const { projectId } = task
-	const notes = await Note.findAll({ where: { taskId } })
+	const { projectId } = task;
+	const notes = await Note.findAll({ where: { taskId } });
 	const tasks = await Task.findAll({ where: { projectId } });
 	const projects = await Project.findAll({ where: { projectOwnerId: userId } });
 
 	return {
-	  note,
-	  notes,
-	  title: 'notes',
-	  taskId,
-	  tasks,
-	  projects,
-	  project,
-	  projectId,
-	  userId,
-	  editNote
-	  }
-  }
+		note,
+		notes,
+		title: "notes",
+		taskId,
+		tasks,
+		projects,
+		project,
+		projectId,
+		userId,
+		editNote,
+		task,
+	};
+};
 
 module.exports = {
 	asyncHandler,
@@ -54,4 +55,5 @@ module.exports = {
 	deleteItem,
 	findCurrentUser,
 	findCurrentProjectId,
-	grabAll };
+	grabAll,
+};
