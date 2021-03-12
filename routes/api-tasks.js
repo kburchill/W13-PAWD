@@ -69,11 +69,14 @@ apiTaskRouter.patch(
 			if (completed === null) await task.update({ completed: false });
 			else if (completed === "on") await task.update({ completed: true });
 			if (priority) await task.update({ priority });
-			else error = errors[0];
+			else {
+				if (errors.length > 0) error = errors[0];
+			}
 		} catch (err) {
 			console.error(err);
 		}
 		const tasks = await Task.findAll({ where: { projectId } });
+		console.log(error, "ERRORS=============================");
 		res.json([tasks, error]);
 	})
 );

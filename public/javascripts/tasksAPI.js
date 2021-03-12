@@ -47,7 +47,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 			taskTilesContainer.innerHTML = "";
 			taskCreateInput.value = "";
-			if (tasks[1].length > 1) emptyTaskCreate(tasks[1]);
+			if (tasks[1].length > 1) emptyTaskCreate(tasks[1], "#createNewTask");
 			if (tasks[0].length) taskFieldInnerHtml(tasks[0]);
 			else return;
 		} catch (err) {
@@ -61,12 +61,28 @@ window.addEventListener("DOMContentLoaded", async () => {
 		event.preventDefault();
 		event.stopImmediatePropagation();
 
+		const taskId = urlIdIdentifier(window.location.href)[0];
 		const formData = new FormData(taskEditForm);
-		const priority = formData.get("priority");
-		const inProgress = formData.get("inProgress");
-		const completed = formData.get("completed");
-		// inProgress and completed will be null if unchecked, on if checked
 		const name = formData.get("name");
+		try {
+			const res = await fetch("/api-tasks", {
+				method: "PATCH",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ taskId, name }),
+			});
+			const tasks = await res.json();
+			taskTilesContainer.innerHTML = "";
+			if (tasks[1].length > 1) {
+				const taskEditErrorDiv = document.createElement("div");
+				taskEditErrorDiv.innerHTML = tasks[1];
+				taskEditForm.appendChild(taskEditErrorDiv);
+				emptyTaskCreate(tasks[1], ".taskEdit__name");
+			}
+			if (tasks[0].length) taskFieldInnerHtml(tasks[0]);
+			else return;
+		} catch (err) {
+			console.error("messed up in task edit Name TASKSAPI.js", err);
+		}
 	});
 
 	// to AJAX update inProgress or completed in taskEdit Form
@@ -116,7 +132,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 			if (tasks[0].length) taskFieldInnerHtml(tasks[0]);
 			else return;
 		} catch (err) {
-			console.error("messed up in task edit checkboxes TASKSAPI.js", err);
+			console.error("messed up in task edit Priority TASKSAPI.js", err);
 		}
 	});
 });
