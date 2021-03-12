@@ -139,4 +139,11 @@ window.addEventListener("DOMContentLoaded", async () => {
 			console.error("messed up in task edit Priority TASKSAPI.js", err);
 		}
 	});
+
+	document.querySelector(".task-edit-button").addEventListener("click", (event) => {
+		event.stopImmediatePropagation();
+		event.preventDefault();
+		console.log("this happened =====================");
+		window.location.href = `/tasks/${urlIdIdentifier(window.location.href)[0]}`;
+	});
 });

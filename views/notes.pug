@@ -33,7 +33,7 @@ block tasks
           input(type="checkbox" name="completed" checked="checked" id="taskEdit__completed")
         textarea(name="name" class="taskEdit__name" placeHolder="Edit Task Name...") #{task.name}
         button(type="submit" class="taskEdit__submit") Update Task
-        a(href=`/tasks/${taskId}`): button(class="note-edit-button") Cancel
+        a(href=`/tasks/${taskId}`): button(class="task-edit-button") Cancel
 
     .noteList__div
       form(id=`${userId}:${taskId}` class="noteList__form")
