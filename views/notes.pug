@@ -6,21 +6,22 @@ block tasks
   .editTask__div
     .taskEdit__div
       form(id=`taskEdit-${taskId}` class="taskEdit__form")
+        label(for="createdAt")= `Created on: ${task.createdAt}`
         label(for="priority") Priority
-        select(name="priority")
+        select(name="priority" id="taskEdit__priority")
           option(value="1") 1
           option(value="2") 2
           option(value="3") 3
         label(for="inProgress") Priority
         if (task.inProgress === "false")
-          input(type="checkbox" name="inProgress" checked="")
+          input(type="checkbox" name="inProgress" checked="" id="taskEdit__inProgress")
         else
-          input(type="checkbox" name="inProgress" checked="checked")
+          input(type="checkbox" name="inProgress" checked="checked" id="taskEdit__inProgress")
         label(for="completed") Completed
         if (task.completed === "false")
-          input(type="checkbox" name="completed" checked="")
+          input(type="checkbox" name="completed" checked="" id="taskEdit__completed")
         else
-          input(type="checkbox" name="completed" checked="checked")
+          input(type="checkbox" name="completed" checked="checked" id="taskEdit__completed")
         textarea(name="name" class="taskEdit__name" placeHolder="Edit Task Name..." value=task.name)
         button(type="submit" class="taskEdit__submit") Update Task
 
