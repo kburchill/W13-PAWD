@@ -37,11 +37,13 @@ apiNoteRouter.post("/", requireAuth, asyncHandler(async (req, res) => {
 
 
 apiNoteRouter.patch("/:id", requireAuth, asyncHandler(async (req, res) => {
-  const { content, taskId } = req.body;
-  const userId =
+  const { content, taskId, noteId } = req.body;
+  const userId = findCurrentUser(req.session);
 
   try{
-    await Note.create({ content, userId, taskId });
+    const note = await Note.findByPk(noteId)
+    await note.update({ content });
+
   } catch (err) {
     console.err("messed up on backend note create", err);
   }

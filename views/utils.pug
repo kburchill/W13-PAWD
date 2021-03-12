@@ -21,9 +21,9 @@ mixin projectTile(projectName, projectProgress, projectId)
 mixin noteTile(content, note, taskId, editId, noteContent)
   div(class="noteField")
     if(note == editId)
-      form(id=`${taskId}` class="noteList__edit")
+      form(id=`${taskId}:${editId}` class="noteList__edit")
         textarea(name="content" class="note-content")=noteContent
-        button(type="submit" class="note-edit-button" name="noteId" value= editId) Submit Changes
+        button(type="submit" class="note-edit-button") Submit Changes
       a(href=`/tasks/${taskId}`): button(class="note-edit-button") Cancel
     else
       div(class="noteHolder")

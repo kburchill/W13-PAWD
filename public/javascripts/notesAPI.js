@@ -60,18 +60,20 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   // listener for getting note edit form
   const editForm = document.querySelector(".noteList__edit")
-  editForm.addEventListener("click", async (event) => {
+  editForm.addEventListener("submit", async (event) => {
     // event.preventDefault is seemingly stopping propigation of submit event.
-    event.preventDefault();
+    event.preventDefault()
+    event.stopImmediatePropagation();
+
     const formData = new FormData(editForm);
-    const content = formData("content");
-    const noteId = formData("noteId");
-    const taskId = editForm.id;
+    const content = formData.get("content");
+    const ids = editForm.id.split(':');
+    const [ taskId, noteId ] = ids;
     try {
       const response = await fetch(`/api-notes/${noteId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content, taskId })
+        body: JSON.stringify({ content, taskId, noteId })
       })
 
       const notes = await response.json();
