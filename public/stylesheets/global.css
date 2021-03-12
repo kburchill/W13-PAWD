@@ -1,6 +1,7 @@
 @import url("./buttons.css");
 @import url("./projectList.css");
 @import url("./navBar.css");
+@import url("./tasksStyle.css");
 
 body{
     background: linear-gradient(.25turn, #6BB5D2, #89c9b8, #CAE8E8);
@@ -27,9 +28,7 @@ body{
 .projectCheckBox {
     align-self: flex-end;
 }
-.projectRender__Div{
-    
-}
+
 .searchList__div, .taskList__div{
     margin-top: 25px;
     grid-area: task;

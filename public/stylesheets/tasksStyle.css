@@ -6,3 +6,8 @@ body{
   "navbar navbar navbar"
   "project task notes";
 }
+
+
+.taskHolder {
+ height: 50px;
+}

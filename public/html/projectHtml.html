@@ -15,8 +15,8 @@
 </div>
 
 <div class="projectField">
-	<div class="projectHolder"></div><a href="/projects/${project.id}" name="${project.name}">${project.name}</a><input class="unchecked projectCheckBox"
-		type="checkbox">
+	<div class="projectHolder"></div><a href="/projects/${project.id}" name="${project.name}">${project.name}</a><input
+		class="unchecked projectCheckBox" type="checkbox">
 	<div class="progressBorder" name="0">
 		<div class="progressFiller" style="width: ${project.progress}%">${project.progress}%</div>
 	</div>
@@ -49,5 +49,20 @@
 		<form action="/tasks/${taskId}" method="post">
 			<button type="submit" name="noteId" value="${note.id}">Edit</button>
 		</form>
+	</div>
+</div>
+
+
+<!-- tasks -->
+<div class="tasksContainer">
+	<div class="taskField">
+		<div class="taskHolder"><input class="unchecked" type="checkbox"><a href="/tasks/25">test2</a>
+			<div class="taskHolder__inProgress">false</div>
+			<div class="taskHolder__completed">false</div>
+			<div class="taskHolder__priority">1</div>
+			<div>
+				<form id="25"><button class="delete__button" type="submit">Delete</button></form>
+			</div>
+		</div>
 	</div>
 </div>
