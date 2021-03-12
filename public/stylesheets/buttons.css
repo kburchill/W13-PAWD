@@ -4,7 +4,7 @@ button{
   width: auto;
   border: none;
   box-shadow: inset 0 0 0 0 #10375c;
-  border-radius: 10px;
+  border-radius: 5px;
   outline: none;
   transition: ease-out;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -15,6 +15,46 @@ button:hover {
   color: #f4f6ff;
 }
 
+.navbar__div-searchbar button{
+  background-color: #f4f4f4;
+  height: 20px;
+  width: auto;
+  border: none;
+  box-shadow: inset 0 0 0 0 #FFC816;
+  border-radius: 5px;
+  outline: none;
+  margin: 5px;
+  transition: ease-out;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.navbar__div-searchbar button:hover {
+  box-shadow: inset 300px 0 0 0 #FFC816;
+  color: #204051;
+}
+
+.logout__button{
+  margin-right: 50%;
+  background-color: #f4f4f4;
+  height: 20px;
+  width: auto;
+  border: none;
+  box-shadow: inset 0 0 0 0 #FFC816;
+  border-radius: 5px;
+  outline: none;
+  /* margin: 5px; */
+  transition: ease-out;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.navbar__div-logout{
+  margin-right: 5%;
+}
+
+.logout__button:hover{
+  box-shadow: inset 300px 0 0 0 #FFC816;
+  color: #204051;
+}
 
 
 /*
