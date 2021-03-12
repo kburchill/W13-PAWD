@@ -13,7 +13,8 @@ mixin projectTile(projectName, projectProgress, projectId)
         div(class="progressFiller" style=`width: ${25}%`) #{projectProgress}%
 
       form(id=`${projectId}`)
-        button(class="delete__button" type="submit") Delete
+        button(class="delete__button" type="submit")
+          i(class="far fa-trash-alt")
 
 mixin noteTile(content, note, taskId, editId, noteContent)
   div(class="noteField")
@@ -27,7 +28,8 @@ mixin noteTile(content, note, taskId, editId, noteContent)
         p #{content}
         div
           form(id=`${note}`)
-            button(class="delete__button" type="submit") Delete
+            button(class="delete__button" type="submit")
+              i(class="far fa-trash-alt")
           form(action=`/tasks/${taskId}` method='post')
             button(type='submit' name='noteId' value=`${note}`) Edit
 
@@ -47,4 +49,5 @@ mixin taskTile(taskName, taskInProgress, taskCompleted, taskPriority, taskId)
       div(class="taskHolder__priority") #{taskPriority}
       div
         form(id=`${taskId}`)
-         button(class="delete__button" type='submit') Delete
+         button(class="delete__button" type='submit')
+          i(class="far fa-trash-alt")
