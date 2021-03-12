@@ -1,7 +1,6 @@
 import { taskFieldInnerHtml, urlIdIdentifier } from "./api-utils.js";
 
 window.addEventListener("DOMContentLoaded", async () => {
-
 	// Listener to delete tasks
 	const taskTilesContainer = document.querySelector(".tasksContainer");
 	taskTilesContainer.addEventListener("submit", async (event) => {
@@ -18,7 +17,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 			});
 
 			const tasks = await response.json();
-			console.log(tasks, "TASKS HERE ----------------------");
 			if (tasks[1] == taskEventId) window.location.href = `/projects/${tasks[2]}`;
 			taskTilesContainer.innerHTML = "";
 			if (tasks[0].length) taskFieldInnerHtml(tasks[0]);
@@ -35,15 +33,15 @@ window.addEventListener("DOMContentLoaded", async () => {
 		event.preventDefault();
 
 		const formData = new FormData(taskListForm);
-		const name = formData.get('name');
-		const priority = formData.get('priority');
+		const name = formData.get("name");
+		const priority = formData.get("priority");
 		const projectId = taskListForm.id;
 
-		try{
-			const res = await fetch('/api-tasks', {
+		try {
+			const res = await fetch("/api-tasks", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ name, priority, projectId })
+				body: JSON.stringify({ name, priority, projectId }),
 			});
 			const tasks = await res.json();
 			taskTilesContainer.innerHTML = "";
@@ -54,5 +52,4 @@ window.addEventListener("DOMContentLoaded", async () => {
 			console.error("messed up in task creation", err);
 		}
 	});
-
 });
