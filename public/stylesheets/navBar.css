@@ -1,0 +1,56 @@
+.navbar__div{
+  grid-area: navbar;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #204051;
+  height: auto;
+  width: 100%;
+}
+
+.project-title{
+  color: #FFC816;
+  margin-left: 5%;
+}
+
+.navbar__div-searchbar{
+  height: 20px;
+}
+
+.search-field{
+
+}
+
+.search-field > .search__button{
+  position: relative;
+  right: 8px;
+  height: 19px;
+  background-color: white;
+  border-radius: 0;
+}
+
+.dragonFlies{
+  align-self: center;
+  height: 30px;
+  width: auto;
+}
+
+.navbar__div-logout{
+  margin-right: 3%;
+  align-self: center;
+}
+
+
+
+/*
+navbar__div = actual navbar
+  .project-title = Projects All the Way Down
+
+  .navbar__div-searchbar = div that holds form and two buttons
+    .search-field = the search text bat
+      .search__button
+      .search-all-button
+  .bigTurtles
+  .navbar__div-logout
+*/

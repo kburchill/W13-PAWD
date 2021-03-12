@@ -47,10 +47,6 @@ button:hover {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.navbar__div-logout{
-  margin-right: 5%;
-}
-
 .logout__button:hover{
   box-shadow: inset 300px 0 0 0 #FFC816;
   color: #204051;
