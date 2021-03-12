@@ -76,7 +76,7 @@ export function urlIdIdentifier(window) {
 }
 
 export function emptyTaskCreate(error) {
-	// const TaskListDiv = document.querySelector(".taskList__div");
+	// const TaskListForm = document.querySelector(".taskList__form");
 	// const div = document.createElement("div");
 	// div.innerHTML = error;
 	// TaskListDiv.appendChild(div);

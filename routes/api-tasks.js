@@ -3,6 +3,8 @@ const apiTaskRouter = express.Router();
 const { requireAuth } = require("../auth");
 const { Task, Project } = require("../db/models");
 const { asyncHandler, deleteItem, findCurrentProjectId } = require("./utils");
+const { check, validationResult } = require("express-validator");
+const { taskValidators } = require("./validators");
 
 apiTaskRouter.delete(
 	"/",
@@ -30,12 +32,15 @@ apiTaskRouter.delete(
 apiTaskRouter.post(
 	"/",
 	requireAuth,
+	taskValidators,
 	asyncHandler(async (req, res) => {
 		const { name, priority, projectId } = req.body;
+		const mappedErrors = validationResult(req).errors;
+		const errors = mappedErrors.map((error) => error.msg);
 		let error = "";
 		try {
-			if (name.length >= 1) await Task.create({ name, priority, projectId });
-			else error = "Please Provide a Task Name";
+			if (name.length >= 1 && name.length < 101) await Task.create({ name, priority, projectId });
+			else error = errors[0];
 		} catch (err) {
 			console.error(err);
 		}

@@ -107,7 +107,7 @@ const taskValidators = [
 		.exists({ checkFalsy: true })
 		.withMessage("Please provide a Task Name")
 		.isLength({ max: 100 })
-		.withMessage("Task name cannot exceed 100 characters!"),
+		.withMessage("Task can't exceed 100 characters!"),
 ];
 
 const notesValidators = [check("content").exists({ checkFalsy: true }).withMessage("Please provide Note Content")];

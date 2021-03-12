@@ -44,6 +44,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 				body: JSON.stringify({ name, priority, projectId }),
 			});
 			const tasks = await res.json();
+			console.log(tasks, "TASKS ==================================");
 			taskTilesContainer.innerHTML = "";
 			taskCreateInput.value = "";
 			if (tasks[1].length > 1) emptyTaskCreate(tasks[1]);
