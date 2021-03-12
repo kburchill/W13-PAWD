@@ -11,14 +11,14 @@ searchRouter.post(
 	"/",
 	requireAuth,
 	asyncHandler(async (req, res, next) => {
-		let { searchText } = req.body;
+		let { searchText, findAll } = req.body;
 
 		let allSearchProjectsResults = [];
 		let allSearchTasksResults = [];
 		const projectOwnerId = findCurrentUser(req.session);
 		const projects = await Project.findAll({ where: { projectOwnerId } });
-
-		if (searchText) {
+		if (findAll === "%") searchText = "%";
+		if (searchText.length >= 1) {
 			// looks for all existing projects with name of search text of current user
 			const allSearchProjects = await Project.findAll({
 				where: {
