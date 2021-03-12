@@ -5,27 +5,34 @@ mixin field(fieldName, fieldValue, labelText, placeHolder="", fieldType="text")
 
 mixin projectTile(projectName, projectProgress, projectId)
   div(class="projectField")
-    input(type="checkbox" class="unchecked")
     div(class="projectHolder")
-      div
-        label(for=`${projectName}`) Project Name:
-        a(href=`/projects/${projectId}` name=`${projectName}`) #{projectName}
-      div
-        label(for=`${projectProgress}`) Current Progress:
-        div(class="progressBorder" name=`${projectProgress}`)
-          div(class="progressFiller") #{projectProgress}%
-      div
-        form(id=`${projectId}`)
-          button(class="delete__button" type="submit") Delete
+      input(type="checkbox" class="unchecked")
 
-mixin noteTile(content, note, taskId)
+      label(for=`${projectName}`) Project Name:
+      a(href=`/projects/${projectId}` name=`${projectName}`) #{projectName}
+
+      label(for=`${projectProgress}`) Current Progress:
+      div(class="progressBorder" name=`${projectProgress}`)
+      div(class="progressFiller") #{projectProgress}%
+
+      form(id=`${projectId}`)
+        button(class="delete__button" type="submit") Delete
+
+mixin noteTile(content, note, taskId, editId, noteContent)
   div(class="noteField")
-    div(class="noteHolder")
-      p #{content}
-      div
-        form(id=`${note}`)
-          button(class="delete__button" type="submit") Delete
-          button(class="edit_button" type="submit") Edit
+    if(note == editId)
+      form(id=`${taskId}:${editId}` class="noteList__edit")
+        textarea(name="content" class="note-content")=noteContent
+        button(type="submit" class="note-edit-button") Submit Changes
+      a(href=`/tasks/${taskId}`): button(class="note-edit-button") Cancel
+    else
+      div(class="noteHolder")
+        p #{content}
+        div
+          form(id=`${note}`)
+            button(class="delete__button" type="submit") Delete
+          form(action=`/tasks/${taskId}` method='post')
+            button(type='submit' name='noteId' value=`${note}`) Edit
 
 mixin errorsDiv(errors)
   div(class="errors-div")
@@ -44,5 +51,3 @@ mixin taskTile(taskName, taskInProgress, taskCompleted, taskPriority, taskId)
       div
         form(id=`${taskId}`)
          button(class="delete__button" type='submit') Delete
-
-

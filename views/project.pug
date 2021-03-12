@@ -4,7 +4,11 @@ append head
 block nav
 
   .projectList__div
-    form(action="/projects" method="post")
+    div(class="logo-div")
+      a(href="/projects")
+        img(src="/images/161549906626454634.png" class="projectTurtles" href="/projects")
+      h1(class="logo-text") Projects All the Way Down
+    form(action="/projects" method="post" class="project-form")
       input(type="hidden" name="_csrf" value=csrfToken)
       label(for="projectName")
       input(type="text" id="createNewProject" name="projectName" placeHolder="Create New Project"  class="formField_createProject")

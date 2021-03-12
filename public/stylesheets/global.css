@@ -1,3 +1,5 @@
+@import url("./buttons.css");
+
 body{
     background: linear-gradient(.25turn, #6BB5D2, #89c9b8, #CAE8E8);
     display: grid;
@@ -6,6 +8,7 @@ body{
     grid-template-areas:
     "navbar navbar navbar"
     "project task notes";
+    /* background-image: url("/images/161549906626454634.png"); */
 }
 
 .navbar__div {
@@ -13,16 +16,34 @@ body{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	align-items: baseline;
+	align-items: center;
     background-color: #204051
 }
 
-.projectList__div {
-    grid-area: project;
-
+.project-title{
+    color: #FFC816
 }
 
-.taskList__div {
+.projectList__div {
+    margin-top: 25px;
+    grid-area: project;
+    /* background-image: url("/images/161549906626454634.png");
+    background-repeat: no-repeat;
+    background-size: 500px; */
+
+}
+.projectTurtles{
+    height: 225px;
+    width: auto;
+}
+.bigTurtles{
+    position: relative;
+    top: 208px;
+    right: -40px;
+}
+
+.searchList__div, .taskList__div {
+    margin-top: 25px;
     grid-area: task;
     display: grid;
     grid-template-columns: 1fr;
@@ -51,7 +72,7 @@ body{
     width: auto;
 }
 
-.tasksContainer{
+.searchContainer, .tasksContainer{
     grid-area: tasks;
     /* display: flex;
     flex-direction: column;
@@ -63,8 +84,7 @@ body{
     flex-direction: column;
 }
 
-
-.taskHolder {
+.projectHolder, .taskHolder  {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -74,7 +94,28 @@ body{
 
 .noteList__div {
     grid-area: notes;
-    background-image: url("/images/161549906626454634.png");
+    /* background-image: url("/images/161549906626454634.png"); */
     background-repeat: no-repeat;
     background-size: 500px;
 }
+
+.logo-div{
+    display: flex;
+    flex-direction: row;
+    padding-left: 5%;
+}
+
+.logo-text{
+    color: #FFC816;
+    align-self: center;
+}
+
+.project-form{
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* FFC816
+    FFD684
+    */

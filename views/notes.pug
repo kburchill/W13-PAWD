@@ -8,5 +8,5 @@ block tasks
       textarea(name="content" class="note-content" placeHolder="Enter comment")
       button(type="submit" class="note-submit-button") Comment
     div(class="notesTilesContainer")
-      each note in notes
-        +noteTile(note.content, note.id)
+        each note in notes
+          +noteTile(note.content, note.id, taskId, editNote.id, editNote.content)
