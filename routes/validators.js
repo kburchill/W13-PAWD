@@ -101,4 +101,23 @@ const projectValidators = [
 		.isLength({ max: 100 })
 		.withMessage("Project name cannot exceed 100 characters!"),
 ];
-module.exports = { projectValidators, userValidators, loginValidators, userErrorHandler, searchValidators };
+
+const taskValidators = [
+	check("name")
+		.exists({ checkFalsy: true })
+		.withMessage("Please provide a Task Name")
+		.isLength({ max: 100 })
+		.withMessage("Task can't exceed 100 characters!"),
+];
+
+const notesValidators = [check("content").exists({ checkFalsy: true }).withMessage("Please provide Note Content")];
+
+module.exports = {
+	notesValidators,
+	taskValidators,
+	projectValidators,
+	userValidators,
+	loginValidators,
+	userErrorHandler,
+	searchValidators,
+};

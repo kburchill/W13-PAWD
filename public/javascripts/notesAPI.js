@@ -1,91 +1,86 @@
-import { noteFieldInnerHtml, urlIdIdentifier } from "./api-utils.js";
+import { noteFieldInnerHtml, urlIdIdentifier, emptyNoteCreate } from "./api-utils.js";
 
 window.addEventListener("DOMContentLoaded", async () => {
+	//Listener for deleteing notes
+	const notesContainer = document.querySelector(".notesTilesContainer");
+	notesContainer.addEventListener("submit", async (event) => {
+		console.log(event.target, "//////////");
+		if (event.target.id) {
+			event.preventDefault();
+			const urlId = urlIdIdentifier(window.location.href);
+			const taskId = urlId[0];
+			const noteId = event.target.id;
 
-  //Listener for deleteing notes
-  const notesContainer = document.querySelector(".notesTilesContainer");
-  notesContainer.addEventListener("submit", async (event) => {
-    console.log(event.target, '//////////')
-    if(event.target.id) {
-      event.preventDefault();
-      const urlId = urlIdIdentifier(window.location.href)
-      const taskId = urlId[0];
-      const noteId = event.target.id;
+			try {
+				const res = await fetch(`/api-notes/${noteId}`, {
+					method: "DELETE",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ noteId }),
+				});
+				const notes = await res.json();
+				notesContainer.innerHTML = "";
 
-      try {
-        const res = await fetch(`/api-notes/${noteId}`, {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ noteId }),
-        });
-        const notes = await res.json();
-        notesContainer.innerHTML = "";
+				if (notes.length) noteFieldInnerHtml(notes, taskId);
+				else return;
+			} catch (err) {
+				console.error("There was an error in your notes API file", err);
+			}
+		}
+	});
 
-        if (notes.length) noteFieldInnerHtml(notes, taskId);
-        else return
-      } catch (err) {
-        console.error("There was an error in your notes API file", err)
-      }
-    }
-  })
+	//Listener for creating a note
+	const noteCreateForm = document.querySelector(".noteList__form");
+	const noteTextarea = document.querySelector(".note-content");
+	noteCreateForm.addEventListener("submit", async (event) => {
+		event.preventDefault();
 
-  //Listener for creating a note
-  const noteCreateForm = document.querySelector(".noteList__form");
-  const noteTextarea = document.querySelector(".note-content");
-  noteCreateForm.addEventListener("submit", async (event) => {
+		const formData = new FormData(noteCreateForm);
+		const content = formData.get("content");
+		const [userId, taskId] = noteCreateForm.id.split(":");
 
-    event.preventDefault()
+		try {
+			const res = await fetch("/api-notes", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ content, userId, taskId }),
+			});
+			const notes = await res.json();
 
-    const formData = new FormData(noteCreateForm);
-    const content = formData.get("content");
-    const [ userId, taskId ] = noteCreateForm.id.split(':');
+			notesContainer.innerHTML = "";
+			noteTextarea.value = "";
+			if (notes[1].length) emptyNoteCreate(notes[1]);
+			if (notes[0].length) noteFieldInnerHtml(notes[0], taskId);
+			else return;
+		} catch (err) {
+			console.error("messed up in notes create", err);
+		}
+	});
 
-    try {
-      const res = await fetch("/api-notes", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content, userId, taskId })
-      })
-      const notes = await res.json();
+	// listener for getting note edit form
+	const editForm = document.querySelector(".noteList__edit");
+	editForm.addEventListener("submit", async (event) => {
+		// event.preventDefault is seemingly stopping propigation of submit event.
+		event.preventDefault();
+		event.stopImmediatePropagation();
 
-      notesContainer.innerHTML = "";
-      noteTextarea.value = "";
+		const formData = new FormData(editForm);
+		const content = formData.get("content");
+		const ids = editForm.id.split(":");
+		const [taskId, noteId] = ids;
+		try {
+			const response = await fetch(`/api-notes/${noteId}`, {
+				method: "PATCH",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ content, taskId, noteId }),
+			});
 
-      if (notes.length) noteFieldInnerHtml(notes, taskId);
-      else return;
-    } catch(err) {
-      console.error("messed up in notes create", err);
-    }
-  })
+			const notes = await response.json();
 
-  // listener for getting note edit form
-  const editForm = document.querySelector(".noteList__edit")
-  editForm.addEventListener("submit", async (event) => {
-    // event.preventDefault is seemingly stopping propigation of submit event.
-    event.preventDefault()
-    event.stopImmediatePropagation();
-
-    const formData = new FormData(editForm);
-    const content = formData.get("content");
-    const ids = editForm.id.split(':');
-    const [ taskId, noteId ] = ids;
-    try {
-      const response = await fetch(`/api-notes/${noteId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content, taskId, noteId })
-      })
-
-      const notes = await response.json();
-
-      notesContainer.innerHTML = "";
-      if (notes.length) noteFieldInnerHtml(notes, taskId);
-      else return
-
-    } catch (err) {
-      console.error('messed up in note edit', err);
-    }
-
-  })
-
-})
+			notesContainer.innerHTML = "";
+			if (notes.length) noteFieldInnerHtml(notes, taskId);
+			else return;
+		} catch (err) {
+			console.error("messed up in note edit", err);
+		}
+	});
+});
