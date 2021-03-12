@@ -5,15 +5,15 @@ append head
 block projects
   .searchList__div
     include utils.pug
-    div(class="tasksContainer")
+    div(class="searchContainer")
       if (allSearchProjectsResults.length >=1)
         div(class="searchProjectResults__div") Projects
-          each project in allSearchProjectsResults
-            +projectTile(project.name, project.progress, project.id)
+        each project in allSearchProjectsResults
+          +projectTile(project.name, project.progress, project.id)
       if (allSearchTasksResults.length >=1)
         div(class="searchTaskResults__div") Tasks
-          each task in allSearchTasksResults
-            +taskTile(task.name, task.inProgress, task.completed, task.priority, task.id)
+        each task in allSearchTasksResults
+          +taskTile(task.name, task.inProgress, task.completed, task.priority, task.id)
       if (allSearchTasksResults.length===0 && allSearchProjectsResults.length===0 )
         div NO SEARCH RESULTS
   block projects
