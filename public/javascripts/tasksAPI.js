@@ -55,7 +55,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 		}
 	});
 
-	// to edit a form
+	// to ajax edit task's name in EDIT FORM in taskEdit Form
 	const taskEditForm = document.querySelector(".taskEdit__form");
 	taskEditForm.addEventListener("submit", async (event) => {
 		event.preventDefault();
@@ -69,31 +69,54 @@ window.addEventListener("DOMContentLoaded", async () => {
 		const name = formData.get("name");
 	});
 
+	// to AJAX update inProgress or completed in taskEdit Form
 	const taskInProgressCheck = document.querySelector("#taskEdit__inProgress");
-	taskInProgressCheck.addEventListener("click", async (event) => {
-		// event.preventDefault();
-		event.stopImmediatePropagation();
+	const taskCompletedCheck = document.querySelector("#taskEdit__completed");
+	[taskCompletedCheck, taskInProgressCheck].forEach((checkbox) => {
+		checkbox.addEventListener("click", async (event) => {
+			event.stopImmediatePropagation();
 
-		const taskId = urlIdIdentifier(window.location.href)[0];
+			const taskId = urlIdIdentifier(window.location.href)[0];
+			const formData = new FormData(taskEditForm);
+			const inProgress = formData.get("inProgress");
+			const completed = formData.get("completed");
+			// inProgress and completed will be null -if unchecked, "on"- if checked
+
+			try {
+				const res = await fetch("/api-tasks", {
+					method: "PATCH",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ taskId, inProgress, completed }),
+				});
+				const tasks = await res.json();
+				taskTilesContainer.innerHTML = "";
+				if (tasks[0].length) taskFieldInnerHtml(tasks[0]);
+				else return;
+			} catch (err) {
+				console.error("messed up in task edit checkboxes TASKSAPI.js", err);
+			}
+		});
+	});
+
+	// to ajax edit task's priority in EDIT FORM in taskEdit Form
+	document.querySelector("#taskEdit__priority").addEventListener("change", async (event) => {
+		event.stopImmediatePropagation();
 		const formData = new FormData(taskEditForm);
-		const inProgress = formData.get("inProgress");
-		// inProgress and completed will be null if unchecked, on if checked
-		// console.log(inProgress, "==============IN PROGRESS");
+		const priority = formData.get("priority");
+		const taskId = urlIdIdentifier(window.location.href)[0];
+
 		try {
 			const res = await fetch("/api-tasks", {
 				method: "PATCH",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ taskId, inProgress }),
+				body: JSON.stringify({ taskId, priority }),
 			});
 			const tasks = await res.json();
-			console.log(tasks, "TASKS ON 89=======================");
 			taskTilesContainer.innerHTML = "";
-			taskCreateInput.value = "";
-			if (tasks[1].length > 1) emptyTaskCreate(tasks[1]);
 			if (tasks[0].length) taskFieldInnerHtml(tasks[0]);
 			else return;
 		} catch (err) {
-			console.error("messed up in task creation TASKSAPI.js", err);
+			console.error("messed up in task edit checkboxes TASKSAPI.js", err);
 		}
 	});
 });
