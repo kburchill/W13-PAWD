@@ -28,7 +28,6 @@ projectsRouter.post(
 	projectValidators,
 	asyncHandler(async (req, res) => {
 		const mappedErrors = validationResult(req).errors;
-		// console.log(mappedErrors, "====================== Mapped errors");
 		if (mappedErrors.length === 0) {
 			const { projectName } = req.body;
 			userId = findCurrentUser(req.session);
@@ -40,7 +39,6 @@ projectsRouter.post(
 			const errors = mappedErrors.map((error) => error.msg);
 			const projects = await Project.findAll({ where: { projectOwnerId: findCurrentUser(req.session) } });
 			const project = await Project.build();
-			console.log(errors);
 			res.render("project", {
 				title: "Projects",
 				projects,
