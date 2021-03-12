@@ -3,16 +3,17 @@ append head
   script(src="/javascripts/projectsAPI.js" type="module")
 block nav
 
-  .projectList__div
+  div(class="projectList__div")
     div(class="logo-div")
       a(href="/projects")
-        img(src="/images/161549906626454634.png" class="projectTurtles" href="/projects")
+        img(src="/assets/161549906626454634.png" class="projectTurtles" href="/projects")
       h1(class="logo-text") Projects All the Way Down
     form(action="/projects" method="post" class="project-form")
+      h1(class='projectHeader') Projects
       input(type="hidden" name="_csrf" value=csrfToken)
       label(for="projectName")
       input(type="text" id="createNewProject" name="projectName" placeHolder="Create New Project"  class="formField_createProject")
-      button(type="submit" class="user-submit-button") Create New Project
+      button(type="submit" class="project-submit-button") Create
     include utils.pug
     if (errors)
       +errorsDiv(errors)

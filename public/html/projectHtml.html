@@ -8,13 +8,20 @@
 		</div>
 		<div>
 			<form>
-				<button class="delete__button" id="${project.id}"
-					type="submit">Delete</button>
+				<button class="delete__button" id="${project.id}" type="submit">Delete</button>
 			</form>
 		</div>
 	</div>
 </div>
 
+<div class="projectField">
+	<div class="projectHolder"></div><a href="/projects/${project.id}" name="${project.name}">${project.name}</a><input class="unchecked projectCheckBox"
+		type="checkbox">
+	<div class="progressBorder" name="0">
+		<div class="progressFiller" style="width: ${project.progress}%">${project.progress}%</div>
+	</div>
+	<form id="${project.id}"><button class="delete__button" type="submit">Delete</button></form>
+</div>
 
 
 <!-- This is for the tasks -->
