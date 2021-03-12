@@ -6,16 +6,15 @@ const tasksRouter = express.Router();
 
 tasksRouter.get('/:id', requireAuth, asyncHandler(async (req, res) => {
   const taskId = req.params.id;
+  const editNote = "";
   const note = await Note.build()
   const project = await Project.build();
   const task = await Task.findByPk(taskId)
-  const {
-    userAuth: { userId },
-  } = req.session;
+  const userId = findCurrentUser(req.session);
   const { projectId } = task
   const notes = await Note.findAll({ where: { taskId } })
   const tasks = await Task.findAll({ where: { projectId } });
-  const projects = await Project.findAll({ where: { projectOwnerId: findCurrentUser(req.session) } });
+  const projects = await Project.findAll({ where: { projectOwnerId: userId } });
 
 
   res.render('notes', {
@@ -27,7 +26,8 @@ tasksRouter.get('/:id', requireAuth, asyncHandler(async (req, res) => {
     projects,
     project,
     projectId,
-    userId
+    userId,
+    editNote
   }
   )
 

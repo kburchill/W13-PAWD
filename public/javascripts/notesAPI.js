@@ -53,4 +53,21 @@ window.addEventListener("DOMContentLoaded", async () => {
       console.error("messed up in notes create", err);
     }
   })
+
+  //listener for getting note edit form
+//   notesContainer.addEventListener("click", async (event) => {
+//     console.log(event.target, '---------------')
+//     if (event.target.id) {
+//       try{
+//         const res = await fetch("/api-notes", {
+//         method: "GET",
+//         header: { "Content-type": "application/json" }
+//       })
+//         const notes = await res.json();
+//       } catch (err) {
+//         console.error('messed up in get edit form listener', err)
+//       }
+//     }
+
+//   })
 })

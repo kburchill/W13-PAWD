@@ -14,6 +14,7 @@ const apiProjectRouter = require("./routes/api-projects");
 const apiNoteRouter = require("./routes/api-notes");
 const apiTaskRouter = require("./routes/api-tasks");
 const searchRouter = require("./routes/search");
+const notesRouter = require("./routes/notes");
 const { restoreUser } = require("./auth");
 
 const app = express();
@@ -51,6 +52,7 @@ app.use("/users", usersRouter);
 app.use("/projects", projectsRouter);
 app.use("/tasks", tasksRouter);
 app.use("/search", searchRouter);
+app.use("/notes", notesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

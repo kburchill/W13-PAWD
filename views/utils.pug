@@ -18,14 +18,20 @@ mixin projectTile(projectName, projectProgress, projectId)
         form(id=`${projectId}`)
           button(class="delete__button" type="submit") Delete
 
-mixin noteTile(content, note, taskId)
+mixin noteTile(content, note, taskId, editId, noteContent)
   div(class="noteField")
-    div(class="noteHolder")
-      p #{content}
-      div
-        form(id=`${note}`)
-          button(class="delete__button" type="submit") Delete
-          button(class="edit_button" type="submit") Edit
+    if(note == editId)
+      form(id=`${taskId}` class="noteList__edit")
+        textarea(name="content" class="note-content")=noteContent
+        button(type="submit" class="note-edit-button") Edit
+      a(href=`/tasks/${taskId}`): button(class="note-edit-button") Cancel
+    else
+      div(class="noteHolder")
+        p #{content}
+        div
+          form(id=`${note}`)
+            button(class="delete__button" type="submit") Delete
+          a(href=`/notes/${note}`): button(id=`${note}`) Edit
 
 mixin errorsDiv(errors)
   div(class="errors-div")

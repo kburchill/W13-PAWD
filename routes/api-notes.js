@@ -19,7 +19,6 @@ apiNoteRouter.delete(
 
     }
     const allNotes = await Note.findAll({ where: { taskId: note.taskId } });
-    console.log(allNotes, "All notes here-----------");
     res.json(allNotes)
   })
 )
@@ -35,5 +34,6 @@ apiNoteRouter.post("/", requireAuth, asyncHandler(async (req, res) => {
   const notes = await Note.findAll({ where: { taskId } });
   res.json(notes)
 }))
+
 
 module.exports = apiNoteRouter;
