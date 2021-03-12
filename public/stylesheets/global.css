@@ -1,3 +1,5 @@
+@import url("./buttons.css");
+
 body{
     background: linear-gradient(.25turn, #6BB5D2, #89c9b8, #CAE8E8);
     display: grid;
@@ -92,9 +94,25 @@ body{
 
 .noteList__div {
     grid-area: notes;
-    background-image: url("/images/161549906626454634.png");
+    /* background-image: url("/images/161549906626454634.png"); */
     background-repeat: no-repeat;
     background-size: 500px;
+}
+
+.logo-div{
+    display: flex;
+    flex-direction: row;
+    padding-left: 5%;
+}
+
+.logo-text{
+    color: #FFC816;
+    align-self: center;
+}
+
+.project-form{
+    display: flex;
+    flex-direction: column;
 }
 
 
