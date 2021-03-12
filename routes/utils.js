@@ -1,7 +1,7 @@
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 const csrf = require("csurf");
 const csrfProtection = csrf({ cookie: true });
-const { Task } = require("../db/models");
+const { Note, Task, Project } = require("../db/models");
 
 //project delete
 const deleteItem = async (itemId, model) => {
@@ -24,4 +24,34 @@ async function findCurrentProjectId(urlId) {
 	} else return urlId[0];
 }
 
-module.exports = { asyncHandler, csrfProtection, deleteItem, findCurrentUser, findCurrentProjectId };
+const grabAll = async (taskId, session, editNote) => {
+	const note = await Note.build()
+	const project = await Project.build();
+	const task = await Task.findByPk(taskId)
+	const userId = findCurrentUser(session);
+	const { projectId } = task
+	const notes = await Note.findAll({ where: { taskId } })
+	const tasks = await Task.findAll({ where: { projectId } });
+	const projects = await Project.findAll({ where: { projectOwnerId: userId } });
+
+	return {
+	  note,
+	  notes,
+	  title: 'notes',
+	  taskId,
+	  tasks,
+	  projects,
+	  project,
+	  projectId,
+	  userId,
+	  editNote
+	  }
+  }
+
+module.exports = {
+	asyncHandler,
+	csrfProtection,
+	deleteItem,
+	findCurrentUser,
+	findCurrentProjectId,
+	grabAll };

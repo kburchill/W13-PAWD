@@ -22,22 +22,23 @@ export function projectFieldInnerHtml(projects) {
 }
 
 //    FOR NOTES.
-export function noteFieldInnerHtml(notes) {
+export function noteFieldInnerHtml(notes, taskId) {
 	const notesContainer = document.querySelector(".notesTilesContainer"); //this needs to be made
 
 	notes.forEach((note) => {
 		const noteHolderDiv = document.createElement("div");
 		noteHolderDiv.innerHTML = `<div class="noteField">
     <div class="noteHolder">
-      <p>${note.content}</p>
-      <div>
-        <form id="${note.id}">
-          <button class="delete__button" type="submit">Delete</button>
-          <button class="note-edit-button" type="submit">Edit</button>
-        </form>
-      </div>
-    </div>
-  </div>
+	   <p>${note.content}</p>
+	   <div>
+		<form id="${note.id}">
+			<button class="delete__button" type="submit">Delete</button>
+		</form>
+		<form action="/tasks/${taskId}" method="post">
+			<button type="submit" name="noteId" value="${note.id}">Edit</button>
+		</form>
+	</div>
+</div>
   `;
 
 		notesContainer.appendChild(noteHolderDiv);
