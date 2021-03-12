@@ -3,19 +3,13 @@ export function projectFieldInnerHtml(projects) {
 	projects.forEach((project) => {
 		const projectHolderDiv = document.createElement("div");
 		projectHolderDiv.innerHTML = `<div class="projectField">
-  <input class="unchecked" type="checkbox" />
-  <div class="projectHolder">
-    <a href="projects/${project.id}">${project.name}</a>
-    <div class="progressBorder">
-      <div class="progressFiller">${project.progress} % </div>
-    </div>
-    <div>
-      <form id="${project.id}">
-        <button class="delete__button" type="submit">Delete</button>
-      </form>
-    </div>
-  </div>
-</div>
+		<div class="projectHolder"></div><a href="/projects/${project.id}" name="${project.name}">${project.name}</a><input class="unchecked projectCheckBox"
+			type="checkbox">
+		<div class="progressBorder" name="0">
+			<div class="progressFiller" style="width: ${project.progress}%">${project.progress}%</div>
+		</div>
+		<form id="${project.id}"><button class="delete__button" type="submit">Delete</button></form>
+	</div>
 `;
 		projectsTilesContainer.appendChild(projectHolderDiv);
 	});
@@ -50,18 +44,18 @@ export function taskFieldInnerHtml(tasks) {
 
 	tasks.forEach((task) => {
 		const taskHolderDiv = document.createElement("div");
-		taskHolderDiv.innerHTML = `<div class="taskField"><input class="unchecked" type="checkbox">
-    <div class="taskHolder"><a href="/tasks/${task.id}">${task.name}</a>
-      <div class="taskHolder__inProgress">${task.inProgress}</div>
-      <div class="taskHolder__completed">${task.completed}</div>
-      <div class="taskHolder__priority">${task.priority}</div>
-      <div>
-        <form id="${task.id}">
-          <button class="delete__button" type="submit">Delete</button>
-        </form>
-      </div>
-    </div>
-  </div>
+		taskHolderDiv.setAttribute("class","taskField")
+		taskHolderDiv.innerHTML = `
+		<div class="taskHolder"><input class="unchecked" type="checkbox"><a href="/tasks/${task.id}">${task.name}</a>
+			<div class="taskHolder__inProgress">${task.inProgress}</div>
+			<div class="taskHolder__completed">${task.completed}</div>
+			<div class="taskHolder__priority">${task.priority}</div>
+			<div>
+				<form id="${task.id}">
+					<button class="delete__button" type="submit">Delete</button>
+				</form>
+			</div>
+		</div>
   `;
 
 		tasksContainer.appendChild(taskHolderDiv);
