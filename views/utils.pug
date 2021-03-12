@@ -31,7 +31,8 @@ mixin noteTile(content, note, taskId, editId, noteContent)
         div
           form(id=`${note}`)
             button(class="delete__button" type="submit") Delete
-          a(href=`/notes/${note}`): button(id=`${note}`) Edit
+          form(action=`/tasks/${taskId}` method='post')
+            button(type='submit' name='noteId' value=`${note}`) Edit
 
 mixin errorsDiv(errors)
   div(class="errors-div")

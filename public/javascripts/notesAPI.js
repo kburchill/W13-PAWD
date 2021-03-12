@@ -1,28 +1,30 @@
-import { noteFieldInnerHtml } from "./api-utils.js";
+import { noteFieldInnerHtml, urlIdIdentifier } from "./api-utils.js";
 
 window.addEventListener("DOMContentLoaded", async () => {
 
   //Listener for deleteing notes
   const notesContainer = document.querySelector(".notesTilesContainer");
   notesContainer.addEventListener("submit", async (event) => {
+    if(event.target.id) {
+      event.preventDefault();
+      const urlId = urlIdIdentifier(window.location.href)
+      const taskId = urlId[0];
+      const noteId = event.target.id;
 
-    event.preventDefault();
-    console.log(event.target, '////////////////////')
-    const noteId = event.target.id;
+      try {
+        const res = await fetch(`/api-notes/${noteId}`, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ noteId }),
+        });
+        const notes = await res.json();
+        notesContainer.innerHTML = "";
 
-    try {
-      const res = await fetch(`/api-notes/${noteId}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ noteId }),
-      });
-      const notes = await res.json();
-      notesContainer.innerHTML = "";
-
-      if (notes.length) noteFieldInnerHtml(notes);
-      else return
-    } catch (err) {
-      console.error("There was an error in your notes API file", err)
+        if (notes.length) noteFieldInnerHtml(notes, taskId);
+        else return
+      } catch (err) {
+        console.error("There was an error in your notes API file", err)
+      }
     }
   })
 
@@ -48,7 +50,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       notesContainer.innerHTML = "";
       noteTextarea.value = "";
 
-      if (notes.length) noteFieldInnerHtml(notes);
+      if (notes.length) noteFieldInnerHtml(notes, taskId);
       else return;
     } catch(err) {
       console.error("messed up in notes create", err);
