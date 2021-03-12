@@ -143,7 +143,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 	document.querySelector(".task-edit-button").addEventListener("click", (event) => {
 		event.stopImmediatePropagation();
 		event.preventDefault();
-		console.log("this happened =====================");
 		window.location.href = `/tasks/${urlIdIdentifier(window.location.href)[0]}`;
 	});
 });
