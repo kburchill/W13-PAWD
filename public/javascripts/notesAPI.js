@@ -7,6 +7,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   notesContainer.addEventListener("submit", async (event) => {
 
     event.preventDefault();
+    console.log(event.target, '////////////////////')
     const noteId = event.target.id;
 
     try {
@@ -54,20 +55,21 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
   })
 
-  //listener for getting note edit form
-//   notesContainer.addEventListener("click", async (event) => {
-//     console.log(event.target, '---------------')
-//     if (event.target.id) {
-//       try{
-//         const res = await fetch("/api-notes", {
-//         method: "GET",
-//         header: { "Content-type": "application/json" }
-//       })
-//         const notes = await res.json();
-//       } catch (err) {
-//         console.error('messed up in get edit form listener', err)
-//       }
-//     }
+  // listener for getting note edit form
+  const editForm = document.querySelector(".notList__c")
+  notesContainer.addEventListener("click", async (event) => {
+    console.log(event.target, '---------------')
+    if (event.target.id) {
+      try{
+        const res = await fetch("/api-notes", {
+        method: "GET",
+        header: { "Content-type": "application/json" }
+      })
+        const notes = await res.json();
+      } catch (err) {
+        console.error('messed up in get edit form listener', err)
+      }
+    }
 
-//   })
+  })
 })
