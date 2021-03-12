@@ -1,6 +1,6 @@
-mixin field(fieldName, fieldValue, labelText, placeHolder="", fieldType="text")
+mixin field(fieldName, fieldValue, labelText, placeHolder="", fieldType="text", fieldClass)
       //- label(for=fieldName)= labelText
-      input(type=fieldType, name=fieldName, id=fieldName, value=fieldValue, placeHolder=placeHolder, class="formField_#{fieldName}")
+      input(type=fieldType, name=fieldName, id=fieldName, value=fieldValue, placeHolder=placeHolder, class= fieldClass)
 
 mixin projectTile(projectName, projectProgress, projectId)
   div(class="projectField")

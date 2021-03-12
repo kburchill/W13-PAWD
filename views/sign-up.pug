@@ -2,20 +2,30 @@ extends layout.pug
 
 block content
   .signup__div
-    .signup__image
-    .signupForm__div
-      .logo__div
-      form(action="/users" method="post" class="signup__form")
-        //- .title__div
-        //-   h2 Sign up
-        include utils.pug
-        input(type="hidden" name="_csrf" value=csrfToken)
-        +field("firstName", user.firstName, "First Name", user.errors ? user.errors.firstName : "First Name", "text")
-        +field("lastName", user.lastName, "Last Name", user.errors ? user.errors.lastName : "Last Name", "text")
-        +field("email", user.email, "Email", user.errors ? user.errors.email : "email", "email")
-        +field("password", "", "Password", user.errors ? user.errors.password : "Password", "password")
-        +field("confirmPassword", "", "Confirm Password",  user.errors ? user.errors.confirmPassword : "Confirm Password", "password")
-        button(type="submit" class="user-submit-button") Sign up!
+    .signup__title
+      h5 Projects
+      h4 all
+      h3 the
+      h2 way
+      h1 down
+    .right-signup__div
+      .signupForm__div
+        .logo__div
+        form(action="/users" method="post" class="signup__form")
+          //- .title__div
+          //-   h2 Sign up
+          include utils.pug
+          input(type="hidden" name="_csrf" value=csrfToken)
+          +field("firstName", user.firstName, "First Name", user.errors ? user.errors.firstName : "First Name", "text")
+          +field("lastName", user.lastName, "Last Name", user.errors ? user.errors.lastName : "Last Name", "text")
+          +field("email", user.email, "Email", user.errors ? user.errors.email : "email@email.com", "email")
+          +field("password", "", "Password", user.errors ? user.errors.password : "Password", "password")
+          +field("confirmPassword", "", "Confirm Password",  user.errors ? user.errors.confirmPassword : "Confirm Password", "password")
+          button(type="submit" class="user-submit-button") Sign up!
       .login-link
+        .span__div
           span Already have an account?
+        .href__div
           a(href="/users/login" class="signup__a") Log in
+    .image__container
+      .signup__image
