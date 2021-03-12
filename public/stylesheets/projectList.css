@@ -1,13 +1,14 @@
 
 
 .projectList__div{
-  animation: transitionIn 500ms;
+  /* animation: transitionIn 500ms; */
   width: 250px;
   max-width: 95%;
   margin-left: 5%;
+  height: 100vh;
 }
 
-@keyframes transitionIn {
+/* @keyframes transitionIn {
   from {
     opacity: 0;
     transform: translateX(100%);
@@ -16,6 +17,10 @@
     opacity: 1;
     transform: translateX(0);
   }
+} */
+.project-a__tag{
+  text-decoration: none;
+  font-size: 20px;
 }
 .project-form {
     margin: 5%;
@@ -58,7 +63,6 @@
 .progressFiller {
   background: #FFC816;
   color: black;
-  /* width: 10%; */
 }
 .projectHolder {
   display: flex;

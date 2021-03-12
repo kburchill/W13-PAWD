@@ -1,9 +1,6 @@
 @import url("./buttons.css");
-<<<<<<< HEAD
 @import url("./projectList.css");
-=======
 @import url("./navBar.css");
->>>>>>> 5b71add3c6b47842fadd99157656126c95ab2b38
 
 body{
     background: linear-gradient(.25turn, #6BB5D2, #89c9b8, #CAE8E8);
@@ -18,9 +15,7 @@ body{
 .projectList__div {
     margin-top: 25px;
     grid-area: project;
-
 }
-<<<<<<< HEAD
 
 
 
@@ -32,15 +27,10 @@ body{
 .projectCheckBox {
     align-self: flex-end;
 }
-=======
-.projectTurtles{
-    height: 225px;
-    width: auto;
+.projectRender__Div{
+    
 }
-
-
->>>>>>> 5b71add3c6b47842fadd99157656126c95ab2b38
-.searchList__div, .taskList__div {
+.searchList__div, .taskList__div{
     margin-top: 25px;
     grid-area: task;
     display: grid;

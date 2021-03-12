@@ -6,13 +6,14 @@ mixin field(fieldName, fieldValue, labelText, placeHolder="", fieldType="text")
 mixin projectTile(projectName, projectProgress, projectId)
   div(class="projectField")
     div(class="projectHolder")
-    a(href=`/projects/${projectId}` name=`${projectName}`) #{projectName}
+    a(href=`/projects/${projectId}` name=`${projectName}` class="project-a__tag") #{projectName}
     input(type="checkbox" class="unchecked projectCheckBox")
-    div(class="progressBorder" name=`${projectProgress}`)
-      div(class="progressFiller" style=`width: ${25}%`) #{projectProgress}%
+    div(class="progressDelete")
+      div(class="progressBorder" name=`${projectProgress}`)
+        div(class="progressFiller" style=`width: ${25}%`) #{projectProgress}%
 
-    form(id=`${projectId}`)
-      button(class="delete__button" type="submit") Delete
+      form(id=`${projectId}`)
+        button(class="delete__button" type="submit") Delete
 
 mixin noteTile(content, note, taskId, editId, noteContent)
   div(class="noteField")
