@@ -12,18 +12,19 @@ block tasks
           option(value="1") 1
           option(value="2") 2
           option(value="3") 3
-        label(for="inProgress") Priority
-        if (task.inProgress === "false")
-          input(type="checkbox" name="inProgress" checked="" id="taskEdit__inProgress")
+        label(for="inProgress") In Progress
+        if (task.inProgress === false)
+          input(type="checkbox" name="inProgress" id="taskEdit__inProgress")
         else
           input(type="checkbox" name="inProgress" checked="checked" id="taskEdit__inProgress")
         label(for="completed") Completed
-        if (task.completed === "false")
-          input(type="checkbox" name="completed" checked="" id="taskEdit__completed")
+        if (task.completed === false)
+          input(type="checkbox" name="completed" id="taskEdit__completed")
         else
           input(type="checkbox" name="completed" checked="checked" id="taskEdit__completed")
         textarea(name="name" class="taskEdit__name" placeHolder="Edit Task Name..." value=task.name)
         button(type="submit" class="taskEdit__submit") Update Task
+        a(href=`/tasks/${taskId}`): button(class="note-edit-button") Cancel
 
     .noteList__div
       form(id=`${userId}:${taskId}` class="noteList__form")

@@ -93,7 +93,7 @@ body {
 	margin: auto;
 }
 
-.noteList__div {
+.editTask__div {
 	grid-area: notes;
 	/* background-image: url("/images/161549906626454634.png"); */
 	background-repeat: no-repeat;

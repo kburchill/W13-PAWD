@@ -54,4 +54,46 @@ window.addEventListener("DOMContentLoaded", async () => {
 			console.error("messed up in task creation TASKSAPI.js", err);
 		}
 	});
+
+	// to edit a form
+	const taskEditForm = document.querySelector(".taskEdit__form");
+	taskEditForm.addEventListener("submit", async (event) => {
+		event.preventDefault();
+		event.stopImmediatePropagation();
+
+		const formData = new FormData(taskEditForm);
+		const priority = formData.get("priority");
+		const inProgress = formData.get("inProgress");
+		const completed = formData.get("completed");
+		// inProgress and completed will be null if unchecked, on if checked
+		const name = formData.get("name");
+	});
+
+	const taskInProgressCheck = document.querySelector("#taskEdit__inProgress");
+	taskInProgressCheck.addEventListener("click", async (event) => {
+		// event.preventDefault();
+		event.stopImmediatePropagation();
+
+		const taskId = urlIdIdentifier(window.location.href)[0];
+		const formData = new FormData(taskEditForm);
+		const inProgress = formData.get("inProgress");
+		// inProgress and completed will be null if unchecked, on if checked
+		// console.log(inProgress, "==============IN PROGRESS");
+		try {
+			const res = await fetch("/api-tasks", {
+				method: "PATCH",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ taskId, inProgress }),
+			});
+			const tasks = await res.json();
+			console.log(tasks, "TASKS ON 89=======================");
+			taskTilesContainer.innerHTML = "";
+			taskCreateInput.value = "";
+			if (tasks[1].length > 1) emptyTaskCreate(tasks[1]);
+			if (tasks[0].length) taskFieldInnerHtml(tasks[0]);
+			else return;
+		} catch (err) {
+			console.error("messed up in task creation TASKSAPI.js", err);
+		}
+	});
 });
