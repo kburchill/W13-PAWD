@@ -3,6 +3,11 @@ import { projectFieldInnerHtml, urlIdIdentifier } from "./api-utils.js";
 window.addEventListener("DOMContentLoaded", async () => {
 	const projectsTilesContainer = document.querySelector(".projectsTilesContainer");
 
+
+	//set event listener for click
+	//on click stop propagation
+	//event target should be a ref
+	
 	projectsTilesContainer.addEventListener("submit", async (event) => {
 		event.preventDefault();
 		const eventProjectId = event.target.id;

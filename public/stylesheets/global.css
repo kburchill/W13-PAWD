@@ -1,4 +1,7 @@
 @import url("./buttons.css");
+@import url("./projectList.css");
+@import url("./navBar.css");
+@import url("./tasksStyle.css");
 
 body {
 	background: linear-gradient(0.25turn, #6bb5d2, #89c9b8, #cae8e8);
@@ -8,38 +11,23 @@ body {
 	grid-template-areas:
 		"navbar navbar navbar"
 		"project task notes";
-	/* background-image: url("/images/161549906626454634.png"); */
-}
-
-.navbar__div {
-	grid-area: navbar;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	background-color: #204051;
-}
-
-.project-title {
-	color: #ffc816;
 }
 
 .projectList__div {
 	margin-top: 25px;
 	grid-area: project;
-	/* background-image: url("/images/161549906626454634.png");
-    background-repeat: no-repeat;
-    background-size: 500px; */
 }
-.projectTurtles {
-	height: 225px;
-	width: auto;
-}
+
+/* CLEAN THIS UP */
 /* .bigTurtles{
     position: relative;
     top: 208px;
     right: -40px;
 } */
+
+.projectCheckBox {
+	align-self: flex-end;
+}
 
 .searchList__div,
 .taskList__div {
@@ -63,10 +51,12 @@ body {
 	grid-area: form;
 }
 .turtles {
+	/* clean up the turtles */
 	height: 50px;
 	width: auto;
 }
 .taskTurtles {
+	/* clean up the turtles */
 	height: 50px;
 	width: auto;
 }
@@ -98,22 +88,6 @@ body {
 	/* background-image: url("/images/161549906626454634.png"); */
 	background-repeat: no-repeat;
 	background-size: 500px;
-}
-
-.logo-div {
-	display: flex;
-	flex-direction: row;
-	padding-left: 5%;
-}
-
-.logo-text {
-	color: #ffc816;
-	align-self: center;
-}
-
-.project-form {
-	display: flex;
-	flex-direction: column;
 }
 
 /* FFC816
