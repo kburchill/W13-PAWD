@@ -13,6 +13,7 @@ button{
 button:hover {
   box-shadow: inset 300px 0 0 0 #10375c;
   color: #f4f6ff;
+  cursor: pointer;
 }
 
 .navbar__div-searchbar button{
@@ -52,6 +53,9 @@ button:hover {
   color: #204051;
 }
 
+.taskList__form .user-submit-button{
+  background-color: #DDDDDD;
+}
 
 /*
 button classes
