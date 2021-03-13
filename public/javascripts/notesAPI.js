@@ -4,7 +4,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 	//Listener for deleteing notes
 	const notesContainer = document.querySelector(".notesTilesContainer");
 	notesContainer.addEventListener("submit", async (event) => {
-		console.log(event.target, "//////////");
 		if (event.target.id) {
 			event.preventDefault();
 			const urlId = urlIdIdentifier(window.location.href);

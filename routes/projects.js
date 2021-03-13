@@ -49,6 +49,7 @@ projectsRouter.post(
 	})
 );
 
+// creates a task
 projectsRouter.post(
 	"/:id(\\d+)",
 	requireAuth,
@@ -65,6 +66,7 @@ projectsRouter.post(
 	})
 );
 
+// gets all tasks and projects
 projectsRouter.get(
 	"/:id(\\d+)",
 	asyncHandler(async (req, res) => {
