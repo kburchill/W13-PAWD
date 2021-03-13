@@ -1,0 +1,91 @@
+
+
+.task-notes__div {
+	background-repeat: no-repeat;
+	background-size: 500px;
+  padding: 5%;
+  /* display: flex; */
+}
+
+.taskEdit__form{
+  display: grid;
+  flex-direction: column;
+  border: black 1px solid;
+  padding-right: 5%;
+  padding-left: 5%;
+	grid-template-rows: 20px 25px 25px auto 40px;
+  grid-template-columns: 1fr 1fr 1fr;
+	grid-template-areas:
+		"created created created"
+    "label1 label2 label3"
+		"option1 option2 option3"
+		"texta texta texta"
+		"button1 . button2";
+    justify-items: center;
+}
+
+
+.createdClass{
+  grid-area: created;
+  overflow: hidden;
+}
+.priorityClass{
+  grid-area: label1;
+}
+.inProgressClass{
+  grid-area: label2;
+}
+.completedClass{
+  grid-area: label3;
+}
+
+.prioritySelector{
+  grid-area: option1;
+  height: 30px;
+  padding: 5px;
+  align-self:flex-start;
+  justify-self: center;
+}
+.inProgressCheck{
+  grid-area: option2;
+  height: 30px;
+  width: 30px;
+  align-self: center;
+  justify-self: center;
+}
+.completedCheck{
+  grid-area: option3;
+  height: 30px;
+  width: 30px;
+  align-self: center;
+  justify-self: center;
+  padding: 5px;
+}
+.taskEdit__name{
+  grid-area: texta;
+  justify-self: stretch;
+  margin-top: 10px;
+}
+
+.taskEdit__submit{
+  grid-area: button1;
+  background-color: transparent;
+  align-self: center;
+  justify-self: center;
+  font-size: 20px;
+
+}
+.task-edit-button{
+  grid-area: button2;
+  background-color: transparent;
+  align-self: center;
+  justify-self: end;
+  font-size: 20px;
+}
+.atask-edit-button{
+  grid-area: button2;
+  background-color: transparent;
+  align-self: center;
+  justify-self: center;
+  font-size: 20px;
+}
