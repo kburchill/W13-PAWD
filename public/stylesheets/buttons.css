@@ -57,6 +57,10 @@ button:hover {
   background-color: #DDDDDD;
 }
 
+i{
+  padding-left: 1px;
+}
+
 /*
 button classes
 .login-form__button

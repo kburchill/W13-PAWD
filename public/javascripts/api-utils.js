@@ -44,7 +44,7 @@ export function taskFieldInnerHtml(tasks) {
 
 	tasks.forEach((task) => {
 		const taskHolderDiv = document.createElement("div");
-		taskHolderDiv.setAttribute("class","taskField")
+		taskHolderDiv.setAttribute("class", "taskField")
 		taskHolderDiv.innerHTML = `
 		<div class="taskHolder"><input class="unchecked" type="checkbox"><a href="/tasks/${task.id}">${task.name}</a>
 			<div class="taskHolder__inProgress">${task.inProgress}</div>
@@ -52,7 +52,8 @@ export function taskFieldInnerHtml(tasks) {
 			<div class="taskHolder__priority">${task.priority}</div>
 			<div>
 				<form id="${task.id}">
-					<button class="delete__button" type="submit">Delete</button>
+					<button class="delete__button" type="submit"></button>
+						<i class="far fa-trash-alt"></i>
 				</form>
 			</div>
 		</div>
