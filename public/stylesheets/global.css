@@ -107,11 +107,8 @@ a {
 	margin: auto;
 }
 
-.editTask__div {
+.task-notes__div {
 	grid-area: notes;
-	/* background-image: url("/images/161549906626454634.png"); */
-	background-repeat: no-repeat;
-	background-size: 500px;
 }
 
 /* FFC816
