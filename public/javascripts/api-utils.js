@@ -53,7 +53,7 @@ export function noteFieldInnerHtml(notes, taskId) {
 				<button class="delete__button" type="submit"><i class="far fa-trash-alt"></i></button>
 			</form>
 		<form action="/tasks/${taskId}" method="post">
-			<button type="submit" name="noteId" value="${note.id}">Edit</button>
+			<button type="submit" name="noteId" value="${note.id}">Edit<i class="fas fa-edit" aria-hidden="true"></i></button>
 		</form>
   `;
 		notesContainer.appendChild(noteHolderDiv);

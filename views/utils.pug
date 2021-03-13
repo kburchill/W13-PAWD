@@ -30,6 +30,7 @@ mixin noteTile(content, note, taskId, editId, noteContent)
             i(class="far fa-trash-alt")
         form(action=`/tasks/${taskId}` method='post')
           button(type='submit' name='noteId' value=`${note}`) Edit
+            i(class="fas fa-edit")
 
 mixin errorsDiv(errors)
   div(class="errors-div")
