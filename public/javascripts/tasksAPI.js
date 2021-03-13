@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 		const urlId = urlIdIdentifier(window.location.href); // this is used to find out Current Task Id window is on in back end
 
 		try {
-			const response = await fetch("/api-tasks/", {
+			const response = await fetch("/api-tasks", {
 				method: "DELETE",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ taskEventId, urlId }),

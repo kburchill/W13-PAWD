@@ -17,25 +17,30 @@ apiTaskRouter.delete(
 		// REDIRECT BACK TO PROJECT/ID page if you delete current task from inside notes
 		let currentProjectId = await findCurrentProjectId(urlId);
 		//Progress bar update
-		try{
-		let percentCompleted = await checkProgress(currentProjectId);
-		console.log(percentCompleted, "***********")
-		let currProject = await Project.findByPk(currentProjectId);
-		console.log(currProject);
-		await currProject.update({progress: percentCompleted});
-		console.log(currProject, "here is where we are looking ------");
-		} catch (err){
-			console.log("you messed up somewhere and this is in api-tasks");
-		}
+		// try {
+		// 	let percentCompleted = await checkProgress(currentProjectId);
+		// 	// console.log(percentCompleted, "***********")
+		// 	let currProject = await Project.findByPk(currentProjectId);
+		// 	// console.log(currProject);
+		// 	await currProject.update({ progress: percentCompleted });
+		// 	// console.log(currProject, "here is where we are looking ------");
+		// } catch (err) {
+		// 	console.log("you messed up somewhere and this is in api-tasks");
+		// }
+		let percentCompleted;
 		try {
 			await deleteItem(taskEventId, Task);
+			let currProject = await Project.findByPk(currentProjectId);
+			percentCompleted = await checkProgress(currentProjectId);
+			await currProject.update({ progress: percentCompleted });
+			// console.log(currProject, "====================== CURR PROJECT AFTER UPDATE");
 		} catch (error) {
 			console.log(error);
 			// use next(error) and fix up if you want to allow non Owners to delete project
 		}
 
 		const allTasks = await Task.findAll({ where: { projectId: task.projectId } });
-		res.json([allTasks, currentTask, currentProjectId, percentCompleted ]);
+		res.json([allTasks, currentTask, currentProjectId, percentCompleted]);
 	})
 );
 
