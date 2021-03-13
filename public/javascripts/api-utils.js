@@ -8,7 +8,9 @@ export function projectFieldInnerHtml(projects) {
 		<div class="progressBorder" name="0">
 			<div class="progressFiller" style="width: ${project.progress}%">${project.progress}%</div>
 		</div>
-		<form id="${project.id}"><button class="delete__button" type="submit">Delete</button></form>
+	<form id="${project.id}">
+		<button class="delete__button" type="submit"><i class="far fa-trash-alt"></i></button>
+			</form>
 	</div>
 `;
 		projectsTilesContainer.appendChild(projectHolderDiv);
@@ -25,9 +27,9 @@ export function noteFieldInnerHtml(notes, taskId) {
     <div class="noteHolder">
 	   <p>${note.content}</p>
 	   <div>
-		<form id="${note.id}">
-			<button class="delete__button" type="submit">Delete</button>
-		</form>
+			<form id="${note.id}">
+				<button class="delete__button" type="submit"><i class="far fa-trash-alt"></i></button>
+			</form>
 		<form action="/tasks/${taskId}" method="post">
 			<button type="submit" name="noteId" value="${note.id}">Edit</button>
 		</form>
@@ -44,7 +46,7 @@ export function taskFieldInnerHtml(tasks) {
 
 	tasks.forEach((task) => {
 		const taskHolderDiv = document.createElement("div");
-		taskHolderDiv.setAttribute("class","taskField")
+		taskHolderDiv.setAttribute("class", "taskField")
 		taskHolderDiv.innerHTML = `
 		<div class="taskHolder"><input class="unchecked" type="checkbox"><a href="/tasks/${task.id}">${task.name}</a>
 			<div class="taskHolder__inProgress ${task.inProgress}InProgress"></div>
@@ -52,7 +54,7 @@ export function taskFieldInnerHtml(tasks) {
 			<div class="taskHolder__priority">${task.priority}</div>
 			<div>
 				<form id="${task.id}">
-					<button class="delete__button" type="submit">Delete</button>
+					<button class="delete__button" type="submit"><i class="far fa-trash-alt"></i></button>
 				</form>
 			</div>
 		</div>

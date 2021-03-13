@@ -2,7 +2,7 @@
   grid-area: navbar;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   background-color: #204051;
   height: auto;
@@ -19,7 +19,9 @@
 }
 
 .search-field{
-
+  order: 1;
+  position: relative;
+  left: 300px
 }
 
 .search-field > .search__button{
@@ -33,16 +35,21 @@
 
 .dragonFlies{
   align-self: center;
-  height: 30px;
+  height: 50px;
   width: auto;
+  order: 2;
 }
 
 .navbar__div-logout{
   margin-right: 3%;
   align-self: center;
+  order: 3;
 }
 
-
+#findAll{
+  position: relative;
+  right: 500px
+}
 
 /*
 navbar__div = actual navbar

@@ -1,5 +1,5 @@
 button{
-  background-color: #f4f4f4;
+  background-color: inherit;
   height: 20px;
   width: auto;
   border: none;
@@ -55,6 +55,10 @@ button:hover {
 
 .taskList__form .user-submit-button{
   background-color: #DDDDDD;
+}
+
+i{
+  padding-left: 1px;
 }
 
 /*
