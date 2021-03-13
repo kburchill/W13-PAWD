@@ -1,9 +1,15 @@
-@import url("./buttons.css");
-@import url("./projectList.css");
-@import url("./navBar.css");
-@import url("./tasksStyle.css");
+
+html {
+    height: 100%;
+    width: 100%;
+}
 
 body{
+    height: 100%;
+    width: 100%;
+}
+
+.main__container{
     background: linear-gradient(.25turn, #6BB5D2, #89c9b8, #CAE8E8);
     display: grid;
     grid-template-columns: 20% 40% 40%;
@@ -11,6 +17,21 @@ body{
     grid-template-areas:
     "navbar navbar navbar"
     "project task notes";
+    /* background-image: url("/images/161549906626454634.png"); */
+
+}
+
+.navbar__div {
+	grid-area: navbar;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+    background-color: #204051
+}
+
+.project-title{
+    color: #FFC816
 }
 
 .projectList__div {
