@@ -18,10 +18,10 @@
     transform: translateX(0);
   }
 } */
-.project-a__tag{
+/* .project-a__tag{
   text-decoration: none;
   font-size: 20px;
-}
+} */
 .project-form {
     margin: 5%;
     display: grid;
