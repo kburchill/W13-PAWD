@@ -147,13 +147,16 @@
 	top: 20px;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 50px 40px;
+	grid-template-rows: 80px 40px;
 	z-index: 2;
 	grid-template-areas:
 		"notecontent notecontent"
 		"button1 button2";
 	border-radius: 4px;
 	border-bottom: 2px solid #92b9a1;
+	/* max-width: 200px; */
+	/* overflow-wrap: break-word; */
+	/* overflow-y: scroll; */
 }
 
 .noteHolder p {
@@ -161,38 +164,58 @@
 	font-size: large;
 	font-family: Arial, Helvetica, sans-serif;
 	/* font-weight: bold; */
-	justify-self: stretch;
+	/* justify-self: stretch; */
+	/* max-width: 200px; */
+	word-wrap: break-word;
+	/* display: block; */
+	overflow-y: scroll;
+	margin: 0px;
 }
 /* edit button */
-.noteHolder form button {
-	grid-area: button1;
-	width: 30px;
-	height: 30px;
-}
 
 .noteHolder form .delete__button {
 	grid-area: button2;
-	width: 30px;
+	width: 200px;
+	height: 30px;
+}
+
+.noteHolder form button {
+	grid-area: button1;
+	width: 200px;
 	height: 30px;
 }
 
 /* NOTE  EDITOR STUFF HERE */
+.noteField .noteList__edit {
+	display: grid;
+	/* margin-top: 25px; */
+	resize: none;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 125px 40px;
+	grid-template-areas:
+		"notecontent notecontent"
+		"button1 button2";
+	justify-items: center;
+	/* max-width: 200px; */
+	overflow-wrap: break-word;
+}
+
 .noteList__edit .note-content {
 	grid-area: notecontent;
 	margin-top: 25px;
 	border-radius: 5px;
 	border: 1px solid #225120;
-	width: 300px;
+	width: auto;
 }
 
 .noteField a .note-edit-button {
 	grid-area: button2;
-	width: 30px;
+	width: 200px;
 	height: 30px;
 }
 
 .noteField form .note-edit-button {
-	grid-area: button2;
-	width: 30px;
+	grid-area: button1;
+	width: 200px;
 	height: 30px;
 }
