@@ -3,18 +3,19 @@ extends layout.pug
 block content
   .signup__div
     .signup__title
-      h5 Projects
-      h4 all
-      h3 the
-      h2 way
+      .htags__div
+        h5 Projects
+        h4 all
+        h3 the
+        h2 way
+        3022
+      .signup__image
       .down__div
         h1 down
     .right-signup__div
       .signupForm__div
         .logo__div
         form(action="/users" method="post" class="signup__form")
-          //- .title__div
-          //-   h2 Sign up
           include utils.pug
           input(type="hidden" name="_csrf" value=csrfToken)
           +field("firstName", user.firstName, "First Name", user.errors ? user.errors.firstName : "First Name", "text")
@@ -29,4 +30,3 @@ block content
         .href__div
           a(href="/users/login" class="signup__a") Log in
     .image__container
-      .signup__image
