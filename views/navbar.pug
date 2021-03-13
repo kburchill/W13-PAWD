@@ -1,23 +1,5 @@
 extends layout.pug
 block content
-<<<<<<< HEAD
-  .main__container
-    nav(class="navbar__div")
-
-      div(class="navbar__div-Logo")
-        img(src="/images/161549906626454634.png" class="turtles" href="/projects")
-      h1(class="project-title") Projects All the Way Down
-        //- a(href="/projects") LOGO HERE
-      div(class="navbar__div-searchbar")
-        form(method="post" action="/search")
-          input(type="text" name="searchText" placeholder="Search task or projects...")
-          button(class="search__button" type="submit") Search
-          button(class="search__button" type="submit" name="findAll" value="%") Find All Your Projects and Tasks
-      img(src="/images/161549906626454634.png" class="bigTurtles" href="/projects")
-      div(class="navbar__div-logout")
-        form(method="post" action="/users/logout")
-          button(class="logout__button" type="submit") Logout
-=======
   nav(class="navbar__div")
     //- h1(class="project-title") Projects All the Way Down
       //- a(href="/projects") LOGO HERE
@@ -34,6 +16,5 @@ block content
     div(class="navbar__div-logout")
       form(method="post" action="/users/logout")
         button(class="logout__button" type="submit") Logout
->>>>>>> main
 
   block nav
