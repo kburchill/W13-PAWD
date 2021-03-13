@@ -17,8 +17,11 @@ window.addEventListener("DOMContentLoaded", async () => {
 			});
 
 			const tasks = await response.json();
+			console.log(tasks);
 			if (tasks[1] == taskEventId) window.location.href = `/projects/${tasks[2]}`;
 			taskTilesContainer.innerHTML = "";
+			let currProjProgress = tasks[3];
+			console.log(currProjProgress, "================");
 			if (tasks[0].length) taskFieldInnerHtml(tasks[0]);
 			else return;
 		} catch (err) {

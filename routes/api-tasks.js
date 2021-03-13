@@ -2,7 +2,7 @@ const express = require("express");
 const apiTaskRouter = express.Router();
 const { requireAuth } = require("../auth");
 const { Task, Project } = require("../db/models");
-const { asyncHandler, deleteItem, findCurrentProjectId } = require("./utils");
+const { asyncHandler, deleteItem, findCurrentProjectId, checkProgress } = require("./utils");
 const { check, validationResult } = require("express-validator");
 const { taskValidators } = require("./validators");
 
@@ -16,7 +16,17 @@ apiTaskRouter.delete(
 
 		// REDIRECT BACK TO PROJECT/ID page if you delete current task from inside notes
 		let currentProjectId = await findCurrentProjectId(urlId);
-
+		//Progress bar update
+		try{
+		let percentCompleted = await checkProgress(currentProjectId);
+		console.log(percentCompleted, "***********")
+		let currProject = await Project.findByPk(currentProjectId);
+		console.log(currProject);
+		await currProject.update({progress: percentCompleted});
+		console.log(currProject, "here is where we are looking ------");
+		} catch (err){
+			console.log("you messed up somewhere and this is in api-tasks");
+		}
 		try {
 			await deleteItem(taskEventId, Task);
 		} catch (error) {
@@ -25,7 +35,7 @@ apiTaskRouter.delete(
 		}
 
 		const allTasks = await Task.findAll({ where: { projectId: task.projectId } });
-		res.json([allTasks, currentTask, currentProjectId]);
+		res.json([allTasks, currentTask, currentProjectId, percentCompleted ]);
 	})
 );
 

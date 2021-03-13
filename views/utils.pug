@@ -9,7 +9,7 @@ mixin projectTile(projectName, projectProgress, projectId)
     input(type="checkbox" class="unchecked projectCheckBox")
     div(class="progressDelete")
       div(class="progressBorder" name=`${projectProgress}`)
-        div(class="progressFiller" style=`width: ${25}%`) #{projectProgress}%
+        div(class="progressFiller" style=`width: ${projectProgress}%`) #{projectProgress}%
 
       form(id=`${projectId}`)
         button(class="delete__button" type="submit")
@@ -44,7 +44,7 @@ mixin taskTile(taskName, taskInProgress, taskCompleted, taskPriority, taskId)
       input(type="checkbox" class="unchecked")
       div(class=`taskHolder__inProgress ${taskInProgress}InProgress`)
       a(href=`/tasks/${taskId}`) #{taskName}
-      div(class="taskHolder__completed") #{taskCompleted}
+      div(class="taskHolder__completed")
       div(class="taskHolder__priority") #{taskPriority}
       form(id=`${taskId}`)
         button(class="delete__button" type='submit')

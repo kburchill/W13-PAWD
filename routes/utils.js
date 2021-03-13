@@ -53,6 +53,15 @@ const grabAll = async (taskId, session, editNote) => {
 	};
 };
 
+
+async function checkProgress (projectId) {
+		const  project = await Project.findByPk(projectId);
+		const totalTasks = await Task.findAll({where: {projectId: project.id}});
+		const completedTasks = await Task.findAll({where: {projectId: project.id, completed: true}})
+		const percentCompleted = (completedTasks.length - 1)/(totalTasks.length);
+		return percentCompleted * 100;
+}
+
 module.exports = {
 	asyncHandler,
 	csrfProtection,
@@ -60,4 +69,5 @@ module.exports = {
 	findCurrentUser,
 	findCurrentProjectId,
 	grabAll,
+	checkProgress,
 };
