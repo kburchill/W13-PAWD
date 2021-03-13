@@ -1,13 +1,22 @@
-body{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 50px 1fr;
-  grid-template-areas:
-  "navbar navbar navbar"
-  "project task notes";
+
+.taskField {
+  width: 100%;
+  border-bottom: teal 1px solid;
+  margin-right: 10%;
+  margin-left: 10%;
 }
 
-
-.taskHolder {
- height: 50px;
+.falseInProgress {
+  background: red;
+  height: 10px;
+  width: 10px;
+  margin: 2px;
+  border: black 1px solid;
+}
+.trueInProgress {
+  background: green;
+  height: 10px;
+  width: 10px;
+  margin: 2px;
+  border: black 1px solid;
 }

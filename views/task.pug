@@ -17,4 +17,5 @@ block projects
     div(class="tasksContainer")
       each task in tasks
         +taskTile(task.name, task.inProgress, task.completed, task.priority, task.id)
+    div(class="bottomLines")
   block tasks
