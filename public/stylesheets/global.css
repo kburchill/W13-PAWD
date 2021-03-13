@@ -1,15 +1,8 @@
-<<<<<<< HEAD
 
 html {
     height: 100%;
     width: 100%;
 }
-=======
-@import url("./buttons.css");
-@import url("./projectList.css");
-@import url("./navBar.css");
-@import url("./tasksStyle.css");
->>>>>>> main
 
 body{
     height: 100%;
@@ -24,7 +17,6 @@ body{
     grid-template-areas:
     "navbar navbar navbar"
     "project task notes";
-<<<<<<< HEAD
     /* background-image: url("/images/161549906626454634.png"); */
 
 }
@@ -40,8 +32,6 @@ body{
 
 .project-title{
     color: #FFC816
-=======
->>>>>>> main
 }
 
 .projectList__div {
