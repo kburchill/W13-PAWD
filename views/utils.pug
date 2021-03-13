@@ -1,7 +1,6 @@
-mixin field(fieldName, fieldValue, labelText, placeHolder="", fieldType="text")
-    div(class="formField")
-      label(for=fieldName)= labelText
-      input(type=fieldType, name=fieldName, id=fieldName, value=fieldValue, placeHolder=placeHolder, class="formField_#{fieldName}")
+mixin field(fieldName, fieldValue, labelText, placeHolder="", fieldType="text", fieldClass)
+      //- label(for=fieldName)= labelText
+      input(type=fieldType, name=fieldName, id=fieldName, value=fieldValue, placeHolder=placeHolder, class= fieldClass)
 
 mixin projectTile(projectName, projectProgress, projectId)
   div(class="projectField")
@@ -13,7 +12,8 @@ mixin projectTile(projectName, projectProgress, projectId)
         div(class="progressFiller" style=`width: ${25}%`) #{projectProgress}%
 
       form(id=`${projectId}`)
-        button(class="delete__button" type="submit") Delete
+        button(class="delete__button" type="submit")
+          i(class="far fa-trash-alt")
 
 mixin noteTile(content, note, taskId, editId, noteContent)
   div(class="noteField")
@@ -27,7 +27,8 @@ mixin noteTile(content, note, taskId, editId, noteContent)
         p #{content}
         div
           form(id=`${note}`)
-            button(class="delete__button" type="submit") Delete
+            button(class="delete__button" type="submit")
+              i(class="far fa-trash-alt")
           form(action=`/tasks/${taskId}` method='post')
             button(type='submit' name='noteId' value=`${note}`) Edit
 
@@ -42,9 +43,10 @@ mixin taskTile(taskName, taskInProgress, taskCompleted, taskPriority, taskId)
     div(class="taskHolder")
       input(type="checkbox" class="unchecked")
       a(href=`/tasks/${taskId}`) #{taskName}
-      div(class="taskHolder__inProgress") #{taskInProgress}
-      div(class="taskHolder__completed") #{taskCompleted}
+      div(class="taskHolder__inProgress falseInProgress")
+      div(class="taskHolder__completed")
       div(class="taskHolder__priority") #{taskPriority}
       div
         form(id=`${taskId}`)
-         button(class="delete__button" type='submit') Delete
+         button(class="delete__button" type='submit')
+          i(class="far fa-trash-alt")

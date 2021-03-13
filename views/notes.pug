@@ -39,6 +39,7 @@ block tasks
       form(id=`${userId}:${taskId}` class="noteList__form")
         textarea(name="content" class="note-content" placeHolder="Enter comment")
         button(type="submit" class="note-submit-button") Comment
+          i(class="far fa-comments")
       div(class="notesTilesContainer")
           each note in notes
             +noteTile(note.content, note.id, taskId, editNote.id, editNote.content)

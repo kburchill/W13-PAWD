@@ -1,3 +1,6 @@
-h1 {
-    color: #555555;
-}
+@import url("./signup.css");
+@import url("./buttons.css");
+@import url("./projectList.css");
+@import url("./navBar.css");
+@import url("./tasksStyle.css");
+@import url("./global.css");
