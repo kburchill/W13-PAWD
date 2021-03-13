@@ -1,24 +1,23 @@
-
 html {
-    height: 100%;
-    width: 100%;
+	height: 100%;
+	width: 100%;
 }
 
-body{
-    height: 100%;
-    width: 100%;
+body {
+	height: 100%;
+	width: 100%;
+	/* max-width: 1920px; */
 }
 
-.main__container{
-    background: linear-gradient(.25turn, #6BB5D2, #89c9b8, #CAE8E8);
-    display: grid;
-    grid-template-columns: 20% 40% 40%;
-    grid-template-rows: 50px 1fr;
-    grid-template-areas:
-    "navbar navbar navbar"
-    "project task notes";
-    /* background-image: url("/images/161549906626454634.png"); */
-
+.main__container {
+	background: linear-gradient(0.25turn, #6bb5d2, #89c9b8, #cae8e8);
+	display: grid;
+	grid-template-columns: 20% 40% 40%;
+	grid-template-rows: 50px 1fr;
+	grid-template-areas:
+		"navbar navbar navbar"
+		"project task notes";
+	/* background-image: url("/images/161549906626454634.png"); */
 }
 
 .navbar__div {
@@ -27,94 +26,95 @@ body{
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-    background-color: #204051
+	background-color: #204051;
 }
 
-.project-title{
-    color: #FFC816
+.project-title {
+	color: #ffc816;
 }
 
 .projectList__div {
-    margin-top: 25px;
-    grid-area: project;
+	margin-top: 25px;
+	grid-area: project;
 }
 
-
-.bigTurtles{    /* clean up the turtles */
+/* CLEAN THIS UP */
+/* .bigTurtles{
     position: relative;
     top: 208px;
     right: -40px;
-}
+} */
+
 .projectCheckBox {
-    align-self: flex-end;
+	align-self: flex-end;
 }
 
-.searchList__div, .taskList__div{
-    margin-top: 25px;
-    grid-area: task;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 50px 50px auto 1fr;
-    grid-template-areas:
-    "head"
-    "form"
-    "tasks"
-    "bottom";
-    /* background-color: whitesmoke; */
-    border-radius: 10px;
-    padding: 20px;
-    height: 100vh;
-    background-color: whitesmoke;
-
+.searchList__div,
+.taskList__div {
+	margin-top: 25px;
+	grid-area: task;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 50px 50px auto 1fr;
+	grid-template-areas:
+		"head"
+		"form"
+		"tasks"
+		"bottom";
+	/* background-color: whitesmoke; */
+	border-radius: 10px;
+	padding: 20px;
+	height: 100vh;
+	background-color: whitesmoke;
 }
 a {
-    text-decoration: none;
-    font-size: 20px;
+	text-decoration: none;
+	font-size: 20px;
 }
-.taskList__form{
-    grid-area: form;
+.taskList__form {
+	grid-area: form;
 }
-.turtles{       /* clean up the turtles */
-    height: 50px;
-    width: auto;
+.turtles {
+	/* clean up the turtles */
+	height: 50px;
+	width: auto;
 }
-.taskTurtles{       /* clean up the turtles */
-    height: 50px;
-    width: auto;
+.taskTurtles {
+	/* clean up the turtles */
+	height: 50px;
+	width: auto;
 }
 .bottomLines {
-    grid-area: bottom;
-    margin-right: 10%;
-    width: 100%;
-    background-image: repeating-linear-gradient(whitesmoke 0px, whitesmoke 24px, teal 25px);
+	grid-area: bottom;
+	margin-right: 10%;
+	width: 100%;
+	background-image: repeating-linear-gradient(whitesmoke 0px, whitesmoke 24px, teal 25px);
 }
-.searchContainer, .tasksContainer{
-    grid-area: tasks;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-.projectHolder, .taskHolder  {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    /* align-items: baseline; */
-    margin: auto;
+.searchContainer,
+.tasksContainer {
+	grid-area: tasks;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
 }
 
-.noteList__div {
-    grid-area: notes;
-    background-repeat: no-repeat;
-    background-size: 500px;
+.projectHolder,
+.taskHolder {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	/* align-items: baseline; */
+	margin: auto;
 }
 
+.task-notes__div {
+	grid-area: notes;
+}
 
-
-
-
-
+textarea {
+	resize: none;
+}
 /* FFC816
     FFD684
     */

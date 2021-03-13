@@ -25,28 +25,45 @@ async function findCurrentProjectId(urlId) {
 }
 
 const grabAll = async (taskId, session, editNote) => {
-	const note = await Note.build()
+	const note = await Note.build();
 	const project = await Project.build();
-	const task = await Task.findByPk(taskId)
+	const task = await Task.findByPk(taskId);
 	const userId = findCurrentUser(session);
-	const { projectId } = task
-	const notes = await Note.findAll({ where: { taskId } })
+	const { projectId } = task;
+	const notes = await Note.findAll({ where: { taskId } });
 	const tasks = await Task.findAll({ where: { projectId } });
 	const projects = await Project.findAll({ where: { projectOwnerId: userId } });
+	const {
+		dataValues: { name },
+	} = await Project.findByPk(projectId);
 
 	return {
-	  note,
-	  notes,
-	  title: 'notes',
-	  taskId,
-	  tasks,
-	  projects,
-	  project,
-	  projectId,
-	  userId,
-	  editNote
-	  }
-  }
+		note,
+		notes,
+		title: "notes",
+		taskId,
+		tasks,
+		projects,
+		project,
+		projectId,
+		userId,
+		editNote,
+		task,
+		name,
+	};
+};
+
+async function checkProgress(projectId) {
+	const project = await Project.findByPk(projectId);
+	// console.log(project, "PROJECT IN UTILS===============================================");
+	const totalTasks = await Task.findAll({ where: { projectId: project.dataValues.id } });
+	const completedTasks = await Task.findAll({ where: { projectId: project.id, completed: true } });
+	// console.log(completedTasks, "COMPLETED TASKS=============================================");
+	// console.log(completedTasks.length, "<----- COMPLETED TASKS, TOTAL TASK LENGTH ------------->", totalTasks.length);
+	const percentCompleted = completedTasks.length / totalTasks.length;
+	// console.log(Math.round(percentCompleted * 100), "PERCENT COMPLETED======================================");
+	return Math.round(percentCompleted * 100);
+}
 
 module.exports = {
 	asyncHandler,
@@ -54,4 +71,6 @@ module.exports = {
 	deleteItem,
 	findCurrentUser,
 	findCurrentProjectId,
-	grabAll };
+	grabAll,
+	checkProgress,
+};

@@ -4,7 +4,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 	//Listener for deleteing notes
 	const notesContainer = document.querySelector(".notesTilesContainer");
 	notesContainer.addEventListener("submit", async (event) => {
-		console.log(event.target, "//////////");
 		if (event.target.id) {
 			event.preventDefault();
 			const urlId = urlIdIdentifier(window.location.href);
@@ -58,29 +57,31 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 	// listener for getting note edit form
 	const editForm = document.querySelector(".noteList__edit");
-	editForm.addEventListener("submit", async (event) => {
-		// event.preventDefault is seemingly stopping propigation of submit event.
-		event.preventDefault();
-		event.stopImmediatePropagation();
+	if (editForm) {
+		editForm.addEventListener("submit", async (event) => {
+			// event.preventDefault is seemingly stopping propigation of submit event.
+			event.preventDefault();
+			event.stopImmediatePropagation();
 
-		const formData = new FormData(editForm);
-		const content = formData.get("content");
-		const ids = editForm.id.split(":");
-		const [taskId, noteId] = ids;
-		try {
-			const response = await fetch(`/api-notes/${noteId}`, {
-				method: "PATCH",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ content, taskId, noteId }),
-			});
+			const formData = new FormData(editForm);
+			const content = formData.get("content");
+			const ids = editForm.id.split(":");
+			const [taskId, noteId] = ids;
+			try {
+				const response = await fetch(`/api-notes/${noteId}`, {
+					method: "PATCH",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ content, taskId, noteId }),
+				});
 
-			const notes = await response.json();
+				const notes = await response.json();
 
-			notesContainer.innerHTML = "";
-			if (notes.length) noteFieldInnerHtml(notes, taskId);
-			else return;
-		} catch (err) {
-			console.error("messed up in note edit", err);
-		}
-	});
+				notesContainer.innerHTML = "";
+				if (notes.length) noteFieldInnerHtml(notes, taskId);
+				else return;
+			} catch (err) {
+				console.error("messed up in note edit", err);
+			}
+		});
+	}
 });
