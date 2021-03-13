@@ -18,38 +18,57 @@ export function projectFieldInnerHtml(projects) {
 }
 
 //    FOR NOTES.
+// export function noteFieldInnerHtml(notes, taskId) {
+// 	const notesContainer = document.querySelector(".notesTilesContainer"); //this needs to be made
+
+// 	notes.forEach((note) => {
+// 		const noteHolderDiv = document.createElement("div");
+// 		noteHolderDiv.innerHTML = `<div class="noteField">
+//     <div class="noteHolder">
+// 	   <p>${note.content}</p>
+// 	   <div>
+// 			<form id="${note.id}">
+// 				<button class="delete__button" type="submit"><i class="far fa-trash-alt"></i></button>
+// 			</form>
+// 		<form action="/tasks/${taskId}" method="post">
+// 			<button type="submit" name="noteId" value="${note.id}">Edit</button>
+// 		</form>
+// 	</div>
+// </div>
+//   `;
+
+// 		notesContainer.appendChild(noteHolderDiv);
+// 	});
+// }
+
 export function noteFieldInnerHtml(notes, taskId) {
 	const notesContainer = document.querySelector(".notesTilesContainer"); //this needs to be made
 
 	notes.forEach((note) => {
 		const noteHolderDiv = document.createElement("div");
-		noteHolderDiv.innerHTML = `<div class="noteField">
-    <div class="noteHolder">
+		noteHolderDiv.setAttribute("class", "noteHolder");
+		noteHolderDiv.innerHTML = `
 	   <p>${note.content}</p>
-	   <div>
 			<form id="${note.id}">
 				<button class="delete__button" type="submit"><i class="far fa-trash-alt"></i></button>
 			</form>
 		<form action="/tasks/${taskId}" method="post">
-			<button type="submit" name="noteId" value="${note.id}">Edit</button>
+			<button type="submit" name="noteId" value="${note.id}">Edit<i class="fas fa-edit" aria-hidden="true"></i></button>
 		</form>
-	</div>
-</div>
   `;
-
 		notesContainer.appendChild(noteHolderDiv);
 	});
 }
-
 export function taskFieldInnerHtml(tasks) {
 	const tasksContainer = document.querySelector(".tasksContainer");
 
 	tasks.forEach((task) => {
 		const taskHolderDiv = document.createElement("div");
-		taskHolderDiv.setAttribute("class", "taskField")
+		taskHolderDiv.setAttribute("class", "taskField");
 		taskHolderDiv.innerHTML = `
-		<div class="taskHolder"><input class="unchecked" type="checkbox"><a href="/tasks/${task.id}">${task.name}</a>
-			<div class="taskHolder__inProgress ${task.inProgress}InProgress"></div>
+		<div class="taskHolder"><input class="unchecked" type="checkbox">
+		<div class="taskHolder__inProgress ${task.inProgress}InProgress"></div>
+		<a href="/tasks/${task.id}">${task.name}</a>
 			<div class="taskHolder__completed"></div>
 			<div class="taskHolder__priority">${task.priority}</div>
 			<div>

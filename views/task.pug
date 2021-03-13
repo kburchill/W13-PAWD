@@ -4,10 +4,11 @@ append head
   script(src="/javascripts/tasksAPI.js" type="module")
 block projects
   .taskList__div
-    img(src="/images/161549906626454634.png" class="taskTurtles" href="/projects")
+    h1 Project: #{name}
     form(id= projectId class='taskList__form')
       label(for="createNewTask")
       input(type="text" id="createNewTask" name="name" placeHolder="Create New Task" class="formField_createTask")
+      label(for="priority") Priority
       select(name="priority")
         option(value=1) 1
         option(value=2) 2

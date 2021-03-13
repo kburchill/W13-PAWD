@@ -6,6 +6,7 @@ html {
 body {
 	height: 100%;
 	width: 100%;
+	/* max-width: 1920px; */
 }
 
 .main__container {
@@ -111,6 +112,9 @@ a {
 	grid-area: notes;
 }
 
+textarea {
+	resize: none;
+}
 /* FFC816
     FFD684
     */
