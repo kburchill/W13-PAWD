@@ -1,0 +1,88 @@
+
+
+.projectList__div{
+  /* animation: transitionIn 500ms; */
+  width: 250px;
+  max-width: 95%;
+  margin-left: 5%;
+  height: 100vh;
+}
+
+/* @keyframes transitionIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+} */
+/* .project-a__tag{
+  text-decoration: none;
+  font-size: 20px;
+} */
+.project-form {
+    margin: 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    "header header header header"
+    "form form form button";
+}
+.project-submit-button{
+  grid-area: button;
+  margin-left: 5px;
+  align-self: center;
+}
+
+.formField_createProject{
+  grid-area: form;
+}
+.projectHeader {
+  grid-area: header;
+}
+.projectTurtles{    /* clean up the turtles */
+  height: 225px;
+  width: auto;
+}
+
+.projectsTilesContainer {
+  margin: 5%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.progressBorder {
+  background: #ebeff1;
+  width: 100%;
+  margin: 2.5px;
+
+}
+.progressFiller {
+  background: #FFC816;
+  color: black;
+}
+.projectHolder {
+  display: flex;
+  align-self: flex-start;
+}
+.logo-div{
+  display: flex;
+  max-width: 70%;
+  max-height: 40%;
+  flex-direction: row;
+  padding-left: 5%;
+  /* overflow: auto; */
+}
+
+.logo-text{
+  color: #FFC816;
+  align-self: center;
+  /* overflow: hidden; */
+}
+
+.projectField {
+  padding: 5px;
+}

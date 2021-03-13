@@ -13,6 +13,7 @@ button{
 button:hover {
   box-shadow: inset 300px 0 0 0 #10375c;
   color: #f4f6ff;
+  cursor: pointer;
 }
 
 .navbar__div-searchbar button{
@@ -47,15 +48,14 @@ button:hover {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.navbar__div-logout{
-  margin-right: 5%;
-}
-
 .logout__button:hover{
   box-shadow: inset 300px 0 0 0 #FFC816;
   color: #204051;
 }
 
+.taskList__form .user-submit-button{
+  background-color: #DDDDDD;
+}
 
 /*
 button classes
