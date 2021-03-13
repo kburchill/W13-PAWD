@@ -66,8 +66,9 @@ export function taskFieldInnerHtml(tasks) {
 		const taskHolderDiv = document.createElement("div");
 		taskHolderDiv.setAttribute("class", "taskField");
 		taskHolderDiv.innerHTML = `
-		<div class="taskHolder"><input class="unchecked" type="checkbox"><a href="/tasks/${task.id}">${task.name}</a>
-			<div class="taskHolder__inProgress ${task.inProgress}InProgress"></div>
+		<div class="taskHolder"><input class="unchecked" type="checkbox">
+		<div class="taskHolder__inProgress ${task.inProgress}InProgress"></div>
+		<a href="/tasks/${task.id}">${task.name}</a>
 			<div class="taskHolder__completed"></div>
 			<div class="taskHolder__priority">${task.priority}</div>
 			<div>

@@ -42,11 +42,10 @@ mixin taskTile(taskName, taskInProgress, taskCompleted, taskPriority, taskId)
   div(class="taskField")
     div(class="taskHolder")
       input(type="checkbox" class="unchecked")
-      a(href=`/tasks/${taskId}`) #{taskName}
       div(class=`taskHolder__inProgress ${taskInProgress}InProgress`)
-      div(class="taskHolder__completed")
+      a(href=`/tasks/${taskId}`) #{taskName}
+      div(class="taskHolder__completed") #{taskCompleted}
       div(class="taskHolder__priority") #{taskPriority}
-      div
-        form(id=`${taskId}`)
-         button(class="delete__button" type='submit')
+      form(id=`${taskId}`)
+        button(class="delete__button" type='submit')
           i(class="far fa-trash-alt")
