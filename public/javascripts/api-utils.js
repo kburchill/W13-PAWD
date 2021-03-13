@@ -71,12 +71,13 @@ export function urlIdIdentifier(window) {
 	return urlId;
 }
 
-export function emptyTaskCreate(error) {
+export function emptyTaskCreate(error, targetElement) {
 	// const TaskListForm = document.querySelector(".taskList__form");
 	// const div = document.createElement("div");
 	// div.innerHTML = error;
 	// TaskListDiv.appendChild(div);
-	const taskListInput = document.getElementById("createNewTask");
+	// const taskListInput = document.getElementById("createNewTask");
+	const taskListInput = document.querySelector(targetElement);
 	taskListInput.placeholder = error;
 	return;
 }

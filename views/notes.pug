@@ -3,11 +3,43 @@ include utils.pug
 append head
   script(src="/javascripts/notesAPI.js" type="module")
 block tasks
-  .noteList__div
-    form(id=`${userId}:${taskId}` class="noteList__form")
-      textarea(name="content" class="note-content" placeHolder="Enter comment")
-      button(type="submit" class="note-submit-button") Comment
-        i(class="far fa-comments")
-    div(class="notesTilesContainer")
-        each note in notes
-          +noteTile(note.content, note.id, taskId, editNote.id, editNote.content)
+  .editTask__div
+    .taskEdit__div
+      form(id=`taskEdit-${taskId}` class="taskEdit__form")
+        label(for="createdAt")= `Created on: ${task.createdAt}`
+        label(for="priority") Priority
+        select(name="priority" id="taskEdit__priority")
+          if (task.priority === 1)
+            option(value="1" selected) 1
+          else
+            option(value="1" ) 1
+          if (task.priority === 2)
+            option(value="2" selected) 2
+          else
+            option(value="2" ) 2
+          if (task.priority === 3)
+            option(value="3" selected) 3
+          else
+            option(value="3" ) 3
+        label(for="inProgress") In Progress
+        if (task.inProgress === false)
+          input(type="checkbox" name="inProgress" id="taskEdit__inProgress")
+        else
+          input(type="checkbox" name="inProgress" checked="checked" id="taskEdit__inProgress")
+        label(for="completed") Completed
+        if (task.completed === false)
+          input(type="checkbox" name="completed" id="taskEdit__completed")
+        else
+          input(type="checkbox" name="completed" checked="checked" id="taskEdit__completed")
+        textarea(name="name" class="taskEdit__name" placeHolder="Edit Task Name...") #{task.name}
+        button(type="submit" class="taskEdit__submit") Update Task
+        a(href=`/tasks/${taskId}`): button(class="task-edit-button") Cancel
+
+    .noteList__div
+      form(id=`${userId}:${taskId}` class="noteList__form")
+        textarea(name="content" class="note-content" placeHolder="Enter comment")
+        button(type="submit" class="note-submit-button") Comment
+          i(class="far fa-comments")
+      div(class="notesTilesContainer")
+          each note in notes
+            +noteTile(note.content, note.id, taskId, editNote.id, editNote.content)

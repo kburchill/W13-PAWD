@@ -1,54 +1,54 @@
-.navbar__div{
-  grid-area: navbar;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #204051;
-  height: auto;
-  width: 100%;
+.navbar__div {
+	grid-area: navbar;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	background-color: #204051;
+	height: auto;
+	width: 100%;
 }
 
-.project-title{
-  color: #FFC816;
-  margin-left: 5%;
+.project-title {
+	color: #ffc816;
+	margin-left: 5%;
 }
 
-.navbar__div-searchbar{
-  height: 20px;
+.navbar__div-searchbar {
+	height: 20px;
 }
 
-.search-field{
-  order: 1;
-  position: relative;
-  left: 300px
+.search-field {
+	order: 1;
+	position: relative;
+	left: 300px;
 }
 
-.search-field > .search__button{
-  position: relative;
-  right: 8px;
-  height: 19px;
-  background-color: white;
-  border-radius: 0;
-  cursor: pointer;
+.search-field > .search__button {
+	position: relative;
+	right: 8px;
+	height: 19px;
+	background-color: white;
+	border-radius: 0;
+	cursor: pointer;
 }
 
-.dragonFlies{
-  align-self: center;
-  height: 50px;
-  width: auto;
-  order: 2;
+.dragonFlies {
+	align-self: center;
+	height: 50px;
+	width: auto;
+	order: 2;
 }
 
-.navbar__div-logout{
-  margin-right: 3%;
-  align-self: center;
-  order: 3;
+.navbar__div-logout {
+	margin-right: 3%;
+	align-self: center;
+	order: 3;
 }
 
-#findAll{
-  position: relative;
-  right: 500px
+#findAll {
+	position: relative;
+	right: 500px;
 }
 
 /*

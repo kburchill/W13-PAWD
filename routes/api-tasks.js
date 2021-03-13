@@ -49,4 +49,35 @@ apiTaskRouter.post(
 	})
 );
 
+apiTaskRouter.patch(
+	"/",
+	requireAuth,
+	taskValidators,
+	asyncHandler(async (req, res) => {
+		// console.log(req.body, "REQ.BOD==============================");
+		const { taskId, inProgress, completed, priority, name } = req.body;
+		const mappedErrors = validationResult(req).errors;
+		const errors = mappedErrors.map((error) => error.msg);
+		const task = await Task.findByPk(taskId);
+		const projectId = task.projectId;
+		let error = "";
+		try {
+			// console.log("THIS HAPPENED===============================");
+			if (name && name.length >= 1 && name.length < 101) await task.update({ name });
+			if (inProgress === null) await task.update({ inProgress: false });
+			else if (inProgress === "on") await task.update({ inProgress: true });
+			if (completed === null) await task.update({ completed: false });
+			else if (completed === "on") await task.update({ completed: true });
+			if (priority) await task.update({ priority });
+			else {
+				if (errors.length > 0) error = errors[0];
+			}
+		} catch (err) {
+			console.error(err);
+		}
+		const tasks = await Task.findAll({ where: { projectId } });
+		res.json([tasks, error]);
+	})
+);
+
 module.exports = apiTaskRouter;
