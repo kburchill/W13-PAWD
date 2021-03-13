@@ -12,12 +12,24 @@
 	margin: 2px;
 	border: black 1px solid;
 	border-radius: 50%;
+	z-index: 2;
 }
 .trueInProgress {
+	background: yellow;
+	height: 15px;
+	width: 15px;
+	margin: 2px;
+	border: black 1px solid;
+	border-radius: 50%;
+	z-index: 2;
+}
+
+.taskHolder .trueCompleted {
 	background: green;
 	height: 15px;
 	width: 15px;
 	margin: 2px;
 	border: black 1px solid;
 	border-radius: 50%;
+	z-index: 1;
 }

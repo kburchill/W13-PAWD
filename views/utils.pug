@@ -42,7 +42,7 @@ mixin taskTile(taskName, taskInProgress, taskCompleted, taskPriority, taskId)
   div(class="taskField")
     div(class="taskHolder")
       input(type="checkbox" class="unchecked")
-      div(class=`taskHolder__inProgress ${taskInProgress}InProgress`)
+      div(class=`taskHolder__inProgress ${taskInProgress}InProgress ${taskCompleted}Completed`)
       a(href=`/tasks/${taskId}`) #{taskName}
       div(class="taskHolder__completed")
       div(class="taskHolder__priority") #{taskPriority}
