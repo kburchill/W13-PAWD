@@ -2,7 +2,7 @@ const express = require("express");
 const apiTaskRouter = express.Router();
 const { requireAuth } = require("../auth");
 const { Task, Project } = require("../db/models");
-const { asyncHandler, deleteItem, findCurrentProjectId, checkProgress } = require("./utils");
+const { asyncHandler, deleteItem, findCurrentProjectId, checkProgress, findCurrentUser } = require("./utils");
 const { check, validationResult } = require("express-validator");
 const { taskValidators } = require("./validators");
 
@@ -13,34 +13,22 @@ apiTaskRouter.delete(
 		const { taskEventId, urlId } = req.body;
 		const task = await Task.findByPk(taskEventId);
 		const currentTask = urlId[1] === "task" ? urlId[0] : null;
-
+		const currentUser = findCurrentUser(req.session);
 		// REDIRECT BACK TO PROJECT/ID page if you delete current task from inside notes
 		let currentProjectId = await findCurrentProjectId(urlId);
-		//Progress bar update
-		// try {
-		// 	let percentCompleted = await checkProgress(currentProjectId);
-		// 	// console.log(percentCompleted, "***********")
-		// 	let currProject = await Project.findByPk(currentProjectId);
-		// 	// console.log(currProject);
-		// 	await currProject.update({ progress: percentCompleted });
-		// 	// console.log(currProject, "here is where we are looking ------");
-		// } catch (err) {
-		// 	console.log("you messed up somewhere and this is in api-tasks");
-		// }
 		let percentCompleted;
 		try {
 			await deleteItem(taskEventId, Task);
 			let currProject = await Project.findByPk(currentProjectId);
 			percentCompleted = await checkProgress(currentProjectId);
 			await currProject.update({ progress: percentCompleted });
-			// console.log(currProject, "====================== CURR PROJECT AFTER UPDATE");
 		} catch (error) {
 			console.log(error);
-			// use next(error) and fix up if you want to allow non Owners to delete project
 		}
-
+		const allProjects = await Project.findAll({ where: { projectOwnerId: currentUser } });
 		const allTasks = await Task.findAll({ where: { projectId: task.projectId } });
-		res.json([allTasks, currentTask, currentProjectId, percentCompleted]);
+
+		res.json([allTasks, currentTask, currentProjectId, allProjects]);
 	})
 );
 

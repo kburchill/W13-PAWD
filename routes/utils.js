@@ -14,6 +14,8 @@ const findCurrentUser = (session) => {
 	const {
 		userAuth: { userId },
 	} = session;
+
+	// const userId = req.session.userAuth.userId
 	return userId;
 };
 
@@ -55,13 +57,9 @@ const grabAll = async (taskId, session, editNote) => {
 
 async function checkProgress(projectId) {
 	const project = await Project.findByPk(projectId);
-	// console.log(project, "PROJECT IN UTILS===============================================");
 	const totalTasks = await Task.findAll({ where: { projectId: project.dataValues.id } });
 	const completedTasks = await Task.findAll({ where: { projectId: project.id, completed: true } });
-	// console.log(completedTasks, "COMPLETED TASKS=============================================");
-	// console.log(completedTasks.length, "<----- COMPLETED TASKS, TOTAL TASK LENGTH ------------->", totalTasks.length);
 	const percentCompleted = completedTasks.length / totalTasks.length;
-	// console.log(Math.round(percentCompleted * 100), "PERCENT COMPLETED======================================");
 	return Math.round(percentCompleted * 100);
 }
 
