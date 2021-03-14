@@ -6,7 +6,6 @@ mixin projectTile(projectName, projectProgress, projectId, ternary)
   div(class="projectField")
     div(class="projectHolder")
     a(href=`/projects/${projectId}` name=`${projectName}` class="project-a__tag") #{projectName}
-    input(type="checkbox" class="unchecked projectCheckBox")
     div(class="progressDelete")
       div(class="progressBorder" name=`${projectProgress}`)
         div(class="progressFiller" style=`width: ${projectProgress}%`)
