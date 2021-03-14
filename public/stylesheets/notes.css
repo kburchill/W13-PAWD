@@ -124,6 +124,7 @@
 	grid-area: comments;
 	display: flex;
 	flex-direction: column;
+	overflow-y: auto;
 }
 
 .note-submit-button {
@@ -163,12 +164,8 @@
 	grid-area: notecontent;
 	font-size: large;
 	font-family: Arial, Helvetica, sans-serif;
-	/* font-weight: bold; */
-	/* justify-self: stretch; */
-	/* max-width: 200px; */
 	word-wrap: break-word;
-	/* display: block; */
-	overflow-y: scroll;
+	overflow-y: auto;
 	margin: 10px;
 }
 /* edit button */

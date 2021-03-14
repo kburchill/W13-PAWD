@@ -36,14 +36,8 @@ body {
 .projectList__div {
 	margin-top: 25px;
 	grid-area: project;
+	overflow-y: auto;
 }
-
-/* CLEAN THIS UP */
-/* .bigTurtles{
-    position: relative;
-    top: 208px;
-    right: -40px;
-} */
 
 .projectCheckBox {
 	align-self: flex-end;
