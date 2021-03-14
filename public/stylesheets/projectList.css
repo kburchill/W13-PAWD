@@ -60,11 +60,14 @@
 	width: 100%;
 	margin: 2.5px;
 	border-radius: 5px;
+	display: flex;
+	flex-direction: row;
 }
 .progressFiller {
 	background: #ffc816;
 	color: black;
-	border-radius: 5px;
+	border-radius: 5px 0px 0px 5px;
+	order: -1;
 }
 .projectHolder {
 	display: flex;
@@ -77,6 +80,17 @@
 	flex-direction: row;
 	padding-left: 5%;
 	/* overflow: auto; */
+}
+
+.hundred {
+	background: #ffc816;
+	border-radius: 0px 5px 5px 0px;
+	padding: 1px;
+}
+
+.zero {
+	border-radius: 0px 5px 5px 0px;
+	padding: 1px;
 }
 
 .logo-text {

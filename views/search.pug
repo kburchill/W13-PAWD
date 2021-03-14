@@ -10,7 +10,7 @@ block projects
         h1 Projects:
         div(class="projectsTilesContainer")
           each project in allSearchProjectsResults
-            +searchProjectTile(project.name, project.progress, project.id)
+            +searchProjectTile(project.name, project.progress, project.id, project.progress >= 100 ? "hundred": "zero")
     if (allSearchTasksResults.length >=1)
       div(class="taskResults")
         h1 Tasks:

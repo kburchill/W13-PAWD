@@ -2,14 +2,15 @@ mixin field(fieldName, fieldValue, labelText, placeHolder="", fieldType="text", 
       //- label(for=fieldName)= labelText
       input(type=fieldType, name=fieldName, id=fieldName, value=fieldValue, placeHolder=placeHolder, class= fieldClass)
 
-mixin projectTile(projectName, projectProgress, projectId)
+mixin projectTile(projectName, projectProgress, projectId, ternary)
   div(class="projectField")
     div(class="projectHolder")
     a(href=`/projects/${projectId}` name=`${projectName}` class="project-a__tag") #{projectName}
     input(type="checkbox" class="unchecked projectCheckBox")
     div(class="progressDelete")
       div(class="progressBorder" name=`${projectProgress}`)
-        div(class="progressFiller" style=`width: ${projectProgress}%`) #{projectProgress}%
+        div(class="progressFiller" style=`width: ${projectProgress}%`)
+        div(class=ternary): span #{projectProgress}%
 
       form(id=`${projectId}`)
         button(class="delete__button" type="submit")
@@ -52,13 +53,14 @@ mixin taskTile(taskName, taskInProgress, taskCompleted, taskPriority, taskId)
 
 
 //- FOR search results
-mixin searchProjectTile(projectName, projectProgress, projectId)
+mixin searchProjectTile(projectName, projectProgress, projectId, ternary)
   div(class="projectField")
     div(class="projectHolder")
     a(href=`/projects/${projectId}` name=`${projectName}` class="project-a__tag") #{projectName}
     div(class="progressDelete")
       div(class="progressBorder" name=`${projectProgress}`)
-        div(class="progressFiller" style=`width: ${projectProgress}%`) #{projectProgress}%
+        div(class="progressFiller" style=`width: ${projectProgress}%`)
+        div(class=ternary): span #{projectProgress}%
 
 
 mixin searchTaskTile(taskName, taskInProgress, taskCompleted, taskPriority, taskId)

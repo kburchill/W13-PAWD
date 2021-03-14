@@ -1,12 +1,14 @@
 export function projectFieldInnerHtml(projects) {
 	const projectsTilesContainer = document.querySelector(".projectsTilesContainer");
 	projects.forEach((project) => {
+		const projectProgressNum = project.progress == 100 ? "hundred" : "zero";
 		const projectHolderDiv = document.createElement("div");
 		projectHolderDiv.innerHTML = `<div class="projectField">
 		<div class="projectHolder"></div><a href="/projects/${project.id}" name="${project.name}">${project.name}</a><input class="unchecked projectCheckBox"
 			type="checkbox">
 		<div class="progressBorder" name="0">
-			<div class="progressFiller" style="width: ${project.progress}%">${project.progress}%</div>
+			<div class="progressFiller" style="width: ${project.progress}%"></div>
+			<div class="${projectProgressNum}"><span>${project.progress}%</span></div>
 		</div>
 	<form id="${project.id}">
 		<button class="delete__button" type="submit"><i class="far fa-trash-alt"></i></button>

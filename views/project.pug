@@ -19,5 +19,5 @@ block nav
       +errorsDiv(errors)
     div(class="projectsTilesContainer")
       each project in projects
-        +projectTile(project.name, project.progress, project.id)
+        +projectTile(project.name, project.progress, project.id, project.progress >= 100 ? "hundred": "zero")
   block projects
