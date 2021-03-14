@@ -59,6 +59,7 @@ export function noteFieldInnerHtml(notes, taskId) {
 		notesContainer.appendChild(noteHolderDiv);
 	});
 }
+
 export function taskFieldInnerHtml(tasks) {
 	const tasksContainer = document.querySelector(".tasksContainer");
 

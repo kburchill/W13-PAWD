@@ -63,7 +63,14 @@ async function checkProgress(projectId) {
 	return Math.round(percentCompleted * 100);
 }
 
+async function updateProgress(currentProjectId) {
+	let currProject = await Project.findByPk(currentProjectId);
+	let percentCompleted = await checkProgress(currentProjectId);
+	await currProject.update({ progress: percentCompleted });
+}
+
 module.exports = {
+	updateProgress,
 	asyncHandler,
 	csrfProtection,
 	deleteItem,

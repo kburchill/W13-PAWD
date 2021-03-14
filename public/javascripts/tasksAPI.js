@@ -111,9 +111,11 @@ window.addEventListener("DOMContentLoaded", async () => {
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({ taskId, inProgress, completed }),
 				});
-				const tasks = await res.json();
+				const tasksAndProjs = await res.json();
 				taskTilesContainer.innerHTML = "";
-				if (tasks[0].length) taskFieldInnerHtml(tasks[0]);
+				projectsTilesContainer.innerHTML = "";
+				projectFieldInnerHtml(tasksAndProjs[2]);
+				if (tasksAndProjs[0].length) taskFieldInnerHtml(tasksAndProjs[0]);
 				else return;
 			} catch (err) {
 				console.error("messed up in task edit checkboxes TASKSAPI.js", err);

@@ -2,7 +2,7 @@ const express = require("express");
 const apiTaskRouter = express.Router();
 const { requireAuth } = require("../auth");
 const { Task, Project } = require("../db/models");
-const { asyncHandler, deleteItem, findCurrentProjectId, checkProgress, findCurrentUser } = require("./utils");
+const { asyncHandler, deleteItem, findCurrentProjectId, updateProgress, findCurrentUser } = require("./utils");
 const { check, validationResult } = require("express-validator");
 const { taskValidators } = require("./validators");
 
@@ -16,12 +16,9 @@ apiTaskRouter.delete(
 		const currentUser = findCurrentUser(req.session);
 		// REDIRECT BACK TO PROJECT/ID page if you delete current task from inside notes
 		let currentProjectId = await findCurrentProjectId(urlId);
-		let percentCompleted;
 		try {
 			await deleteItem(taskEventId, Task);
-			let currProject = await Project.findByPk(currentProjectId);
-			percentCompleted = await checkProgress(currentProjectId);
-			await currProject.update({ progress: percentCompleted });
+			await updateProgress(currentProjectId);
 		} catch (error) {
 			console.log(error);
 		}
@@ -59,6 +56,7 @@ apiTaskRouter.patch(
 	asyncHandler(async (req, res) => {
 		// console.log(req.body, "REQ.BOD==============================");
 		const { taskId, inProgress, completed, priority, name } = req.body;
+		const currentUser = findCurrentUser(req.session);
 		const mappedErrors = validationResult(req).errors;
 		const errors = mappedErrors.map((error) => error.msg);
 		const task = await Task.findByPk(taskId);
@@ -71,6 +69,7 @@ apiTaskRouter.patch(
 			else if (inProgress === "on") await task.update({ inProgress: true });
 			if (completed === null) await task.update({ completed: false });
 			else if (completed === "on") await task.update({ completed: true });
+			await updateProgress(projectId);
 			if (priority) await task.update({ priority });
 			else {
 				if (errors.length > 0) error = errors[0];
@@ -78,8 +77,9 @@ apiTaskRouter.patch(
 		} catch (err) {
 			console.error(err);
 		}
+		const allProjects = await Project.findAll({ where: { projectOwnerId: currentUser } });
 		const tasks = await Task.findAll({ where: { projectId } });
-		res.json([tasks, error]);
+		res.json([tasks, error, allProjects]);
 	})
 );
 
