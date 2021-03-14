@@ -1,7 +1,8 @@
-import { taskFieldInnerHtml, urlIdIdentifier, emptyTaskCreate } from "./api-utils.js";
+import { taskFieldInnerHtml, urlIdIdentifier, emptyTaskCreate, projectFieldInnerHtml } from "./api-utils.js";
 
 window.addEventListener("DOMContentLoaded", async () => {
 	// Listener to delete tasks
+	const projectsTilesContainer = document.querySelector(".projectsTilesContainer");
 	const taskTilesContainer = document.querySelector(".tasksContainer");
 	taskTilesContainer.addEventListener("submit", async (event) => {
 		event.preventDefault();
@@ -16,13 +17,12 @@ window.addEventListener("DOMContentLoaded", async () => {
 				body: JSON.stringify({ taskEventId, urlId }),
 			});
 
-			const tasks = await response.json();
-			console.log(tasks);
-			if (tasks[1] == taskEventId) window.location.href = `/projects/${tasks[2]}`;
+			const tasksAndProj = await response.json();
+			if (tasksAndProj[1] == taskEventId) window.location.href = `/projects/${tasksAndProj[2]}`;
 			taskTilesContainer.innerHTML = "";
-			let currProjProgress = tasks[3];
-			console.log(currProjProgress, "================");
-			if (tasks[0].length) taskFieldInnerHtml(tasks[0]);
+			projectsTilesContainer.innerHTML = "";
+			projectFieldInnerHtml(tasksAndProj[3]);
+			if (tasksAndProj[0].length) taskFieldInnerHtml(tasksAndProj[0]);
 			else return;
 		} catch (err) {
 			console.error("We messed up the tasks api. sorry, jim", err);
@@ -46,12 +46,14 @@ window.addEventListener("DOMContentLoaded", async () => {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ name, priority, projectId }),
 			});
-			const tasks = await res.json();
+			const tasksAndProj = await res.json();
 
 			taskTilesContainer.innerHTML = "";
 			taskCreateInput.value = "";
-			if (tasks[1].length > 1) emptyTaskCreate(tasks[1], "#createNewTask");
-			if (tasks[0].length) taskFieldInnerHtml(tasks[0]);
+			projectsTilesContainer.innerHTML = "";
+			projectFieldInnerHtml(tasksAndProj[2]);
+			if (tasksAndProj[1].length > 1) emptyTaskCreate(tasksAndProj[1], "#createNewTask");
+			if (tasksAndProj[0].length) taskFieldInnerHtml(tasksAndProj[0]);
 			else return;
 		} catch (err) {
 			console.error("messed up in task creation TASKSAPI.js", err);
@@ -111,9 +113,11 @@ window.addEventListener("DOMContentLoaded", async () => {
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({ taskId, inProgress, completed }),
 				});
-				const tasks = await res.json();
+				const tasksAndProjs = await res.json();
 				taskTilesContainer.innerHTML = "";
-				if (tasks[0].length) taskFieldInnerHtml(tasks[0]);
+				projectsTilesContainer.innerHTML = "";
+				projectFieldInnerHtml(tasksAndProjs[2]);
+				if (tasksAndProjs[0].length) taskFieldInnerHtml(tasksAndProjs[0]);
 				else return;
 			} catch (err) {
 				console.error("messed up in task edit checkboxes TASKSAPI.js", err);

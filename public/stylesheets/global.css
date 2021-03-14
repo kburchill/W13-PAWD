@@ -6,7 +6,6 @@ html {
 body {
 	height: 100%;
 	width: 100%;
-	/* max-width: 1920px; */
 }
 
 .main__container {
@@ -38,14 +37,9 @@ body {
 .projectList__div {
 	margin-top: 25px;
 	grid-area: project;
+	max-height: 80%;
+	width: auto;
 }
-
-/* CLEAN THIS UP */
-/* .bigTurtles{
-    position: relative;
-    top: 208px;
-    right: -40px;
-} */
 
 .projectCheckBox {
 	align-self: flex-end;
@@ -99,6 +93,7 @@ a {
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
+	overflow: auto;
 }
 
 .projectHolder,
