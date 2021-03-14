@@ -52,6 +52,8 @@
 	display: flex;
 	justify-content: flex-start;
 	flex-direction: column;
+	overflow: auto;
+	max-height: inherit;
 }
 .progressBorder {
 	background: #ebeff1;
