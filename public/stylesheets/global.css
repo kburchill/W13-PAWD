@@ -35,7 +35,7 @@ body {
 .projectList__div {
 	margin-top: 25px;
 	grid-area: project;
-	max-height: 85%;
+	max-height: 80%;
 	width: auto;
 }
 
