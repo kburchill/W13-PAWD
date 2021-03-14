@@ -43,7 +43,6 @@ body {
 	align-self: flex-end;
 }
 
-.searchList__div,
 .taskList__div {
 	margin-top: 25px;
 	grid-area: task;
