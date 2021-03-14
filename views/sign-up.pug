@@ -1,6 +1,6 @@
 extends layout.pug
 
-block content
+block signup
   .signup__div
     .signup__title
       .logo__div
@@ -18,11 +18,11 @@ block content
         form(action="/users" method="post" class="signup__form")
           include utils.pug
           input(type="hidden" name="_csrf" value=csrfToken)
-          +field("firstName", user.firstName, "First Name", user.errors ? user.errors.firstName : "First Name", "text")
-          +field("lastName", user.lastName, "Last Name", user.errors ? user.errors.lastName : "Last Name", "text")
-          +field("email", user.email, "Email", user.errors ? user.errors.email : "email@email.com", "email")
-          +field("password", "", "Password", user.errors ? user.errors.password : "Password", "password")
-          +field("confirmPassword", "", "Confirm Password",  user.errors ? user.errors.confirmPassword : "Confirm Password", "password")
+          +field("firstName", user.firstName, "First Name", errors ? errors.firstName : "First Name", "text", errors.firstName ? "red" : "black")
+          +field("lastName", user.lastName, "Last Name", errors ? errors.lastName : "Last Name", "text", errors.lastName ? "red" : "black")
+          +field("email", user.email, "Email", errors ? errors.email : "example@email.com", "email", errors.email ? "red" : "black")
+          +field("password", "", "Password", errors ? errors.password : "Password", "password", errors.password ? "red" : "black")
+          +field("confirmPassword", "", "Confirm Password",  errors ? errors.confirmPassword : "Confirm Password", "password", errors.confirmPassword ? "red" : "black")
           button(type="submit" class="user-submit-button") Sign up!
       .login-link
         .span__div

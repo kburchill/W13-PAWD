@@ -1,13 +1,29 @@
 extends layout.pug
 include utils.pug
-block content
-  .login__div
-    h2 Log in
-    +errorsDiv(errors)
-    form(action="/users/login" method="post" class="login__form")
-      input(type="hidden" name="_csrf" value=csrfToken)
-      +field("email", "", "Email", "email", "email")
-      +field("password", "", "Password", "Password", "password")
-      button(type="submit" class="login-form__button") Log in
+block signup
+  .signup__div
+    .signup__title
+      .logo__div
+        .htags__div
+          h5 Projects
+          h4 all
+          h3 the
+          h2 way
+        .image__container
+          .signup__image
+        .down__div
+          h1 down
+    .right-signup__div
+      .loginForm__div
+        //- +errorsDiv(errors)
+        form(action="/users/login" method="post" class="login__form")
+          input(type="hidden" name="_csrf" value=csrfToken)
+          +field("email", user.email, "Email", errors ? errors.email : "email", "email", errors.email ? "red" : "black")
+          +field("password", "", "Password", errors ? errors.password : "Password", "password", errors.password ? "red" : "black")
+          button(type="submit" class="login-form__button") Log in
       .signup-link
-        a(href="/users" class="login__a") Sign up
+        .span__div
+          span Need an account?
+        .href__div
+          a(href="/users" class="login__a") Sign up
+    .empty__container
