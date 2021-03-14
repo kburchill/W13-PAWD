@@ -37,15 +37,18 @@ apiTaskRouter.post(
 		const { name, priority, projectId } = req.body;
 		const mappedErrors = validationResult(req).errors;
 		const errors = mappedErrors.map((error) => error.msg);
+		const currentUser = findCurrentUser(req.session);
 		let error = "";
 		try {
 			if (name.length >= 1 && name.length < 101) await Task.create({ name, priority, projectId });
 			else error = errors[0];
+			await updateProgress(projectId);
 		} catch (err) {
 			console.error(err);
 		}
+		const allProjects = await Project.findAll({ where: { projectOwnerId: currentUser } });
 		const tasks = await Task.findAll({ where: { projectId } });
-		res.json([tasks, error]);
+		res.json([tasks, error, allProjects]);
 	})
 );
 
