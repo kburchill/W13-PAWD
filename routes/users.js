@@ -12,10 +12,12 @@ router.get(
 	csrfProtection,
 	asyncHandler(async (req, res) => {
 		const user = await User.build();
+		const errors = false;
 
 		res.render("sign-up", {
 			title: "sign-up",
 			user,
+			errors,
 			csrfToken: req.csrfToken(),
 		});
 	})
@@ -27,11 +29,13 @@ router.post(
 	userValidators,
 	userErrorHandler,
 	asyncHandler(async (req, res, next) => {
+		const { errors } = req.body;
+
 		if (req.body.errors) {
-			console.log(req.body.errors)
 			res.render('sign-up', {
 				title: 'sign-up',
 				csrfToken: req.csrfToken(),
+				errors,
 				user: req.body
 			})
 		} else {
@@ -55,11 +59,13 @@ router.post('/logout', (req, res) => {
 })
 
 router.get('/login', csrfProtection, (req, res) => {
-	let errors = [];
+	const errors = false;
+	const user = User.build();
 
 	res.render('login', {
 		title: "Login",
 		errors,
+		user,
 		csrfToken: req.csrfToken(),
 	})
 })
@@ -69,11 +75,14 @@ router.post('/login',
 	loginValidators,
 	userErrorHandler,
 	asyncHandler(async (req, res, next) => {
+		const { errors } = req.body;
 		if (req.body.errors) {
 			res.render('login', {
 				title: 'login',
 				csrfToken: req.csrfToken(),
-				errors: req.body.errors
+				errors,
+				user: req.body
+				// errors: req.body.errors
 			})
 		} else {
 		const { email, password } = req.body
