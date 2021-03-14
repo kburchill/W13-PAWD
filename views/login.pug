@@ -21,6 +21,9 @@ block signup
           +field("email", user.email, "Email", errors ? errors.email : "email", "email", errors.email ? "red" : "black")
           +field("password", "", "Password", errors ? errors.password : "Password", "password", errors.password ? "red" : "black")
           button(type="submit" class="login-form__button") Log in
+          form(action="/users/demo" method="post")
+            input(type="hidden" name="_csrf" value=csrfToken)
+            button(type="submit" class="login-form__button") Demo
       .signup-link
         .span__div
           span Need an account?

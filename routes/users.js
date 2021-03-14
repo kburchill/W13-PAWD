@@ -107,4 +107,8 @@ router.post('/login',
 	}
 	}))
 
+	router.post('/demo', asyncHandler(async (req, res) => {
+		req.sesseion.userAuth = { userId: 1 }
+	}))
+
 module.exports = router;
