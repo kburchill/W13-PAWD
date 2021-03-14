@@ -3,20 +3,21 @@ include utils.pug
 append head
   script(src="/javascripts/tasksAPI.js" type="module")
 block projects
-  .taskList__div
+  .searchList__div
     include utils.pug
-    div(class="projectList__div")
-      if (allSearchProjectsResults.length >=1)
-        div(class="searchList__Header") Projects:
+    if (allSearchProjectsResults.length >=1)
+      div(class="projectResults")
+        h1 Projects:
         div(class="projectsTilesContainer")
           each project in allSearchProjectsResults
-            +projectTile(project.name, project.progress, project.id)
-      if (allSearchTasksResults.length >=1)
-        div(class="searchList__Header") Tasks:
+            +searchProjectTile(project.name, project.progress, project.id)
+    if (allSearchTasksResults.length >=1)
+      div(class="taskResults")
+        h1 Tasks:
         div(class="searchtaskList__div")
           each task in allSearchTasksResults
-            +taskTile(task.name, task.inProgress, task.completed, task.priority, task.id)
-      if (allSearchTasksResults.length===0 && allSearchProjectsResults.length===0 )
-        h1 NO SEARCH RESULTS
+            +searchTaskTile(task.name, task.inProgress, task.completed, task.priority, task.id)
+    if (allSearchTasksResults.length===0 && allSearchProjectsResults.length===0 )
+      h1 NO SEARCH RESULTS
     div(class="bottomLines")
-  block projects
+  block tasks

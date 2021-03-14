@@ -49,3 +49,22 @@ mixin taskTile(taskName, taskInProgress, taskCompleted, taskPriority, taskId)
       form(id=`${taskId}`)
         button(class="delete__button" type='submit')
           i(class="far fa-trash-alt")
+
+
+//- FOR search results
+mixin searchProjectTile(projectName, projectProgress, projectId)
+  div(class="projectField")
+    div(class="projectHolder")
+    a(href=`/projects/${projectId}` name=`${projectName}` class="project-a__tag") #{projectName}
+    div(class="progressDelete")
+      div(class="progressBorder" name=`${projectProgress}`)
+        div(class="progressFiller" style=`width: ${projectProgress}%`) #{projectProgress}%
+
+
+mixin searchTaskTile(taskName, taskInProgress, taskCompleted, taskPriority, taskId)
+  div(class="taskField")
+    div(class="taskHolder")
+      div(class=`taskHolder__inProgress ${taskInProgress}InProgress ${taskCompleted}Completed`)
+      a(href=`/tasks/${taskId}`) #{taskName}
+      div(class="taskHolder__completed")
+      div(class=`taskHolder__priority${taskPriority}`) #{taskPriority}

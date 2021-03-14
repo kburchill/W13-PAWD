@@ -59,10 +59,12 @@
 	background: #ebeff1;
 	width: 100%;
 	margin: 2.5px;
+	border-radius: 5px;
 }
 .progressFiller {
 	background: #ffc816;
 	color: black;
+	border-radius: 5px;
 }
 .projectHolder {
 	display: flex;
@@ -85,4 +87,10 @@
 
 .projectField {
 	padding: 5px;
+	border-radius: 5px;
+	/* border-bottom: 2px solid #0d8882; */
+}
+
+.projectField:hover {
+	background-color: rgb(5, 170, 185);
 }

@@ -1,0 +1,46 @@
+.searchList__div {
+	margin-top: 25px;
+	grid-area: task;
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-areas:
+		"projectResults"
+		"taskResults"
+		"bottom";
+	/* background-color: whitesmoke; */
+	border-radius: 10px;
+	padding: 20px;
+	height: 100vh;
+	background-color: whitesmoke;
+	z-index: 2;
+}
+
+.searchList__div + .bottomLines {
+	grid-area: bottom;
+	margin-right: 10%;
+	width: 100%;
+	background-image: repeating-linear-gradient(whitesmoke 0px, whitesmoke 24px, teal 25px);
+	/* overflow: hidden; */
+}
+
+.searchList__div .projectsTilesContainer {
+	grid-area: projectResults;
+	border-radius: 5px;
+	border-color: #10375c;
+	border: 5px;
+}
+.searchList__div .projectsTilesContainer .projectField {
+	border-radius: 5px;
+	border-color: #10375c;
+	border: 5px;
+	z-index: 1;
+}
+
+.searchTasksList__div {
+	grid-area: taskResults;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	overflow: auto;
+}

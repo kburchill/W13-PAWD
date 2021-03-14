@@ -85,7 +85,7 @@ a {
 	width: 100%;
 	background-image: repeating-linear-gradient(whitesmoke 0px, whitesmoke 24px, teal 25px);
 }
-.searchContainer,
+
 .tasksContainer {
 	grid-area: tasks;
 	display: flex;
@@ -102,6 +102,11 @@ a {
 	justify-content: flex-start;
 	/* align-items: baseline; */
 	margin: auto;
+	border-radius: 5px;
+}
+
+.taskHolder:hover {
+	background-color: rgb(5, 170, 185);
 }
 
 .task-notes__div {
