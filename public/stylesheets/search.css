@@ -2,45 +2,59 @@
 	margin-top: 25px;
 	grid-area: task;
 	display: grid;
-	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-rows: auto 1fr;
 	grid-template-areas:
 		"projectResults"
-		"taskResults"
-		"bottom";
+		"taskResults";
 	/* background-color: whitesmoke; */
 	border-radius: 10px;
-	padding: 20px;
-	height: 100vh;
-	background-color: whitesmoke;
+	/* padding: 20px; */
+	height: 92%;
+	background-color: transparent;
 	z-index: 2;
 }
 
-.searchList__div + .bottomLines {
+/* .taskResults + .searchProjectTurtles {
 	grid-area: bottom;
 	margin-right: 10%;
-	width: 100%;
-	background-image: repeating-linear-gradient(whitesmoke 0px, whitesmoke 24px, teal 25px);
-	/* overflow: hidden; */
-}
-
+	height: 225px;
+	background-image: url(/assets/161549906626454634.png);
+	background-size: contain;
+	background-color: transparent;
+} */
 .searchList__div .projectsTilesContainer {
 	grid-area: projectResults;
 	border-radius: 5px;
 	border-color: #10375c;
 	border: 5px;
 }
-.searchList__div .projectsTilesContainer .projectField {
-	border-radius: 5px;
-	border-color: #10375c;
-	border: 5px;
-	z-index: 1;
+.searchList__div .projectsTilesContainer .projectField a {
+	display: block;
 }
 
-.searchTasksList__div {
+.searchtaskList__div {
 	grid-area: taskResults;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
 	overflow: auto;
+	margin-top: 10px;
+}
+
+.searchtaskList__div .taskField .taskHolder {
+	display: grid;
+	width: 100%;
+	grid-template-columns: 50px 50px 1fr;
+	grid-template-areas: "inprogress priority taskname";
+}
+
+.projectResults {
+	border-radius: 3px;
+	border-bottom: 5px solid #10375c;
+}
+
+.searchtaskList__div .taskField .taskHolder .taskHolder__inProgress {
+	grid-area: inprogress;
+	justify-self: center;
 }

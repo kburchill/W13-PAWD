@@ -108,3 +108,7 @@
 .projectField:hover {
 	background-color: rgb(5, 170, 185);
 }
+
+.projectField a {
+	display: block;
+}

@@ -7,17 +7,17 @@ block projects
     include utils.pug
     if (allSearchProjectsResults.length >=1)
       div(class="projectResults")
-        h1 Projects:
+        h1 Projects
         div(class="projectsTilesContainer")
           each project in allSearchProjectsResults
             +searchProjectTile(project.name, project.progress, project.id, project.progress >= 100 ? "hundred": "zero")
     if (allSearchTasksResults.length >=1)
       div(class="taskResults")
-        h1 Tasks:
+        h1 Tasks
+        h2 Status Priority Task-Name
         div(class="searchtaskList__div")
           each task in allSearchTasksResults
             +searchTaskTile(task.name, task.inProgress, task.completed, task.priority, task.id)
     if (allSearchTasksResults.length===0 && allSearchProjectsResults.length===0 )
       h1 NO SEARCH RESULTS
-    div(class="bottomLines")
   block tasks
