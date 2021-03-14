@@ -1,0 +1,31 @@
+.taskList__div .taskList__form{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5px;
+}
+
+.taskList__form input{
+  height: 20px;
+  /* justify-self: start; */
+
+}
+/* .taskList__form label{
+  position: relative;
+  left: 9%;
+}
+
+.taskList__form select{
+  position: relative;
+  right: 15px;
+  height: 20px;
+} */
+
+.taskList__div h1{      /*header */
+  border-bottom: 1px solid
+}
+
+
+.project-name-bar-div{
+  display: grid;
+  grid-template-columns: 1fr 200px;
+}
