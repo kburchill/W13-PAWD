@@ -77,6 +77,7 @@ router.post('/login',
 	asyncHandler(async (req, res, next) => {
 		const { errors } = req.body;
 		if (req.body.errors) {
+			const user = User.build()
 			res.render('login', {
 				title: 'login',
 				csrfToken: req.csrfToken(),
@@ -105,6 +106,12 @@ router.post('/login',
 			})
 		}
 	}
+	}))
+
+	router.post('/demo', asyncHandler(async (req, res) => {
+		const user = { id: 1 }
+		loginUser(req, res, user);
+		res.redirect('/projects');
 	}))
 
 module.exports = router;
