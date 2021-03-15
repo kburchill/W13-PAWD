@@ -214,6 +214,17 @@ module.exports = {
         updatedAt: new Date()
       },
       {
+        name: "Put a sweet background image in to hide my CSS",
+        startDate: new Date(),
+        dueDate: new Date(),
+        priority: 1,
+        inProgress: true,
+        projectId: 3,
+        completed: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
         name: "Weep longer",
         startDate: new Date(),
         dueDate: new Date(),
@@ -247,7 +258,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        name: "Look up CSS mems and realize you're not alone",
+        name: "Look up CSS memes and realize you're not alone",
         startDate: new Date(),
         dueDate: new Date(),
         priority: 1,

@@ -11,8 +11,10 @@ module.exports = {
         {content: "Yes but I'm supposed to be full stack. . .besides someone needs to write the libraries", taskId: 23, userId: 1, createdAt: new Date(), updatedAt: new Date()},
         {content: "Look at this way: CSS is a solved problem. . . so jump into those libraries", taskId: 23, userId: 1, createdAt: new Date(), updatedAt: new Date()},
         {content: "No! I refuse, I will distinguish myself by learning CSS", taskId: 23, userId: 1, createdAt: new Date(), updatedAt: new Date()},
-        {content: "Youtube at least? so you can stop crying all the time or sinking an entire day on deciding upon some padding?", taskId: 23, userId: 1, createdAt: new Date(), updatedAt: new Date()}
+        {content: "There is always Youtube", taskId: 23, userId: 1, createdAt: new Date(), updatedAt: new Date()}
       ], {});
+
+
   },
 
   down: (queryInterface, Sequelize) => {

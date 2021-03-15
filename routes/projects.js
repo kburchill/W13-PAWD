@@ -16,11 +16,10 @@ projectsRouter.get(
 		const preProjects = await Project.findAll({ where: { projectOwnerId: findCurrentUser(req.session) } });
 
 		for (project of preProjects) {
-			await updateProgress(project.id)
-		}
+			await updateProgress(project.id)		}
 
 		const projects = await Project.findAll({ where: { projectOwnerId: findCurrentUser(req.session) } });
-		console.log(projects, '////////////////////////')
+
 
 		res.render("project", {
 			title: "Projects",
