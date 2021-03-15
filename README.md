@@ -7,7 +7,9 @@ Projects All the Way Down (or PAWD for short) is an application designed to be u
 ## Installation and use
 
 - git clone `https://github.com/guny12/W13-TaskMain`
-- Run `npx sequelize db:create`, then `npx sequelize db:migrate`, and finally `npx sequelize db:seed:all`
+- Run `npx dotenv sequelize db:create`
+- Then `npx dotenv sequelize db:migrate`
+- Then finally `npx dotenv sequelize db:seed:all`
 
 ## Technologies Used
 
