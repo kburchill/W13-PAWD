@@ -1,17 +1,23 @@
+
 html {
 	height: 100%;
 	width: 100%;
 }
 
+div, textarea, h1, h2, p, a {
+	font-family: 'Amiri', serif;
+}
+
 body {
-	height: 100%;
+	height: auto;
 	width: 100%;
+	background: linear-gradient(0.25turn, #6bb5d2, #89c9b8, #cae8e8);
 }
 
 .main__container {
 	height: 100%;
 	width: 100%;
-	background: linear-gradient(0.25turn, #6bb5d2, #89c9b8, #cae8e8);
+
 	display: grid;
 	grid-template-columns: 20% 40% 40%;
 	grid-template-rows: 50px 1fr;
