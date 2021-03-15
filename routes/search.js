@@ -29,7 +29,7 @@ searchRouter.post(
 			});
 			allSearchProjectsResults = allSearchProjects.map((project) => project.dataValues);
 			// grabs all existing project ids of the current user
-			const allProjectId = allSearchProjectsResults.map((project) => project.id);
+			const allProjectId = projects.map((project) => project.id);
 			// looks for all tasks of the current user with that term in name
 			const allSearchTasks = await Task.findAll({
 				where: {
