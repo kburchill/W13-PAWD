@@ -21,7 +21,7 @@ option */
 }
 
 body {
-	height: auto;
+	height: 100%;
 	width: 100%;
 	background: linear-gradient(0.25turn, #6bb5d2, #89c9b8, #cae8e8);
 }
