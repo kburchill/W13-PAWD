@@ -1,5 +1,5 @@
 const { Project, Task } = require("../db/models");
-const { asyncHandler, csrfProtection, deleteItem, findCurrentUser } = require("./utils");
+const { asyncHandler, updateProgress, findCurrentUser } = require("./utils");
 const express = require("express");
 const { requireAuth } = require("../auth");
 const projectsRouter = express.Router();
@@ -12,12 +12,19 @@ projectsRouter.use(requireAuth);
 projectsRouter.get(
 	"/",
 	asyncHandler(async (req, res) => {
-		const project = await Project.build();
+		// const project = await Project.build();
+		const preProjects = await Project.findAll({ where: { projectOwnerId: findCurrentUser(req.session) } });
+
+		for (project of preProjects) {
+			await updateProgress(project.id)
+		}
+
 		const projects = await Project.findAll({ where: { projectOwnerId: findCurrentUser(req.session) } });
+		console.log(projects, '////////////////////////')
 
 		res.render("project", {
 			title: "Projects",
-			project,
+			// project,
 			projects,
 		});
 	})

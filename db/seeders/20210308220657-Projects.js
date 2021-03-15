@@ -4,9 +4,9 @@ module.exports = {
 		return queryInterface.bulkInsert(
 			"Projects",
 			[
-				{ name: "Front-end routes", projectOwnerId: 1, createdAt: new Date(), updatedAt: new Date() },
-				{ name: "Api/AJAX", projectOwnerId: 1, createdAt: new Date(), updatedAt: new Date() },
-				{ name: "CSS", projectOwnerId: 1, createdAt: new Date(), updatedAt: new Date() },
+				{ name: "Front-end routes", projectOwnerId: 1, progress: 0, createdAt: new Date(), updatedAt: new Date() },
+				{ name: "Api/AJAX", projectOwnerId: 1, progress: 0, createdAt: new Date(), updatedAt: new Date() },
+				{ name: "CSS", projectOwnerId: 1, progress: 0, createdAt: new Date(), updatedAt: new Date() },
 			],
 			{}
 		);
