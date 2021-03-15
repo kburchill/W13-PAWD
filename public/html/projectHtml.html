@@ -15,19 +15,32 @@
 </div>
 
 <div class="projectField">
-	<div class="projectHolder"></div><a href="/projects/${project.id}" name="${project.name}">${project.name}</a><input
-		class="unchecked projectCheckBox" type="checkbox">
+	<div class="projectHolder"></div>
+	<a href="/projects/${project.id}" name="${project.name}">${project.name}</a
+	><input class="unchecked projectCheckBox" type="checkbox" />
 	<div class="progressBorder" name="0">
 		<div class="progressFiller" style="width: ${project.progress}%">${project.progress}%</div>
 	</div>
 	<form id="${project.id}"><button class="delete__button" type="submit">Delete</button></form>
 </div>
 
+<!-- updated version of progress bar -->
+<div class="progressDelete">
+	<div class="progressBorder" name="83">
+		<div class="progressFiller" style="width: 83%"></div>
+		<div><span>83%</span></div>
+	</div>
+	<form id="252">
+		<button class="delete__button" type="submit"><i class="far fa-trash-alt" aria-hidden="true"></i></button>
+	</form>
+</div>
 
 <!-- This is for the tasks -->
 
-<div class="taskField"><input class="unchecked" type="checkbox">
-	<div class="taskHolder"><a href="/tasks/${task.id}">${task.name}</a>
+<div class="taskField">
+	<input class="unchecked" type="checkbox" />
+	<div class="taskHolder">
+		<a href="/tasks/${task.id}">${task.name}</a>
 		<div class="taskHolder__inProgress">${task.inProgress}</div>
 		<div class="taskHolder__completed">${task.completed}</div>
 		<div class="taskHolder__priority">${task.priority}</div>
@@ -52,11 +65,11 @@
 	</div>
 </div>
 
-
 <!-- tasks -->
 <div class="tasksContainer">
 	<div class="taskField">
-		<div class="taskHolder"><input class="unchecked" type="checkbox"><a href="/tasks/25">test2</a>
+		<div class="taskHolder">
+			<input class="unchecked" type="checkbox" /><a href="/tasks/25">test2</a>
 			<div class="taskHolder__inProgress">false</div>
 			<div class="taskHolder__completed">false</div>
 			<div class="taskHolder__priority">1</div>
@@ -67,11 +80,13 @@
 	</div>
 </div>
 <!-- tasks 2-->
-<div class="taskHolder"><input class="unchecked taskCheckbox" type="checkbox">
-	<div class="taskHolder__inProgress falseInProgress falseCompleted"></div><a class="taskNameDiv"
-		href="/tasks/117">1</a>
+<div class="taskHolder">
+	<input class="unchecked taskCheckbox" type="checkbox" />
+	<div class="taskHolder__inProgress falseInProgress falseCompleted"></div>
+	<a class="taskNameDiv" href="/tasks/117">1</a>
 	<div class="taskHolder__completed"></div>
 	<div class="taskHolder__priority1">1</div>
-	<form class="taskDeleteButton" id="117"><button class="delete__button" type="submit"><i class="far fa-trash-alt"
-				aria-hidden="true"></i></button></form>
+	<form class="taskDeleteButton" id="117">
+		<button class="delete__button" type="submit"><i class="far fa-trash-alt" aria-hidden="true"></i></button>
+	</form>
 </div>
