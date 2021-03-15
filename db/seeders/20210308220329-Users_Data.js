@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 'use strict';
 
 module.exports = {
@@ -5,26 +6,10 @@ module.exports = {
 
     return queryInterface.bulkInsert('Users', [
       {
-        firstName: 'John',
-        lastName: 'Billy',
-        email: 'email@email.com',
-        hashedPassword: '123456',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        firstName: 'Billy',
-        lastName: 'John',
-        email: 'email2@email.com',
-        hashedPassword: '123456',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        firstName: 'Billy',
-        lastName: 'Bob',
-        email: 'email3@email.com',
-        hashedPassword: '123456',
+        firstName: 'Demo',
+        lastName: 'User',
+        email: 'Demo@User.com',
+        hashedPassword: 'demonineletters',
         createdAt: new Date(),
         updatedAt: new Date()
       }
