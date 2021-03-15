@@ -32,59 +32,43 @@ Projects All the Way Down (or PAWD for short) is an application designed to be u
 
 ## Problems faced
 
-Initially, setting up AJAX for our features was a difficult task. The number of interactions in our front-end and back-end proved to be quite cumbersome to grasp at first but through sound logic and reasoning (and many hours of code work/review), our team was able to lay an effective foundation for future API routes via helper functions and effective and clear templates. As we made progress, use of helper function in our utils file streamlined the process of creating more AJAX processes and API routes.
+Initially, setting up AJAX for our features was a difficult task. The number of interactions in our front-end and back-end proved to be quite cumbersome to grasp at first but through sound logic and reasoning (and many hours of code work/review), our team was able to lay an effective foundation and and approach for future API routes via helper functions and effective and clear templates. As we made progress, use of helper function in our utils file streamlined the process of creating more AJAX processes and API routes.
 
 
 ## Code Snippet from front-end/back-end note creation
 
 ```
-	const noteCreateForm = document.querySelector(".noteList__form");
-	const noteTextarea = document.querySelector(".note-content");
-	noteCreateForm.addEventListener("submit", async (event) => {
-		event.preventDefault();
-
-		const formData = new FormData(noteCreateForm);
-		const content = formData.get("content");
-		const [userId, taskId] = noteCreateForm.id.split(":");
-
-		try {
-			const res = await fetch("/api-notes", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ content, userId, taskId }),
-			});
-			const notes = await res.json();
-
-			notesContainer.innerHTML = "";
-			noteTextarea.value = "";
-			if (notes[1].length) emptyNoteCreate(notes[1]);
-			if (notes[0].length) noteFieldInnerHtml(notes[0], taskId);
-			else return;
-		} catch (err) {
-			console.error("messed up in notes create", err);
-		}
-	});
-```
-
-
-```
-apiNoteRouter.post(
+apiTaskRouter.patch(
 	"/",
 	requireAuth,
-	notesValidators,
+	taskValidators,
 	asyncHandler(async (req, res) => {
-		const { content, userId, taskId } = req.body;
+		// console.log(req.body, "REQ.BOD==============================");
+		const { taskId, inProgress, completed, priority, name } = req.body;
+		const currentUser = findCurrentUser(req.session);
 		const mappedErrors = validationResult(req).errors;
 		const errors = mappedErrors.map((error) => error.msg);
+		const task = await Task.findByPk(taskId);
+		const projectId = task.projectId;
+		let error = "";
 		try {
-			if (mappedErrors.length === 0) {
-				await Note.create({ content, userId, taskId });
+			// console.log("THIS HAPPENED===============================");
+			if (name && name.length >= 1 && name.length < 101) await task.update({ name });
+			if (inProgress === null) await task.update({ inProgress: false });
+			else if (inProgress === "on") await task.update({ inProgress: true });
+			if (completed === null) await task.update({ completed: false });
+			else if (completed === "on") await task.update({ completed: true });
+			await updateProgress(projectId);
+			if (priority) await task.update({ priority });
+			else {
+				if (errors.length > 0) error = errors[0];
 			}
 		} catch (err) {
-			console.err("messed up on backend note create", err);
+			console.error(err);
 		}
-		const notes = await Note.findAll({ where: { taskId } });
-		res.json([notes, errors]);
+		const allProjects = await Project.findAll({ where: { projectOwnerId: currentUser } });
+		const tasks = await Task.findAll({ where: { projectId } });
+		res.json([tasks, error, allProjects]);
 	})
 );
 ```
