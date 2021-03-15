@@ -34,9 +34,9 @@ const grabAll = async (taskId, session, editNote) => {
 	const { projectId } = task;
 	const notes = await Note.findAll({ where: { taskId } });
 	const tasks = await Task.findAll({ where: { projectId } });
-	const allProjects = await Project.findAll({
+	const projects = await Project.findAll({
 		where: { projectOwnerId: userId },
-		order: [['id', 'ASC']]
+		order: [["id", "ASC"]],
 	});
 	const {
 		dataValues: { name },
