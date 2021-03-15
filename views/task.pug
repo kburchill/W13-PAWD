@@ -54,9 +54,9 @@ block projects
   .taskList__div
     div(class="text-progress-bar-div")
       h1 Project: #{name}
-      div(class="progressBorder" name=`${projectProgress}`)
-        div(class="progressFiller" style=`width: ${projectProgress}%`)
-        div(class=ternary): span #{projectProgress}%
+      //- div(class="progressBorder" name=`${projectProgress}`)
+      //-   div(class="progressFiller" style=`width: ${projectProgress}%`)
+      //-   div(class=ternary): span #{projectProgress}%
     form(id= projectId class='taskList__form')
       label(for="createNewTask")
       input(type="text" id="createNewTask" name="name" placeHolder="Create New Task" class="formField_createTask")

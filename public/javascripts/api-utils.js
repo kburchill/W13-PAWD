@@ -3,6 +3,7 @@ export function projectFieldInnerHtml(projects) {
 	projects.forEach((project) => {
 		const projectProgressNum = project.progress == 100 ? "hundred" : "zero";
 		const projectHolderDiv = document.createElement("div");
+		// projectHolder.setAttribute("class", "taskField");
 		projectHolderDiv.innerHTML = `<div class="projectField">
 		<div class="projectHolder"></div><a href="/projects/${project.id}" name="${project.name}">${project.name}</a>
 		<div class="progressBorder" name="0">

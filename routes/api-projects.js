@@ -20,7 +20,10 @@ apiProjectRouter.delete(
 			// use next(error) and fix up if you want to allow non Owners to delete project
 		}
 
-		const allProjects = await Project.findAll({ where: { projectOwnerId: findCurrentUser(req.session) } });
+		const allProjects = await Project.findAll({
+			where: { projectOwnerId: findCurrentUser(req.session) },
+		    order: [['id', 'ASC']]
+		});
 		res.json([allProjects, currentProjectId]);
 	})
 );

@@ -22,7 +22,10 @@ apiTaskRouter.delete(
 		} catch (error) {
 			console.log(error);
 		}
-		const allProjects = await Project.findAll({ where: { projectOwnerId: currentUser } });
+		const allProjects = await Project.findAll({
+			where: { projectOwnerId: currentUser },
+		    order: [['id', 'ASC']]
+		});
 		const allTasks = await Task.findAll({ where: { projectId: task.projectId } });
 
 		res.json([allTasks, currentTask, currentProjectId, allProjects]);
@@ -46,7 +49,10 @@ apiTaskRouter.post(
 		} catch (err) {
 			console.error(err);
 		}
-		const allProjects = await Project.findAll({ where: { projectOwnerId: currentUser } });
+		const allProjects = await Project.findAll({
+			where: { projectOwnerId: currentUser },
+		    order: [['id', 'ASC']]
+		});
 		const tasks = await Task.findAll({ where: { projectId } });
 		res.json([tasks, error, allProjects]);
 	})
@@ -66,7 +72,6 @@ apiTaskRouter.patch(
 		const projectId = task.projectId;
 		let error = "";
 		try {
-			// console.log("THIS HAPPENED===============================");
 			if (name && name.length >= 1 && name.length < 101) await task.update({ name });
 			if (inProgress === null) await task.update({ inProgress: false });
 			else if (inProgress === "on") await task.update({ inProgress: true });
@@ -80,7 +85,10 @@ apiTaskRouter.patch(
 		} catch (err) {
 			console.error(err);
 		}
-		const allProjects = await Project.findAll({ where: { projectOwnerId: currentUser } });
+		const allProjects = await Project.findAll({
+			where: { projectOwnerId: currentUser },
+		    order: [['id', 'ASC']]
+		});
 		const tasks = await Task.findAll({ where: { projectId } });
 		res.json([tasks, error, allProjects]);
 	})
