@@ -22,13 +22,41 @@
 //-   block tasks
 
 
+//- extends project
+//- include utils.pug
+//- append head
+//-   script(src="/javascripts/tasksAPI.js" type="module")
+//- block projects
+//-   .taskList__div
+//-     h1 Project: #{name}
+//-     form(id= projectId class='taskList__form')
+//-       label(for="createNewTask")
+//-       input(type="text" id="createNewTask" name="name" placeHolder="Create New Task" class="formField_createTask")
+//-       div(class="priority-dropdown-div")
+//-         label(for="priority") Priority
+//-         select(name="priority")
+//-           option(value=1) 1
+//-           option(value=2) 2
+//-           option(value=3) 3
+//-       button(type="submit" class="user-submit-button") Create New Task
+//-         i(class="fas fa-pencil-alt")
+//-     div(class="tasksContainer")
+//-       each task in tasks
+//-         +taskTile(task.name, task.inProgress, task.completed, task.priority, task.id)
+//-     div(class="bottomLines")
+//-   block tasks
+
 extends project
 include utils.pug
 append head
   script(src="/javascripts/tasksAPI.js" type="module")
 block projects
   .taskList__div
-    h1 Project: #{name}
+    div(class="text-progress-bar-div")
+      h1 Project: #{name}
+      div(class="progressBorder" name=`${projectProgress}`)
+        div(class="progressFiller" style=`width: ${projectProgress}%`)
+        div(class=ternary): span #{projectProgress}%
     form(id= projectId class='taskList__form')
       label(for="createNewTask")
       input(type="text" id="createNewTask" name="name" placeHolder="Create New Task" class="formField_createTask")
@@ -45,3 +73,8 @@ block projects
         +taskTile(task.name, task.inProgress, task.completed, task.priority, task.id)
     div(class="bottomLines")
   block tasks
+
+
+//- div(class="progressBorder" name=`${projectProgress}`)
+//-         div(class="progressFiller" style=`width: ${projectProgress}%`)
+//-         div(class=ternary): span #{projectProgress}%
