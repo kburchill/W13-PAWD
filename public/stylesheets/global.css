@@ -1,11 +1,23 @@
-
 html {
 	height: 100%;
 	width: 100%;
 }
 
-div, textarea, h1, h2, p, a {
-	font-family: 'Amiri', serif;
+/* h1,
+h2,
+a,
+p,
+input,
+a,
+div,
+h3,
+h4,
+h5,
+textarea,
+select,
+option */
+* {
+	font-family: "Righteous", cursive;
 }
 
 body {
@@ -13,7 +25,6 @@ body {
 	width: 100%;
 	background: linear-gradient(0.25turn, #6bb5d2, #89c9b8, #cae8e8);
 }
-
 
 .main__container {
 	height: 100%;

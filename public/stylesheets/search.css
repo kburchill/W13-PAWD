@@ -58,3 +58,15 @@
 	grid-area: inprogress;
 	justify-self: center;
 }
+
+.search-field input:focus {
+	outline: none;
+}
+
+.search-field input {
+	border-bottom: 1px solid #10375c;
+}
+.search-field .search__button {
+	height: 20px;
+	border: 3px 3px 3px 0px solid #10375c;
+}
