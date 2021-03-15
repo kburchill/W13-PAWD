@@ -46,21 +46,18 @@
 	color: rgb(103, 35, 231);
 	padding-left: 5px;
 	padding-right: 5px;
-	border: 1px solid black;
 	grid-area: priority;
 }
 .taskHolder__priority2 {
 	color: rgb(255, 196, 0);
 	padding-left: 5px;
 	padding-right: 5px;
-	border: 1px solid black;
 	grid-area: priority;
 }
 .taskHolder__priority3 {
 	color: rgb(235, 11, 235);
 	padding-left: 5px;
 	padding-right: 5px;
-	border: 1px solid black;
 	grid-area: priority;
 }
 

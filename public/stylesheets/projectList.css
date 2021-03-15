@@ -77,7 +77,7 @@
 	display: flex;
 	max-width: 70%;
 	max-height: 40%;
-	flex-direction: row;
+	flex-direction: row-reverse;
 	padding-left: 5%;
 	/* overflow: auto; */
 }

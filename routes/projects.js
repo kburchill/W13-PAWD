@@ -81,7 +81,7 @@ projectsRouter.get(
 			dataValues: { name },
 		} = await Project.findByPk(projectId);
 
-		const tasks = await Task.findAll({ where: { projectId } });
+		const tasks = await Task.findAll({ where: { projectId }});
 		const project = await Project.build();
 		const projects = await Project.findAll({ where: { projectOwnerId: findCurrentUser(req.session) } });
 
