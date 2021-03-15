@@ -83,7 +83,8 @@ window.addEventListener("DOMContentLoaded", async () => {
 					taskEditErrorDiv = document.createElement("div");
 					taskEditErrorDiv.id = "taskEditErrorDiv";
 				}
-				taskEditErrorDiv.innerHTML = tasks[1];
+				taskEditErrorDiv.innerHTML = "";
+				if (tasks[1] === "Task can't exceed 100 characters!") taskEditErrorDiv.innerHTML = tasks[1];
 				taskEditForm.appendChild(taskEditErrorDiv);
 				emptyTaskCreate(tasks[1], ".taskEdit__name");
 			}

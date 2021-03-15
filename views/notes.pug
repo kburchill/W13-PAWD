@@ -6,7 +6,7 @@ block tasks
   .task-notes__div
     .taskEdit__div
       form(id=`taskEdit-${taskId}` class="taskEdit__form")
-        label(for="createdAt" class="createdClass")= `Created on: ${task.createdAt}`
+        label(for="createdAt" class="createdClass")= `Created: ${task.createdAt}`
         label(for="priority" class="priorityClass") Priority
         select(name="priority" id="taskEdit__priority" class="prioritySelector")
           if (task.priority === 1)
