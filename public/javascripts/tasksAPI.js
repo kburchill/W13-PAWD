@@ -148,9 +148,16 @@ window.addEventListener("DOMContentLoaded", async () => {
 		}
 	});
 
-	document.querySelector(".task-edit-button").addEventListener("click", (event) => {
-		event.stopImmediatePropagation();
-		event.preventDefault();
-		window.location.href = `/tasks/${urlIdIdentifier(window.location.href)[0]}`;
+	const aTagtaskEdit__cancel = document.querySelector(".aTagtaskEdit__cancel");
+	const aCommentEdit__cancel = document.querySelector(".anote-edit-button");
+
+	[aTagtaskEdit__cancel, aCommentEdit__cancel].forEach((cancelbutton) => {
+		if (cancelbutton) {
+			cancelbutton.addEventListener("click", (event) => {
+				event.stopImmediatePropagation();
+				event.preventDefault();
+				window.location.href = `/tasks/${urlIdIdentifier(window.location.href)[0]}`;
+			});
+		}
 	});
 });

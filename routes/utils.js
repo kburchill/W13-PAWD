@@ -38,6 +38,7 @@ const grabAll = async (taskId, session, editNote) => {
 		where: { projectOwnerId: userId },
 		order: [["id", "ASC"]],
 	});
+
 	const {
 		dataValues: { name },
 	} = await Project.findByPk(projectId);
