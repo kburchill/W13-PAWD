@@ -63,8 +63,10 @@ async function checkProgress(projectId) {
 	const project = await Project.findByPk(projectId);
 	const totalTasks = await Task.findAll({ where: { projectId: project.dataValues.id } });
 	const completedTasks = await Task.findAll({ where: { projectId: project.id, completed: true } });
-	const percentCompleted = completedTasks.length / totalTasks.length;
-	return Math.round(percentCompleted * 100);
+	if (totalTasks.length > 0) {
+		const percentCompleted = completedTasks.length / totalTasks.length;
+		return Math.round(percentCompleted * 100);
+	} else return 0;
 }
 
 async function updateProgress(currentProjectId) {
