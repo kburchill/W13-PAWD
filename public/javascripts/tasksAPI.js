@@ -148,7 +148,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 		}
 	});
 
-	document.querySelector(".task-edit-button").addEventListener("click", (event) => {
+	document.querySelector(".aTagtaskEdit__cancel").addEventListener("click", (event) => {
 		event.stopImmediatePropagation();
 		event.preventDefault();
 		window.location.href = `/tasks/${urlIdIdentifier(window.location.href)[0]}`;
