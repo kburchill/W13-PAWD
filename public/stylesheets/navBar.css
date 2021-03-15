@@ -62,21 +62,3 @@ navbar__div = actual navbar
   .bigTurtles
   .navbar__div-logout
 */
-.logout__button {
-	height: auto;
-	background-color: #204051;
-}
-
-.logout__button:hover {
-	background-color: #204051;
-	box-shadow: none;
-}
-
-.fa-sign-out-alt {
-	color: #CAE8E8;
-	font-size: xx-large;
-}
-
-.fa-sign-out-alt:hover {
-	color: #ffc816;
-}
