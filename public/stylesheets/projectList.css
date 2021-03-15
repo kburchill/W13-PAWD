@@ -112,3 +112,7 @@
 .projectField a {
 	display: block;
 }
+
+.errors-div li {
+	color: firebrick;
+}

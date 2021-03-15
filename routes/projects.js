@@ -16,17 +16,17 @@ projectsRouter.get(
 		const userId = findCurrentUser(req.session);
 		const preProjects = await Project.findAll({
 			where: { projectOwnerId: userId },
-			order: [['id', 'ASC']]
+			order: [["id", "ASC"]],
 		});
 
 		for (project of preProjects) {
-			await updateProgress(project.id)		}
+			await updateProgress(project.id);
+		}
 
-			const projects = await Project.findAll({
-				where: { projectOwnerId: userId },
-				order: [['id', 'ASC']]
-			});
-
+		const projects = await Project.findAll({
+			where: { projectOwnerId: userId },
+			order: [["id", "ASC"]],
+		});
 
 		res.render("project", {
 			title: "Projects",
@@ -50,8 +50,10 @@ projectsRouter.post(
 			return res.redirect(`/projects/${projectId}`);
 		} else {
 			const errors = mappedErrors.map((error) => error.msg);
-l
-
+			const projects = await Project.findAll({
+				where: { projectOwnerId: findCurrentUser(req.session) },
+				order: [["id", "ASC"]],
+			});
 			const project = await Project.build();
 			res.render("project", {
 				title: "Projects",
@@ -89,11 +91,11 @@ projectsRouter.get(
 			dataValues: { name },
 		} = await Project.findByPk(projectId);
 
-		const tasks = await Task.findAll({ where: { projectId }});
+		const tasks = await Task.findAll({ where: { projectId } });
 		const project = await Project.build();
 		const projects = await Project.findAll({
 			where: { projectOwnerId: findCurrentUser(req.session) },
-			order: [['id', 'ASC']]
+			order: [["id", "ASC"]],
 		});
 
 		res.render("task", { tasks, title: "Tasks", projectId, project, projects, name });
