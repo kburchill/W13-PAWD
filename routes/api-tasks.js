@@ -24,7 +24,7 @@ apiTaskRouter.delete(
 		}
 		const allProjects = await Project.findAll({
 			where: { projectOwnerId: currentUser },
-		    order: [['id', 'ASC']]
+			order: [["id", "ASC"]],
 		});
 		const allTasks = await Task.findAll({ where: { projectId: task.projectId } });
 
@@ -51,7 +51,7 @@ apiTaskRouter.post(
 		}
 		const allProjects = await Project.findAll({
 			where: { projectOwnerId: currentUser },
-		    order: [['id', 'ASC']]
+			order: [["id", "ASC"]],
 		});
 		const tasks = await Task.findAll({ where: { projectId } });
 		res.json([tasks, error, allProjects]);
@@ -63,7 +63,6 @@ apiTaskRouter.patch(
 	requireAuth,
 	taskValidators,
 	asyncHandler(async (req, res) => {
-		// console.log(req.body, "REQ.BOD==============================");
 		const { taskId, inProgress, completed, priority, name } = req.body;
 		const currentUser = findCurrentUser(req.session);
 		const mappedErrors = validationResult(req).errors;
@@ -87,7 +86,7 @@ apiTaskRouter.patch(
 		}
 		const allProjects = await Project.findAll({
 			where: { projectOwnerId: currentUser },
-		    order: [['id', 'ASC']]
+			order: [["id", "ASC"]],
 		});
 		const tasks = await Task.findAll({ where: { projectId } });
 		res.json([tasks, error, allProjects]);
