@@ -1,4 +1,4 @@
-- Our wiki docs: https://github.com/guny12/W13-TaskMain/wiki
+- Our wiki docs: https://github.com/guny12/W13-PAWD/wiki
 
 # Projects All the Way Down
 
