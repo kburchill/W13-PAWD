@@ -45,7 +45,6 @@ apiTaskRouter.patch(
 	requireAuth,
 	taskValidators,
 	asyncHandler(async (req, res) => {
-		// console.log(req.body, "REQ.BOD==============================");
 		const { taskId, inProgress, completed, priority, name } = req.body;
 		const currentUser = findCurrentUser(req.session);
 		const mappedErrors = validationResult(req).errors;
@@ -54,7 +53,6 @@ apiTaskRouter.patch(
 		const projectId = task.projectId;
 		let error = "";
 		try {
-			// console.log("THIS HAPPENED===============================");
 			if (name && name.length >= 1 && name.length < 101) await task.update({ name });
 			if (inProgress === null) await task.update({ inProgress: false });
 			else if (inProgress === "on") await task.update({ inProgress: true });
